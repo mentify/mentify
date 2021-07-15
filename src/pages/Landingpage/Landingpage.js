@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../../assets/Mentify-Logo.png";
 import Hello from "../../assets/Hello.png";
 import wave from "../../assets/wave.png";
+import RoundImage from "../../assets/RoundImage.png";
 import styled from "styled-components";
 import Typewriter from "typewriter-effect";
 
@@ -43,16 +44,16 @@ export const Landingpage = () => {
       font-size: 3rem;
       margin-top: 0.5em;
     }
-    & .WaveImage {
-      width: 100%;
-      height: auto;
-      position: relative;
-      top: -8vh;
-      z-index: -2;
-    }
     & .details {
       padding-left: 3em;
       padding-right: 3em;
+      background-size: cover;
+      height: 155vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      top: -8vh;
     }
     & .details-heading {
       font-family: Roboto;
@@ -67,6 +68,12 @@ export const Landingpage = () => {
       font-weight: normal;
       font-size: 24px;
       line-height: 41px;
+    }
+    & .imageHolder {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: -40vh;
     }
     @media only screen and (max-width: 600px) {
       & .page1 {
@@ -102,8 +109,7 @@ export const Landingpage = () => {
         </div>
         <img src={Hello} alt="Welcome" className="helloImage" />
       </div>
-      <img src={wave} alt="wave green" class="WaveImage" />
-      <div className="details">
+      <div className="details" style={{ backgroundImage: `url(${wave})` }}>
         <div className="details-heading">Why Mentify ?</div>
         <div className="details-description">
           Choosing a college right after 12th isnt an easy task , We help you
@@ -118,6 +124,9 @@ export const Landingpage = () => {
           connect with students interning in various top firms you wish to
           intern for
         </div>
+      </div>
+      <div className="imageHolder">
+        <img src={RoundImage} alt="settings with lady" />
       </div>
     </Landingpage>
   );
