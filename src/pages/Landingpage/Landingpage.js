@@ -119,6 +119,10 @@ export const Landingpage = () => {
     & .step {
       width: 20%;
     }
+    & .step img {
+      width: 3rem;
+      height: auto;
+    }
     & .stepHeading {
       font-family: Roboto;
       font-style: normal;
@@ -140,11 +144,6 @@ export const Landingpage = () => {
       width: 15%;
       height: 2rem;
     }
-    & .emptyDiv {
-      margin-top: auto;
-      height: 30vh;
-      background: #b5f7e7;
-    }
     @media (max-width: 1055px) {
       & .page1 {
         display: flex;
@@ -156,9 +155,12 @@ export const Landingpage = () => {
         flex-direction: column;
       }
       & .step {
-        width: 40%;
+        width: 50%;
       }
+
       & .arrow {
+        width: 17%;
+        height: 0.7rem;
         transform: rotate(90deg);
         transition-duration: 0.5s;
         margin: 2em;
@@ -243,7 +245,7 @@ export const Landingpage = () => {
             <img src={search} alt="searchingg" />
             <div className="stepHeading">Select a mentor</div>
             <div className="stepContent">
-              Select a mentor based on the college/company you are looking for
+              Select a mentor based on the college / company you are looking for
             </div>
           </div>
           <img src={arrow} alt="arrow" className="arrow" />
