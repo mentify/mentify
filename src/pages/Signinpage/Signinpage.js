@@ -1,6 +1,5 @@
 import React from "react";
 import LogInMan from "../../assets/loginman.png";
-
 import './signinpage.css';
 
 export const Signinpage = () => {

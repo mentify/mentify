@@ -18,6 +18,7 @@ export const Navbar = () => {
     <Nav className="Navbar">
       <Link to="/"> Home </Link>
       <Link to="/signin"> Sign In </Link>
+      <Link to="/register"> Register </Link>
     </Nav>
   );
 };
