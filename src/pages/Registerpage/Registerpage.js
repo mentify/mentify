@@ -13,17 +13,6 @@ export const Registerpage = () => {
 		 		</div>
 		 	</Tilt>
 			<SignInForm heading={"Register"} />
-			<div className="wrap-input100">
-				<input
-						className="input100"
-						type="text"
-						name="name"
-						placeholder="Name"
-					/>
-				<span className="focus-input100"></span>
-				<span className="symbol-input100"></span>
-			</div>
-
 		</div>
 	);
 };

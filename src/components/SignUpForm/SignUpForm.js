@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import googleLogo from "../../assets/googlelogo.svg";
 
 const SignInFormStyled = styled.div`
 	& a {
@@ -91,6 +92,7 @@ const SignInFormStyled = styled.div`
 
 	& .wrap-login100 {
 		width: 95%;
+		border: 2px solid black;
 		background: #b5f7e7;
 		border-radius: 10px;
 		overflow: hidden;
@@ -119,7 +121,6 @@ const SignInFormStyled = styled.div`
 	& .login100-form-title {
 		font-family: ABeeZee;
 		font-size: 2rem;
-		
 		color: black;
 		line-height: 1.2;
 		text-align: center;
@@ -218,7 +219,7 @@ const SignInFormStyled = styled.div`
 		width: 100%;
 		height: 50px;
 		border-radius: 25px;
-		background: #4290f5;
+		background: #192038;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -227,9 +228,50 @@ const SignInFormStyled = styled.div`
 	}
 
 	& .login100-form-btn:hover {
-		background: #333333;
+		background: #FFB61D;
 	}
 
+	& .google-btn {
+	  width: auto;
+	  margin-top:0.6em;
+	  height: 42px;
+	  background-color: #4285f4;
+	  border-radius: 2px;
+	  box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+ 	& .google-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: white;
+  }
+  & .google-icon {
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 11px;
+    width: 18px;
+    height: 18px;
+  }
+  & .btn-text {
+  	padding-top:0.6em;
+    text-align:center;
+    margin: 11px 11px 0 0;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+  }
+
+  &:hover {
+    box-shadow: 0 0 6px #4285f4;
+  }
+
+  &:active {
+    background: #1669F2;
+}
+}
 	@media (max-width: 1290px) {
 		& {
 			width: 35%;
@@ -270,6 +312,7 @@ const SignInFormStyled = styled.div`
 			width: 80vw;
 		}
 	}
+	
 `;
 
 export const SignInForm = ({ heading }) => {
@@ -277,7 +320,36 @@ export const SignInForm = ({ heading }) => {
 		<SignInFormStyled className="container-login100">
 			<div className="wrap-login100">
 				<form className="login100-form">
-					<span className="login100-form-title"><i>{heading}</i></span>
+					<span className="login100-form-title"><b><i>{heading}</i></b></span>
+					{ heading=== 'Register'?
+					<div>
+						<div className="wrap-input100 ">
+							<input
+								className="input100"
+								type="text"
+								name="name"
+								placeholder="Name"
+							/>
+							<span className="focus-input100"></span>
+							<span className="symbol-input100"></span>
+						</div>
+
+						<div className="wrap-input100 ">
+							<input
+								className="input100"
+								type="tel"
+								name="phone_no"
+								placeholder="Mobile Number"
+								maxlength="10"
+							/>
+							<span className="focus-input100"></span>
+							<span className="symbol-input100"></span>
+						</div>
+					</div>
+					:
+					<div>
+					</div>
+					}
 
 					<div className="wrap-input100 ">
 						<input
@@ -300,24 +372,46 @@ export const SignInForm = ({ heading }) => {
 						<span className="focus-input100"></span>
 						<span className="symbol-input100"></span>
 					</div>
-
-					<div className="container-login100-form-btn">
-						<button className="login100-form-btn">Login</button>
-					</div>
-
 					<div className="text-center p-t-12 ">
-						<span className="txt1">Forgot</span>
-						<br />
-						<a className="txt2" href="#">
-							Username / Password?
-						</a>
+						<input type="checkbox" id="tnc" name="tnc" value="agree"/>	
+	  					<label for="tnc"> 
+	  					<span className="txt1"> I agree to terms and conditions
+	  					</span>
+	  					</label>
+	  		
+	  				</div>
+					<div className="container-login100-form-btn">
+						<button className="login100-form-btn">{heading}</button>
 					</div>
 
-					<div className="text-center p-t-35">
-						<a className="txt2" href="#">
-							Create your Account
-						</a>
+					<div class="google-btn">
+						<div class="google-icon-wrapper">
+					    	<img class="google-icon" src={googleLogo}/>
+					  	</div>
+					  	<p class="btn-text"><b>Sign in with google</b></p>
 					</div>
+
+					{ heading==="Login"?
+						<div>
+							<div className="text-center p-t-12 ">
+								<span className="txt1">Forgot</span>
+								<br />
+								<a className="txt2" href="#">
+									Username / Password?
+								</a>
+							</div>
+
+							<div className="text-center p-t-35">
+								<a className="txt2" href="#">
+									Create your Account
+								</a>
+							</div>
+						</div>
+					:
+					<div>
+					</div>
+					}
+					
 				</form>
 			</div>
 		</SignInFormStyled>
