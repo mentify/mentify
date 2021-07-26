@@ -12,7 +12,7 @@ export const Registerpage = () => {
 					<div className="Tilt-inner"> <img src={LogInWoman} alt="man-laptop" /> </div>
 		 		</div>
 		 	</Tilt>
-			<SignInForm heading={"Register"} />
+			<SignInForm heading={"Sign Up"} />
 		</div>
 	);
 };
