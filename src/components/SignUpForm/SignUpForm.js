@@ -100,7 +100,8 @@ const SignInFormStyled = styled.div`
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		padding: 3em 2em 3em 2em;
+		padding: 2em 2em 2em 2em;
+		box-shadow: 10px 10px 5px grey;
 	}
 
 	& .p-t-12 {
@@ -168,20 +169,27 @@ const SignInFormStyled = styled.div`
 	}
 
 	& .symbol-input100 {
-		font-size: 15px;
-		display: flex;
-		align-items: center;
-		position: absolute;
-		border-radius: 25px;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		padding-left: 35px;
-		pointer-events: none;
-		color: #666666;
-		transition: all 0.4s;
-	}
+  font-size: 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 35px;
+  pointer-events: none;
+  color: #666666;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
 
 	@-webkit-keyframes anim-shadow {
 		to {
@@ -197,10 +205,10 @@ const SignInFormStyled = styled.div`
 		}
 	}
 
-	& .input100:focus + & .focus-input100 + & .symbol-input100 {
-		color: #57b846;
-		padding-left: 28px;
-	}
+	& .input100:focus + .focus-input100 + .symbol-input100 {
+  color: #57b846;
+  padding-left: 28px;
+}
 
 	& .container-login100-form-btn {
 		width: 100%;
@@ -215,9 +223,8 @@ const SignInFormStyled = styled.div`
 		font-size: 15px;
 		line-height: 1.5;
 		color: black;
-		text-transform: uppercase;
 		width: 100%;
-		height: 50px;
+		height: 42px;
 		border-radius: 25px;
 		background: #B5F7E7;
 		display: flex;
@@ -320,7 +327,7 @@ export const SignInForm = ({ heading }) => {
 		<SignInFormStyled className="container-login100">
 			<div className="wrap-login100">
 				<form className="login100-form">
-					<span className="login100-form-title"><b><i>{heading}</i></b></span>
+					<span className="login100-form-title">{heading==="Sign In"? <div><b>Welcome back</b></div>: <div><b>Welcome</b></div>}</span>
 					{ heading=== 'Sign Up'?
 					<div>
 						<div className="wrap-input100 ">
@@ -328,10 +335,10 @@ export const SignInForm = ({ heading }) => {
 								className="input100"
 								type="text"
 								name="name"
-								placeholder="Name"
+								placeholder="  Name"
 							/>
 							<span className="focus-input100"></span>
-							<span className="symbol-input100"></span>
+							<span className="symbol-input100"><i class="fa fa-user" aria-hidden="true"></i></span>
 						</div>
 
 						<div className="wrap-input100 ">
@@ -339,11 +346,11 @@ export const SignInForm = ({ heading }) => {
 								className="input100"
 								type="tel"
 								name="phone_no"
-								placeholder="Mobile Number"
+								placeholder="  Mobile Number"
 								maxlength="10"
 							/>
 							<span className="focus-input100"></span>
-							<span className="symbol-input100"></span>
+							<span className="symbol-input100"><i class="fa fa-phone-square" aria-hidden="true"></i></span>
 						</div>
 					</div>
 					:
@@ -356,10 +363,10 @@ export const SignInForm = ({ heading }) => {
 							className="input100"
 							type="text"
 							name="email"
-							placeholder="Email"
+							placeholder="  Email"
 						/>
 						<span className="focus-input100"></span>
-						<span className="symbol-input100"></span>
+						<span className="symbol-input100"><i class="fa fa-envelope fa-1x" aria-hidden="true"></i></span>
 					</div>
 
 					<div className="wrap-input100">
@@ -367,23 +374,27 @@ export const SignInForm = ({ heading }) => {
 							className="input100"
 							type="password"
 							name="pass"
-							placeholder="Password"
+							placeholder="  Password"
 						/>
 						<span className="focus-input100"></span>
-						<span className="symbol-input100"></span>
+						<span className="symbol-input100"><i class="fa fa-key" aria-hidden="true"></i></span>
 					</div>
+
+					{heading==="Sign Up"?
 					<div className="text-center p-t-12 ">
 						<input type="checkbox" id="tnc" name="tnc" value="agree"/>	
 							<label for="tnc"> 
 							<span className="txt1"> I agree to terms and conditions
 							</span>
 							</label>
-				
-						</div>
+					</div>
+					:<div></div>}
 					<div className="container-login100-form-btn">
 						<button className="login100-form-btn"><b>{heading}</b></button>
 					</div>
-
+					<div className="text-center p-t-12 ">
+						OR
+					</div>
 					<div class="google-btn">
 						<div class="google-icon-wrapper">
 								<img class="google-icon" src={googleLogo}/>
