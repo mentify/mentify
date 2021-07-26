@@ -238,6 +238,18 @@ const SignInFormStyled = styled.div`
 		background: #FFB61D;
 	}
 
+	& .orline{
+		 width: 100%; 
+   text-align: center; 
+   border-bottom: 1px solid #000; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+	}
+ 
+ & .orline span{
+    background:#fff; 
+    padding:0 10px;
+ }
 	& .google-btn {
 		width: auto;
 		margin-top:0.6em;
@@ -392,8 +404,8 @@ export const SignInForm = ({ heading }) => {
 					<div className="container-login100-form-btn">
 						<button className="login100-form-btn"><b>{heading}</b></button>
 					</div>
-					<div className="text-center p-t-12 ">
-						OR
+					<div className=" orline text-center p-t-12 ">
+						<span>OR</span>
 					</div>
 					<div class="google-btn">
 						<div class="google-icon-wrapper">
