@@ -15,6 +15,7 @@ export const Navbar = () => {
     & .link {
       text-decoration: none;
       color: black;
+      transition-duration: 0.3s;
     }
     & :last-child {
       margin-right: 3em;
@@ -30,6 +31,9 @@ export const Navbar = () => {
       border: 2px black solid;
       border-radius: 3em;
       transition-duration: 0.5s;
+    }
+    & .link:hover {
+      color: gray;
     }
     & .signup:hover {
       background: black;
