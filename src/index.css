@@ -1,8 +1,7 @@
 body {
   margin: 0;
-  height: fit-content;
 }
 #root {
-  height: fit-content;
   box-sizing: border-box;
+  min-height: 100vh;
 }
