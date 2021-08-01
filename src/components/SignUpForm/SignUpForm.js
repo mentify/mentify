@@ -120,7 +120,7 @@ const SignInFormStyled = styled.div`
   }
 
   & .login100-form-title {
-    font-family: ABeeZee;
+    font-family: roboto;
     font-size: 2rem;
     color: black;
     line-height: 1.2;
@@ -341,7 +341,7 @@ export const SignInForm = ({ heading }) => {
           <span className="login100-form-title">
             {heading === "Sign In" ? (
               <div>
-                <b>Welcome back</b>
+                <b>Welcome Back!</b>
               </div>
             ) : (
               <div>

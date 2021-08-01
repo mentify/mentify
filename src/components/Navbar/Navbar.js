@@ -45,7 +45,6 @@ export const Navbar = () => {
       padding: 0.4em;
       border: 2px black solid;
       border-radius: 3em;
-      transition-duration: 0.5s;
     }
     & .dropdown-img {
       height: 3em;
@@ -89,6 +88,17 @@ export const Navbar = () => {
         margin-left: auto;
         margin-right: 3em;
       }
+      @keyframes drop {
+        0% {
+          height: 0;
+        }
+        50% {
+          height: 50%;
+        }
+        100% {
+          height: 100%;
+        }
+      }
     }
   `;
   return (
@@ -112,6 +122,7 @@ export const Navbar = () => {
       <div
         className="dropdown-list"
         style={{ display: isVisible ? "flex" : "none" }}
+        onMouseLeave={() => setIsVisible(false)}
       >
         <Link to="/signin" className="link drop" onClick={onDropDownClick}>
           Sign In
