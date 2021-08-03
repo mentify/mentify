@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import googleLogo from "../../assets/googlelogo.svg";
+import firebase from "firebase";
 
 const SignInFormStyled = styled.div`
   & a {
@@ -334,6 +335,11 @@ const SignInFormStyled = styled.div`
 `;
 
 export const SignInForm = ({ heading }) => {
+  const [name, setName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <SignInFormStyled className="container-login100">
       <div className="wrap-login100">
@@ -357,6 +363,7 @@ export const SignInForm = ({ heading }) => {
                   type="text"
                   name="name"
                   placeholder="  Name"
+                  onChange={(e) => setName(e.target.value)}
                 />
                 <span className="focus-input100"></span>
                 <span className="symbol-input100">
@@ -371,6 +378,7 @@ export const SignInForm = ({ heading }) => {
                   name="phone_no"
                   placeholder="  Mobile Number"
                   maxlength="10"
+                  onChange={(e) => setMobile(e.target.value)}
                 />
                 <span className="focus-input100"></span>
                 <span className="symbol-input100">
@@ -388,6 +396,7 @@ export const SignInForm = ({ heading }) => {
               type="text"
               name="email"
               placeholder="  Email"
+              onChange={(e) => setEmail(e.target.value)}
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">
@@ -401,6 +410,7 @@ export const SignInForm = ({ heading }) => {
               type="password"
               name="pass"
               placeholder="  Password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">
