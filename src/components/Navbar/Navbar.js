@@ -135,7 +135,7 @@ export const Navbar = () => {
           Sign In
         </Link>
         <hr className="line" />
-        <Link to="/signup" className="link drop" onClick={onDropDownClick}>
+        <Link to="/register" className="link drop" onClick={onDropDownClick}>
           Sign Up
         </Link>
         <hr className="line" />

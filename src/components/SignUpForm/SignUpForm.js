@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import googleLogo from "../../assets/googlelogo.svg";
-import firebase from "firebase";
+import firebase from "../../firebase.config.js";
+import { Link } from "react-router-dom";
 
 const SignInFormStyled = styled.div`
   & a {
@@ -252,6 +253,7 @@ const SignInFormStyled = styled.div`
     padding: 0 10px;
   }
   & .google-btn {
+    cursor: pointer;
     width: auto;
     margin-top: 0.6em;
     height: 42px;
@@ -339,6 +341,81 @@ export const SignInForm = ({ heading }) => {
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isTermsAgreed, setIsTermsAgreed] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onGoogleSignUp = () => {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        const userData = {
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+          phone: user.phoneNumber,
+        };
+        firebase.firestore().collection("users").add(userData);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const onSubmitClick = (e) => {
+    e.preventDefault();
+
+    if (heading === "Sign Up") {
+      if (!isTermsAgreed) {
+        alert("Please accept our terms and conditions to continue.");
+        return;
+      }
+      if (!name.length || !mobile.length || !email.length || !password.length) {
+        alert("Please fill all the required details");
+        return;
+      }
+      setIsLoading(true);
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          setIsLoading(false);
+          var user = userCredential.user;
+          const userData = {
+            uid: user.uid,
+            displayName: name,
+            email: user.email,
+            phone: mobile,
+          };
+          setEmail("");
+          setName("");
+          setPassword("");
+          setMobile("");
+          firebase.firestore().collection("users").add(userData);
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setEmail("");
+          setName("");
+          setPassword("");
+          setMobile("");
+          alert(error.message);
+        });
+    } else if (heading === "Sign In") {
+      if (!email.length || !password.length) {
+        alert("Please enter email/password");
+        return;
+      }
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
+  };
 
   return (
     <SignInFormStyled className="container-login100">
@@ -362,8 +439,10 @@ export const SignInForm = ({ heading }) => {
                   className="input100"
                   type="text"
                   name="name"
-                  placeholder="  Name"
+                  placeholder="  Name*"
                   onChange={(e) => setName(e.target.value)}
+                  value={name}
+                  required
                 />
                 <span className="focus-input100"></span>
                 <span className="symbol-input100">
@@ -376,9 +455,11 @@ export const SignInForm = ({ heading }) => {
                   className="input100"
                   type="tel"
                   name="phone_no"
-                  placeholder="  Mobile Number"
-                  maxlength="10"
+                  placeholder="  Mobile Number*"
+                  maxLength="10"
                   onChange={(e) => setMobile(e.target.value)}
+                  value={mobile}
+                  required
                 />
                 <span className="focus-input100"></span>
                 <span className="symbol-input100">
@@ -395,8 +476,10 @@ export const SignInForm = ({ heading }) => {
               className="input100"
               type="text"
               name="email"
-              placeholder="  Email"
+              placeholder="  Email*"
               onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              required
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">
@@ -409,8 +492,10 @@ export const SignInForm = ({ heading }) => {
               className="input100"
               type="password"
               name="pass"
-              placeholder="  Password"
+              placeholder="  Password*"
               onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              required
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">
@@ -420,7 +505,13 @@ export const SignInForm = ({ heading }) => {
 
           {heading === "Sign Up" ? (
             <div className="text-center p-t-12 ">
-              <input type="checkbox" id="tnc" name="tnc" value="agree" />
+              <input
+                type="checkbox"
+                id="tnc"
+                name="tnc"
+                value="agree"
+                onClick={() => setIsTermsAgreed(!isTermsAgreed)}
+              />
               <label for="tnc">
                 <span className="txt1"> I agree to terms and conditions</span>
               </label>
@@ -429,14 +520,18 @@ export const SignInForm = ({ heading }) => {
             <div></div>
           )}
           <div className="container-login100-form-btn">
-            <button className="login100-form-btn">
+            <button
+              className="login100-form-btn"
+              onClick={onSubmitClick}
+              disabled={isLoading}
+            >
               <b>{heading}</b>
             </button>
           </div>
           <div className=" orline text-center p-t-12 ">
             <span>OR</span>
           </div>
-          <div class="google-btn">
+          <div class="google-btn" onClick={onGoogleSignUp}>
             <div class="google-icon-wrapper">
               <img class="google-icon" src={googleLogo} alt="google" />
             </div>
@@ -473,9 +568,9 @@ export const SignInForm = ({ heading }) => {
             </div>
           ) : (
             <div className="text-center p-t-35">
-              <a className="txt2" href="#">
+              <Link className="link" to="/signin">
                 Already a user? Sign in
-              </a>
+              </Link>
             </div>
           )}
         </form>
