@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import dropdown from "../../assets/dropdown-arrow.png";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import firebase from "../../firebase.config.js";
+import { signOutUser } from "../../redux/user/user-actions";
 
 const Nav = styled.div`
   & {
@@ -97,10 +101,18 @@ const Nav = styled.div`
   }
 `;
 
-export const Navbar = () => {
+const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
   const [isVisible, setIsVisible] = useState(false);
   const onDropDownClick = () => {
     setIsVisible(!isVisible);
+  };
+  const onSignOutClick = () => {
+    if (currentUser) {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => signOutCurrentUser());
+    } else history.push("/register");
   };
 
   return (
@@ -114,11 +126,14 @@ export const Navbar = () => {
       <Link to="/contact" className="link contact">
         Contact Us
       </Link>
+
       <Link to="/signin" className="link auth">
-        Sign In
+        {currentUser
+          ? `Hey ${currentUser.displayName.split(" ")[0]}!`
+          : "Sign In"}
       </Link>
-      <Link to="/register" className="link signup">
-        Sign Up
+      <Link className="link signup" onClick={onSignOutClick}>
+        {currentUser ? "Sign Out" : "Sign Up"}
       </Link>
       <img
         src={dropdown}
@@ -150,3 +165,13 @@ export const Navbar = () => {
     </Nav>
   );
 };
+
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signOutCurrentUser: () => dispatch(signOutUser()),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
