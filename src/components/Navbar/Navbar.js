@@ -113,8 +113,8 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
         .signOut()
         .then(() => signOutCurrentUser());
     } else history.push("/register");
+    if (isVisible) onDropDownClick();
   };
-
   return (
     <Nav className="Navbar">
       <Link to="/" className="link home">
@@ -141,27 +141,40 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
         onClick={onDropDownClick}
         alt="nav-drops"
       />
-      <div
-        className="dropdown-list"
-        style={{ display: isVisible ? "flex" : "none" }}
-        onMouseLeave={() => setIsVisible(false)}
-      >
-        <Link to="/signin" className="link drop" onClick={onDropDownClick}>
-          Sign In
-        </Link>
-        <hr className="line" />
-        <Link to="/register" className="link drop" onClick={onDropDownClick}>
-          Sign Up
-        </Link>
-        <hr className="line" />
-        <Link to="/signin" className="link drop" onClick={onDropDownClick}>
-          Log out
-        </Link>
-        <hr className="line" />
-        <Link to="/contact" className="link drop" onClick={onDropDownClick}>
-          Contact Us
-        </Link>
-      </div>
+
+      {currentUser ? (
+        <div
+          className="dropdown-list"
+          style={{ display: isVisible ? "flex" : "none" }}
+          onMouseLeave={() => setIsVisible(false)}
+        >
+          <Link to="/signin" className="link drop" onClick={onSignOutClick}>
+            Log out
+          </Link>
+          <hr className="line" />
+          <Link to="/contact" className="link drop" onClick={onDropDownClick}>
+            Contact Us
+          </Link>
+        </div>
+      ) : (
+        <div
+          className="dropdown-list"
+          style={{ display: isVisible ? "flex" : "none" }}
+          onMouseLeave={() => setIsVisible(false)}
+        >
+          <Link to="/signin" className="link drop" onClick={onDropDownClick}>
+            Sign In
+          </Link>
+          <hr className="line" />
+          <Link to="/register" className="link drop" onClick={onDropDownClick}>
+            Sign Up
+          </Link>
+          <hr className="line" />
+          <Link to="/contact" className="link drop" onClick={onDropDownClick}>
+            Contact Us
+          </Link>
+        </div>
+      )}
     </Nav>
   );
 };

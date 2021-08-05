@@ -364,6 +364,20 @@ export const SignInForm = ({ heading }) => {
       });
   };
 
+  const onForgotPassword = () => {
+    if (!email) {
+      alert("Please enter an email address.");
+      return;
+    }
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        alert("A password reset link has been sent to your email address.");
+      })
+      .catch((e) => alert(e.message));
+  };
+
   const onSubmitClick = (e) => {
     e.preventDefault();
 
@@ -555,15 +569,19 @@ export const SignInForm = ({ heading }) => {
               <div className="text-center p-t-12 ">
                 <span className="txt1">Forgot</span>
                 <br />
-                <a className="txt2" href="#">
+                <a
+                  className="txt2"
+                  onClick={onForgotPassword}
+                  style={{ cursor: "pointer" }}
+                >
                   Username / Password?
                 </a>
               </div>
 
               <div className="text-center p-t-35">
-                <a className="txt2" href="#">
+                <Link className="txt2" to="/register">
                   Create your Account
-                </a>
+                </Link>
               </div>
             </div>
           ) : (
