@@ -346,6 +346,7 @@ export const SignInForm = ({ heading }) => {
 
   const onGoogleSignUp = () => {
     var provider = new firebase.auth.GoogleAuthProvider();
+
     firebase
       .auth()
       .signInWithPopup(provider)
@@ -357,10 +358,20 @@ export const SignInForm = ({ heading }) => {
           email: user.email,
           phone: user.phoneNumber,
         };
-        firebase.firestore().collection("users").add(userData);
+
+        firebase
+          .firestore()
+          .collection("users")
+          .where("email", "==", user.email)
+          .get()
+          .then((snap) => snap.docs.map((doc) => doc.data()))
+          .then((usersWithThisEmail) => {
+            if (!usersWithThisEmail.length)
+              firebase.firestore().collection("users").add(userData);
+          });
       })
       .catch((error) => {
-        console.log(error.message);
+        alert(error.message);
       });
   };
 
@@ -391,6 +402,12 @@ export const SignInForm = ({ heading }) => {
         return;
       }
       setIsLoading(true);
+      firebase
+        .firestore()
+        .collection("users")
+        .where("email", "==", email)
+        .get()
+        .then((snap) => snap.forEach((doc) => console.log(doc.data())));
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
