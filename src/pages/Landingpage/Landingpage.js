@@ -12,6 +12,8 @@ import consulting from "../../assets/consulting.png";
 import marketing from "../../assets/marketing.png";
 import styled from "styled-components";
 import Typewriter from "typewriter-effect";
+import procedure2 from "../../assets/procedure2.png";
+import procedure3 from "../../assets/procedure3.png";
 
 const Landingpagestyled = styled.div`
   & {
@@ -95,6 +97,8 @@ const Landingpagestyled = styled.div`
     top: -40vh;
   }
   & .procedures {
+    position: relative;
+    top: -15vh;
     justify-self: flex-start;
     display: flex;
     flex-direction: column;
@@ -111,20 +115,23 @@ const Landingpagestyled = styled.div`
   & .procedure1 {
     height: fit-content;
     width: 55vw;
+    box-sizing: border-box;
     background: #eeeeed;
     border-radius: 1em;
     margin-bottom: 2em;
     padding: 1em;
-    display: flex;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    display: grid;
+    grid-template-columns: 4fr 1fr 4fr;
   }
   & .procedureDescription {
-    width: 40%;
+    display: flex;
+    flex-direction: column;
   }
   & .procedure1heading {
     font-size: 2rem;
     line-height: 2rem;
-    position: relative;
-    left: -3rem;
   }
   & .procedure1content {
     margin-top: 2em;
@@ -161,42 +168,22 @@ const Landingpagestyled = styled.div`
     position: relative;
     right: -3rem;
   }
-  & .steps {
-    margin-top: 0;
+  & .secondDescription {
+    text-align: right;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  & .procedureImage {
+    display: flex;
     align-items: center;
-    text-align: center;
-    gap: 2em;
   }
-  & .step {
-    width: 20%;
+
+  & .procedureImage img {
+    width: 100%;
   }
-  & .step img {
-    width: 3rem;
-    height: auto;
-  }
-  & .stepHeading {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 2rem;
-    line-height: 1em;
-    text-align: center;
-    margin-bottom: 1em;
-  }
-  & .stepContent {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1.5rem;
-    line-height: 1.25em;
-    text-align: center;
-  }
-  & .arrow {
-    width: 15%;
-    height: 2rem;
-  }
+
   @media (max-width: 1055px) {
     & .page1 {
       display: flex;
@@ -322,6 +309,40 @@ export const Landingpage = () => {
                 <p>Get started now >></p>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="procedure1" style={{ background: "#E9FFFA" }}>
+          <div className="procedureImage">
+            <img src={procedure2} />
+          </div>
+          <div className="procedure1number">2</div>
+          <div className="procedureDescription secondDescription">
+            <div className="procedure1heading secondHeading">
+              Book a session with your desired mentor
+            </div>
+            <div className="procedure1content">
+              Book a 1-1 session with your mentor and schedule a meet
+              <br />
+              Join a cohort based on your interest
+            </div>
+          </div>
+        </div>
+        <div className="procedure1" style={{ background: "#FFFAE7" }}>
+          <div
+            className="procedureDescription"
+            style={{ justifyContent: "center" }}
+          >
+            <div className="procedure1heading">
+              Get an invite on your email for your session
+            </div>
+            <div className="procedure1content">
+              Get your meet link on your email, join the meet and discuss all
+              your queries with your mentor
+            </div>
+          </div>
+          <div className="procedure1number">3</div>
+          <div className="procedureImage">
+            <img src={procedure3} />
           </div>
         </div>
       </div>
