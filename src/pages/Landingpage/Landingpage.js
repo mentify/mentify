@@ -8,6 +8,8 @@ import search from "../../assets/search.png";
 import user from "../../assets/user-add.png";
 import laptop from "../../assets/laptop.png";
 import arrow from "../../assets/Arrow.png";
+import consulting from "../../assets/consulting.png";
+import marketing from "../../assets/marketing.png";
 import styled from "styled-components";
 import Typewriter from "typewriter-effect";
 
@@ -15,15 +17,15 @@ const Landingpagestyled = styled.div`
   & {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: fit-content;
     box-sizing: border-box;
     margin: 0;
   }
   & .page1 {
     display: flex;
     justify-content: space-around;
-    padding-left: 6em;
-    padding-right: 6em;
+    padding-left: 3em;
+    padding-right: 3em;
   }
   & .description {
     width: 80%;
@@ -92,20 +94,72 @@ const Landingpagestyled = styled.div`
     position: relative;
     top: -40vh;
   }
-  & .procedure {
+  & .procedures {
     justify-self: flex-start;
     display: flex;
     flex-direction: column;
-    padding-left: 3em;
-    padding-right: 3em;
+    align-items: center;
   }
   & .procedureHeading {
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 3rem;
-    text-align: left;
+    text-align: center;
     margin-bottom: 2rem;
+  }
+  & .procedure1 {
+    height: fit-content;
+    width: 55vw;
+    background: #eeeeed;
+    border-radius: 1em;
+    margin-bottom: 2em;
+    padding: 1em;
+    display: flex;
+  }
+  & .procedureDescription {
+    width: 40%;
+  }
+  & .procedure1heading {
+    font-size: 2rem;
+    line-height: 2rem;
+    position: relative;
+    left: -3rem;
+  }
+  & .procedure1content {
+    margin-top: 2em;
+  }
+  & .procedure1number {
+    font-size: 2rem;
+    color: #ffb61d;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+    background: white;
+    border-radius: 10em;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  & .procedureFeatures {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    justify-content: center;
+  }
+  & .procedure1feature {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.75em;
+    background: #fff6d4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1em;
+    width: fit-content;
+    margin-bottom: 1em;
+    align-self: flex-end;
+    position: relative;
+    right: -3rem;
   }
   & .steps {
     margin-top: 0;
@@ -239,31 +293,34 @@ export const Landingpage = () => {
       <div className="imageHolder">
         <img src={RoundImage} alt="settings with lady" />
       </div>
-      <div className="procedure">
+      <div className="procedures">
         <div className="procedureHeading">How do we work ?</div>
-        <div className="steps">
-          <div className="step">
-            <img src={search} alt="searchingg" />
-            <div className="stepHeading">Select a mentor</div>
-            <div className="stepContent">
-              Select a mentor based on the college / company you are looking for
+        <div className="procedure1">
+          <div className="procedureDescription">
+            <div className="procedure1heading">
+              You select a mentor or cohort of your choice
+            </div>
+            <div className="procedure1content">
+              Select your mentor or cohort based on your requirements If you are
+              unable to find a mentor please fill the form and we will get back
+              to you
             </div>
           </div>
-          <img src={arrow} alt="arrow" className="arrow" />
-          <div className="step">
-            <img src={laptop} alt="laptop" />
-            <div className="stepHeading">Book a Session</div>
-            <div className="stepContent">
-              Book a slot for a session with your mentor
+          <div className="procedure1number">1</div>
+          <div className="procedureFeatures">
+            <div className="procedure1feature">
+              <img src={consulting} alt="consultingimg" />
+              <div>
+                <p>Mentors</p>
+                <p>Get started now >></p>
+              </div>
             </div>
-          </div>
-          <img src={arrow} alt="arrow" className="arrow" />
-          <div className="step">
-            <img src={user} alt="user" />
-            <div className="stepHeading">1-1 Mentoring Session</div>
-            <div className="stepContent">
-              Get a meeting invite on your email for a mentoring session with
-              your mentor and clarify all your queries.
+            <div className="procedure1feature">
+              <img src={marketing} alt="mktingimg" />
+              <div>
+                <p>Cohorts</p>
+                <p>Get started now >></p>
+              </div>
             </div>
           </div>
         </div>
