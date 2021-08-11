@@ -68,7 +68,7 @@ const Landingpagestyled = styled.div`
   }
   & .page2 {
     position: relative;
-    top: -8vh;
+    top: -12vh;
     display: flex;
     flex-direction: column;
   }
