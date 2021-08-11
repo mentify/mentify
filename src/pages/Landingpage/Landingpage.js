@@ -14,6 +14,8 @@ import styled from "styled-components";
 import Typewriter from "typewriter-effect";
 import procedure2 from "../../assets/procedure2.png";
 import procedure3 from "../../assets/procedure3.png";
+import arrow1 from "../../assets/arrow1.png";
+import arrow2 from "../../assets/arrow2.png";
 
 const Landingpagestyled = styled.div`
   & {
@@ -103,6 +105,7 @@ const Landingpagestyled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2rem;
   }
   & .procedureHeading {
     font-family: Roboto;
@@ -110,7 +113,6 @@ const Landingpagestyled = styled.div`
     font-weight: bold;
     font-size: 3rem;
     text-align: center;
-    margin-bottom: 2rem;
   }
   & .procedure1 {
     height: fit-content;
@@ -124,6 +126,7 @@ const Landingpagestyled = styled.div`
     padding-bottom: 2em;
     display: grid;
     grid-template-columns: 4fr 1fr 4fr;
+    transition-duration: 0.5s;
   }
   & .procedureDescription {
     display: flex;
@@ -184,6 +187,28 @@ const Landingpagestyled = styled.div`
     width: 100%;
   }
 
+  & .middlepart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  & .arrowImg {
+    z-index: 2;
+    position: relative;
+    top: -18vh;
+  }
+  & .second {
+    background: #e9fffa;
+    position: relative;
+    top: -35vh;
+  }
+  & .third {
+    background: #fffae7;
+    position: relative;
+    top: -70vh;
+  }
+
   @media (max-width: 1055px) {
     & .page1 {
       display: flex;
@@ -216,6 +241,33 @@ const Landingpagestyled = styled.div`
     & .details-description {
       font-size: 1.75rem;
       line-height: 1.5em;
+    }
+  }
+  @media (max-width: 700px) {
+    & .procedure1 {
+      grid-template-columns: 1.5fr 4fr;
+    }
+    & .procedureImage {
+      display: none;
+    }
+    & .procedureFeatures {
+      display: none;
+    }
+    & .procedureDescription {
+      text-align: right;
+    }
+    & .arrowImg {
+      top: -18vh;
+      left: -20vw;
+      height: 15rem;
+    }
+
+    & .numProc1 {
+      order: 1;
+    }
+
+    & .descProc1 {
+      order: 2;
     }
   }
   @media (max-width: 600px) {
@@ -283,7 +335,7 @@ export const Landingpage = () => {
       <div className="procedures">
         <div className="procedureHeading">How do we work ?</div>
         <div className="procedure1">
-          <div className="procedureDescription">
+          <div className="procedureDescription descProc1">
             <div className="procedure1heading">
               You select a mentor or cohort of your choice
             </div>
@@ -293,7 +345,10 @@ export const Landingpage = () => {
               to you
             </div>
           </div>
-          <div className="procedure1number">1</div>
+          <div className="middlepart numProc1">
+            <div className="procedure1number ">1</div>
+          </div>
+
           <div className="procedureFeatures">
             <div className="procedure1feature">
               <img src={consulting} alt="consultingimg" />
@@ -311,11 +366,16 @@ export const Landingpage = () => {
             </div>
           </div>
         </div>
-        <div className="procedure1" style={{ background: "#E9FFFA" }}>
+        <img src={arrow1} alt="arrowss" className="arrowImg" />
+        <div className="procedure1 second">
           <div className="procedureImage">
-            <img src={procedure2} />
+            <img src={procedure2} alt="proc" />
           </div>
-          <div className="procedure1number">2</div>
+          <div className="middlepart">
+            <div className="procedure1number" style={{ color: "#3DD598" }}>
+              2
+            </div>
+          </div>
           <div className="procedureDescription secondDescription">
             <div className="procedure1heading secondHeading">
               Book a session with your desired mentor
@@ -327,9 +387,19 @@ export const Landingpage = () => {
             </div>
           </div>
         </div>
-        <div className="procedure1" style={{ background: "#FFFAE7" }}>
+        <img
+          src={arrow2}
+          alt="arrowss"
+          className="arrowImg"
+          style={{ position: "relative", top: "-55vh" }}
+        />
+        <div
+          className="procedure1 third"
+          style={{ background: "#FFFAE7" }}
+          style={{ position: "relative", top: "-70vh" }}
+        >
           <div
-            className="procedureDescription"
+            className="procedureDescription descProc1"
             style={{ justifyContent: "center" }}
           >
             <div className="procedure1heading">
@@ -340,9 +410,11 @@ export const Landingpage = () => {
               your queries with your mentor
             </div>
           </div>
-          <div className="procedure1number">3</div>
+          <div className="middlepart numProc1">
+            <div className="procedure1number">3</div>
+          </div>
           <div className="procedureImage">
-            <img src={procedure3} />
+            <img src={procedure3} alt="proc" />
           </div>
         </div>
       </div>
