@@ -16,6 +16,13 @@ import procedure2 from "../../assets/procedure2.png";
 import procedure3 from "../../assets/procedure3.png";
 import arrow1 from "../../assets/arrow1.png";
 import arrow2 from "../../assets/arrow2.png";
+import college1 from "../../assets/college1.png";
+import college2 from "../../assets/college2.png";
+import college3 from "../../assets/college3.png";
+import college4 from "../../assets/college4.png";
+import college5 from "../../assets/college5.png";
+import college6 from "../../assets/college6.png";
+import college7 from "../../assets/college7.png";
 
 const Landingpagestyled = styled.div`
   & {
@@ -209,6 +216,24 @@ const Landingpagestyled = styled.div`
     top: -70vh;
   }
 
+  & .colleges {
+    position: relative;
+    top: -55vh;
+  }
+
+  & .collegeListHeading {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 3em;
+  }
+
+  & .collegeList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4em;
+  }
+
   @media (max-width: 1055px) {
     & .page1 {
       display: flex;
@@ -288,6 +313,7 @@ const Landingpagestyled = styled.div`
 `;
 
 export const Landingpage = () => {
+  const collegeList = new Array(7);
   return (
     <Landingpagestyled className="Landingpage">
       <div className="page1">
@@ -416,6 +442,18 @@ export const Landingpage = () => {
           <div className="procedureImage">
             <img src={procedure3} alt="proc" />
           </div>
+        </div>
+      </div>
+      <div className="colleges">
+        <div className="collegeListHeading">Our Mentors Come From</div>
+        <div className="collegeList">
+          <img src={college5} alt="collegeimg" />
+          <img src={college2} alt="collegeimg" />
+          <img src={college7} alt="collegeimg" />
+          <img src={college1} alt="collegeimg" />
+          <img src={college3} alt="collegeimg" />
+          <img src={college4} alt="collegeimg" />
+          <img src={college6} alt="collegeimg" />
         </div>
       </div>
     </Landingpagestyled>
