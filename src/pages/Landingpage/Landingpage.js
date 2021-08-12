@@ -4,10 +4,6 @@ import Hello from "../../assets/Hello.png";
 import topwave from "../../assets/TopWave.png";
 import bottomwave from "../../assets/BottomWave.png";
 import RoundImage from "../../assets/RoundImage.png";
-import search from "../../assets/search.png";
-import user from "../../assets/user-add.png";
-import laptop from "../../assets/laptop.png";
-import arrow from "../../assets/Arrow.png";
 import consulting from "../../assets/consulting.png";
 import marketing from "../../assets/marketing.png";
 import styled from "styled-components";
@@ -107,7 +103,7 @@ const Landingpagestyled = styled.div`
   }
   & .procedures {
     position: relative;
-    top: -15vh;
+    top: -22vh;
     justify-self: flex-start;
     display: flex;
     flex-direction: column;
@@ -218,20 +214,29 @@ const Landingpagestyled = styled.div`
 
   & .colleges {
     position: relative;
-    top: -55vh;
+    top: -70vh;
   }
 
   & .collegeListHeading {
     text-align: center;
     font-size: 3rem;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
   }
 
   & .collegeList {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 4em;
+    gap: 7em;
+  }
+
+  & .collegeImage {
+    transition-duration: 0.3s;
+    cursor: pointer;
+  }
+
+  & .collegeImage:hover {
+    transform: scale(1.05);
   }
 
   @media (max-width: 1055px) {
@@ -241,20 +246,7 @@ const Landingpagestyled = styled.div`
       padding-left: 3em;
       padding-right: 3em;
     }
-    & .steps {
-      flex-direction: column;
-    }
-    & .step {
-      width: 50%;
-    }
 
-    & .arrow {
-      width: 17%;
-      height: 0.7rem;
-      transform: rotate(90deg);
-      transition-duration: 0.5s;
-      margin: 2em;
-    }
     & .imageHolder {
       top: -20vh;
     }
@@ -447,13 +439,13 @@ export const Landingpage = () => {
       <div className="colleges">
         <div className="collegeListHeading">Our Mentors Come From</div>
         <div className="collegeList">
-          <img src={college5} alt="collegeimg" />
-          <img src={college2} alt="collegeimg" />
-          <img src={college7} alt="collegeimg" />
-          <img src={college1} alt="collegeimg" />
-          <img src={college3} alt="collegeimg" />
-          <img src={college4} alt="collegeimg" />
-          <img src={college6} alt="collegeimg" />
+          <img src={college5} alt="collegeimg" className="collegeImage" />
+          <img src={college2} alt="collegeimg" className="collegeImage" />
+          <img src={college7} alt="collegeimg" className="collegeImage" />
+          <img src={college1} alt="collegeimg" className="collegeImage" />
+          <img src={college3} alt="collegeimg" className="collegeImage" />
+          <img src={college4} alt="collegeimg" className="collegeImage" />
+          <img src={college6} alt="collegeimg" className="collegeImage" />
         </div>
       </div>
     </Landingpagestyled>
