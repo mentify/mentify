@@ -120,8 +120,30 @@ const MentorsPageStyled = styled.div`
 
 	`;
 
-	export const MentorsPage = () => {
-		return (
+	export class MentorsPage extends React.Component {
+		constructor() {
+			super()
+			this.state = {
+				mentors: [],
+				searchfield: ''
+			}
+		}
+		componentDidMount() {
+			fetch('https://jsonplaceholder.typicode.com/users')
+				.then(response=> response.json())
+				.then(console.log())
+				.then(users => {this.setState({ mentors: users})});
+			console.log(this.state.mentors)
+		}
+
+		searchChange=(event)=>{
+			this.setState({ searchfield: event.target.value })
+			console.log(this.state.searchfield)
+		}
+		render(){
+			const FilteredMentors=this.state.mentors.filter(mentor=>{return mentor.name.toLowerCase().includes(this.state.searchfield.toLowerCase())})
+			console.log(FilteredMentors)
+			return (
 				<MentorsPageStyled className="MentorsPageStyled">
 					<div className="toppart">
 						<div className="intro">
@@ -146,24 +168,22 @@ const MentorsPageStyled = styled.div`
 							<input
 								type='search'
 								placeholder='Search anything ....'
-							  	//onChange={searchChange}
+							  	onChange={this.searchChange}
 							/>
 						</div>
 						<div className="mentorcards" >
-							<MentorCard name="Akshay Nair" college="Bits Pilani"/>
-							<MentorCard name="Akshay Nair" college="Bits Pilani"/>
-							<MentorCard name="Akshay Nair" college="Bits Pilani"/>
-							<MentorCard name="Akshay Nair" college="Bits Pilani"/>
-							<MentorCard name="Akshay Nair" college="Bits Pilani"/>
-							<MentorCard name="Akshay Nair" college="Bits Pilani"/>
-							<MentorCard name="Akshay Nair" college="Bits Pilani"/>
-							<MentorCard name="Akshay Nair" college="Bits Pilani"/>
-							<MentorCard name="Akshay Nair" college="Bits Pilani"/>
+							{
+								FilteredMentors.map((user,i)=> {return(
+									<MentorCard name={FilteredMentors[i].name} college={FilteredMentors[i].company.name}/>)})
+								}
+							
+							
 						</div>
 						
 					</div>
 					<Footer/>
 				</MentorsPageStyled>
-
+			
 		);
+	}
 };
