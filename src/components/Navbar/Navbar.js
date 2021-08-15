@@ -126,7 +126,7 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
       <Link to="/contact" className="link contact">
         Contact Us
       </Link>
-
+      
       <Link to="/signin" className="link auth">
         {currentUser
           ? `Hey ${currentUser.displayName.split(" ")[0]}!`

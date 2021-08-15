@@ -15,7 +15,7 @@ import arrow2 from "../../assets/arrow2.png";
 import college1 from "../../assets/college1.png";
 import college2 from "../../assets/college2.png";
 import college3 from "../../assets/college3.png";
-import college4 from "../../assets/college4.png";
+import college4 from "../../assets/college4.png"; 
 import college5 from "../../assets/college5.png";
 import college6 from "../../assets/college6.png";
 import college7 from "../../assets/college7.png";

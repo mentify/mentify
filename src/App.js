@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { Landingpage } from "./pages/Landingpage/Landingpage";
+import { MentorsPage } from "./pages/MentorsPage/MentorsPage";
 import { Registerpage } from "./pages/Registerpage/Registerpage";
 import { Signinpage } from "./pages/Signinpage/Signinpage";
 import { withRouter } from "react-router";
@@ -35,6 +36,7 @@ const App = ({ setUserInfo, history }) => {
     <div className="App">
       <Navbar />
       <Switch>
+        <Route path="/mentors" component={MentorsPage} />
         <Route path="/signin" component={Signinpage} />
         <Route path="/register" component={Registerpage} />
         <Route path="/" component={Landingpage} />
