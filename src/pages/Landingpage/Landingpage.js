@@ -19,6 +19,7 @@ import college4 from "../../assets/college4.png";
 import college5 from "../../assets/college5.png";
 import college6 from "../../assets/college6.png";
 import college7 from "../../assets/college7.png";
+import { Footer } from "../../components/Footer/Footer";
 
 const Landingpagestyled = styled.div`
   & {
@@ -125,8 +126,8 @@ const Landingpagestyled = styled.div`
     border-radius: 1em;
     margin-bottom: 2em;
     padding: 1em;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding-top: 3em;
+    padding-bottom: 3em;
     display: grid;
     grid-template-columns: 4fr 1fr 4fr;
     transition-duration: 0.5s;
@@ -294,6 +295,9 @@ const Landingpagestyled = styled.div`
       padding-left: 3em;
       padding-right: 3em;
     }
+    & .page2 {
+      top: -8vh;
+    }
     & .helloImage {
       width: 50vw;
       height: auto;
@@ -372,14 +376,14 @@ export const Landingpage = () => {
               <img src={consulting} alt="consultingimg" />
               <div>
                 <p>Mentors</p>
-                <p>Get started now >></p>
+                <p>Get started now {`>>`}</p>
               </div>
             </div>
             <div className="procedure1feature">
               <img src={marketing} alt="mktingimg" />
               <div>
                 <p>Cohorts</p>
-                <p>Get started now >></p>
+                <p>Get started now {`>>`}</p>
               </div>
             </div>
           </div>
@@ -448,6 +452,7 @@ export const Landingpage = () => {
           <img src={college6} alt="collegeimg" className="collegeImage" />
         </div>
       </div>
+      <Footer />
     </Landingpagestyled>
   );
 };
