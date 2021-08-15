@@ -10,6 +10,7 @@ import { withRouter } from "react-router";
 import firebase from "firebase";
 import { connect } from "react-redux";
 import { setUser } from "./redux/user/user-actions";
+import { Footer } from "./components/Footer/Footer";
 
 const App = ({ setUserInfo, history }) => {
   useEffect(() => {

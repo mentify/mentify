@@ -8,13 +8,6 @@ import Flippy, { FrontSide, BackSide } from 'react-flippy';
 
 
 const MentorCardStyled = styled.div`
-    {/*& {
-        display: flex;
-        flex-direction: column;
-        height: fit-content;
-        box-sizing: border-box;
-        margin: 0;
-    }*/}
     & {
         margin-top:2em;
         gap:5em;

@@ -5,6 +5,7 @@ import MentorTrophy from "../../assets/mentor-trophy.svg";
 import Typewriter from "typewriter-effect";
 import { MentorCard } from "../../components/MentorCard/MentorCard";
 import "flip-card-wc"
+import { Footer } from "../../components/Footer/Footer";
 
 const MentorsPageStyled = styled.div`
 	& {
@@ -161,6 +162,7 @@ const MentorsPageStyled = styled.div`
 						</div>
 						
 					</div>
+					<Footer/>
 				</MentorsPageStyled>
 
 		);
