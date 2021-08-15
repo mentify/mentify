@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { Landingpage } from "./pages/Landingpage/Landingpage";
 import { Registerpage } from "./pages/Registerpage/Registerpage";
 import { Signinpage } from "./pages/Signinpage/Signinpage";
+import { Contactus } from "./pages/Contactus/Contactus";
 import { withRouter } from "react-router";
 import firebase from "firebase";
 import { connect } from "react-redux";
@@ -35,9 +36,10 @@ const App = ({ setUserInfo, history }) => {
     <div className="App">
       <Navbar />
       <Switch>
+        <Route path="/contact" component={Contactus} />
         <Route path="/signin" component={Signinpage} />
         <Route path="/register" component={Registerpage} />
-        <Route path="/" component={Landingpage} />
+        <Route path="/" component={Landingpage} /> 
       </Switch>
     </div>
   );
