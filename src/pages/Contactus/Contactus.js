@@ -18,31 +18,33 @@ import moneybackguarantee from "../../assets/moneybackguarantee.png";
 import rectanglecontactus from "../../assets/Rectanglecontactus.png";
 import whatsapp from "../../assets/Whatsapp.png";
 import discord from "../../assets/discord.png";
-import greenrectangle from "../../assets/GreenRectangle.png";
-import indigorectangle from "../../assets/IndigoRectangle.png";
 import user from "../../assets/user-add.png";
 import laptop from "../../assets/laptop.png";
 import arrow from "../../assets/Arrow.png";
 import styled from "styled-components";
+import { Footer } from "../../components/Footer/Footer";
 
 
 const Contactusstyled = styled.div`
   & {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: fit-content;
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
   }
 
   & .page1contactus {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    margin-bottom: 2em;
+    padding-left: 3em;
   }
 
   & .descriptioncontactus {
     width: 100%;
-    margin-top: 1em;
+    margin-top: 0.5em;
     margin-right: 0;
     font-style: normal;
     font-weight: 800;
@@ -59,6 +61,7 @@ const Contactusstyled = styled.div`
   & .Videoconference1Image {
     width: auto;
     height: auto;
+    margin-top: 1em;
   }
 
   & .logo {
@@ -96,7 +99,7 @@ const Contactusstyled = styled.div`
     background: #b5f7e7;
   }
 
-  & .details-headingcontactus {
+  & .detailsheadingcontactus {
     font-family: Open Sans;
     font-style: normal;
     font-weight: bold;
@@ -126,6 +129,7 @@ const Contactusstyled = styled.div`
     justify-self: flex-start;
     display: flex;
     flex-direction: column;
+
  
   }
 
@@ -136,6 +140,7 @@ const Contactusstyled = styled.div`
     font-size: 4rem;
     text-align: center;
     margin-bottom: 2rem;
+    line-height: 2rem;
   }
 
   & .steps {
@@ -273,16 +278,21 @@ const Contactusstyled = styled.div`
   & .reasonsimagecard {
     background-color: #FFFFFF;
     border-radius: 1.5em;
-    margin: 3em;
+    margin: 2em;
     padding: 1em;
-    width: 22.4vw;
+    width: 20em;
+    height: 20em;
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
+    align-self: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
   }
     & .reasonsimage {
-    margin-left: 2em;
-    margin-right: 2em;
+    align-items: center;
   }
 
       & .reasonsimagemain {
@@ -291,8 +301,101 @@ const Contactusstyled = styled.div`
     justify-content: center;
   }
 
+    & .whatsapprectangle{
+    background-color: #14D66D;
+    border-radius: 1em;
+    margin: .25em;
+    margin-left: 0em;
+    flex-wrap: wrap;
+    font: Roboto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2rem;
+    color: #FFFFFF;
+    text-align: center;
+    width: auto;
+    height: 2.75em;
+    align-self: center;
+  }
 
+   & .discordrectangle{
+    background-color: #5B70BC;
+    border-radius: 1em;
+    margin: .25em;
+    margin-left: 0em;
+    flex-wrap: wrap;
+    font: Roboto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2rem;
+    color: #FFFFFF;
+    text-align: center;
+    width: auto;
+    height: 2.75em;
+    margin:0.5em;
+    align-self: center;
 
+  }
+
+   & .Rectangles{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  & .whatsapp{
+    float: left;
+    border-radius: 2em;
+    padding: 0.2em;
+    padding-left: 0.2em;
+    padding-right: 0em;
+
+  }
+   & .discord{
+    float: left;
+    border-radius: 2em;
+    padding: 0.45em;
+  }  
+
+  & .discordtext{
+    text-align:center;
+    margin: 0.4em;
+    margin-bottom: 0em;
+    line-height: 1em;
+    font-weight: bold;
+
+  }  
+
+  & .whatsapptext{
+    text-align: center;
+    margin-top: 0.4em;
+    line-height: 1em;
+    font-weight: bold;
+    justify-content: center;
+  }  
+
+  & .rectanglecontactus{
+    align-items: center;
+    z-index: -1;
+  }  
+
+  & .reasonsbox{
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: auto;
+    align-self: center;
+    width: 80vw;
+    box-sizing: border-box;
+    background: #E3FFF9;
+    border-radius: 1em;
+    margin-bottom: 2em;
+    padding: 1em;
+    padding-top: 3em;
+    padding-bottom: 3em;
+     grid-template-columns: 4fr 1fr 4fr;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    z-index: -1;
+  }  
 
 `;
 
@@ -310,12 +413,12 @@ export const Contactus = () => {
           <div className="Contactusbuttons">
             <div className="Rectangles">
               <div className="whatsapprectangle">
-                <img src={greenrectangle} className="greenrectangle"/>
                 <img src={whatsapp} className="whatsapp"/>
+                <div className="whatsapptext">Join us on Whatsapp</div>
               </div>
               <div className="discordrectangle">
-                <img src={indigorectangle} className="indigorectangle"/>
                 <img src={discord} className="discord"/>
+                <div className="discordtext">Join us on Discord</div>
               </div>
             </div>
           </div>
@@ -327,7 +430,7 @@ export const Contactus = () => {
       <div className="page2contactus">
         <img src={TopShape} alt="top" className="wave" />
         <div className="detailscontactus">
-          <div className="details-headingcontactus">Meet the Team</div>
+          <div className="detailsheadingcontactus">Meet the Team</div>
           <div className="foundercardmain">
             <div className="foundercard">
               <img src={Sreevas} className="founderimage"/>
@@ -360,7 +463,9 @@ export const Contactus = () => {
         <img src={BottomShape} alt="bottom" className="wave" />
       </div>
       
+      <div className="reasonsbox">
       <div className="reasons">
+
         <div className="reasonsheading">Here’s why students love us </div>
         <div className="reasonsimagemain">
 
@@ -388,6 +493,7 @@ export const Contactus = () => {
             </div>
           </div>
 
+
           <div className="reasonsimagecard">
             <img src={moneybackguarantee} className="reasonsimage" alt="searchingg" />
             <div className="reasonsimageheading">Money back guarantee</div>
@@ -411,7 +517,9 @@ export const Contactus = () => {
             </div>
           </div>
         </div>
+        </div>
       </div>
+      <Footer/>
     </Contactusstyled>
   );
 };

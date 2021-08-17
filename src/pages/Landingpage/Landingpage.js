@@ -4,26 +4,36 @@ import Hello from "../../assets/Hello.png";
 import topwave from "../../assets/TopWave.png";
 import bottomwave from "../../assets/BottomWave.png";
 import RoundImage from "../../assets/RoundImage.png";
-import search from "../../assets/search.png";
-import user from "../../assets/user-add.png";
-import laptop from "../../assets/laptop.png";
-import arrow from "../../assets/Arrow.png";
+import consulting from "../../assets/consulting.png";
+import marketing from "../../assets/marketing.png";
 import styled from "styled-components";
 import Typewriter from "typewriter-effect";
+import procedure2 from "../../assets/procedure2.png";
+import procedure3 from "../../assets/procedure3.png";
+import arrow1 from "../../assets/arrow1.png";
+import arrow2 from "../../assets/arrow2.png";
+import college1 from "../../assets/college1.png";
+import college2 from "../../assets/college2.png";
+import college3 from "../../assets/college3.png";
+import college4 from "../../assets/college4.png"; 
+import college5 from "../../assets/college5.png";
+import college6 from "../../assets/college6.png";
+import college7 from "../../assets/college7.png";
+import { Footer } from "../../components/Footer/Footer";
 
 const Landingpagestyled = styled.div`
   & {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: fit-content;
     box-sizing: border-box;
     margin: 0;
   }
   & .page1 {
     display: flex;
     justify-content: space-around;
-    padding-left: 6em;
-    padding-right: 6em;
+    padding-left: 3em;
+    padding-right: 3em;
   }
   & .description {
     width: 80%;
@@ -55,7 +65,7 @@ const Landingpagestyled = styled.div`
   }
   & .page2 {
     position: relative;
-    top: -8vh;
+    top: -12vh;
     display: flex;
     flex-direction: column;
   }
@@ -92,57 +102,144 @@ const Landingpagestyled = styled.div`
     position: relative;
     top: -40vh;
   }
-  & .procedure {
+  & .procedures {
+    position: relative;
+    top: -22vh;
     justify-self: flex-start;
     display: flex;
     flex-direction: column;
-    padding-left: 3em;
-    padding-right: 3em;
+    align-items: center;
+    gap: 2rem;
   }
   & .procedureHeading {
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 3rem;
-    text-align: left;
-    margin-bottom: 2rem;
+    text-align: center;
   }
-  & .steps {
-    margin-top: 0;
+  & .procedure1 {
+    height: fit-content;
+    width: 55vw;
+    box-sizing: border-box;
+    background: #eeeeed;
+    border-radius: 1em;
+    margin-bottom: 2em;
+    padding: 1em;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    display: grid;
+    grid-template-columns: 4fr 1fr 4fr;
+    transition-duration: 0.5s;
+  }
+  & .procedureDescription {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    gap: 2em;
+    flex-direction: column;
   }
-  & .step {
-    width: 20%;
-  }
-  & .step img {
-    width: 3rem;
-    height: auto;
-  }
-  & .stepHeading {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
+  & .procedure1heading {
     font-size: 2rem;
-    line-height: 1em;
+    line-height: 2rem;
+  }
+  & .procedure1content {
+    margin-top: 2em;
+  }
+  & .procedure1number {
+    font-size: 2rem;
+    color: #ffb61d;
+    height: 3rem;
+    width: 3rem;
     text-align: center;
+    background: white;
+    border-radius: 10em;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  & .procedureFeatures {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    justify-content: center;
+  }
+  & .procedure1feature {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.75em;
+    background: #fff6d4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1em;
+    width: fit-content;
     margin-bottom: 1em;
+    align-self: flex-end;
+    position: relative;
+    right: -3rem;
   }
-  & .stepContent {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1.5rem;
-    line-height: 1.25em;
+  & .secondDescription {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  & .procedureImage {
+    display: flex;
+    align-items: center;
+  }
+
+  & .procedureImage img {
+    width: 100%;
+  }
+
+  & .middlepart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  & .arrowImg {
+    z-index: 2;
+    position: relative;
+    top: -18vh;
+  }
+  & .second {
+    background: #e9fffa;
+    position: relative;
+    top: -35vh;
+  }
+  & .third {
+    background: #fffae7;
+    position: relative;
+    top: -70vh;
+  }
+
+  & .colleges {
+    position: relative;
+    top: -70vh;
+  }
+
+  & .collegeListHeading {
     text-align: center;
+    font-size: 3rem;
+    margin-bottom: 2em;
   }
-  & .arrow {
-    width: 15%;
-    height: 2rem;
+
+  & .collegeList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7em;
   }
+
+  & .collegeImage {
+    transition-duration: 0.3s;
+    cursor: pointer;
+  }
+
+  & .collegeImage:hover {
+    transform: scale(1.05);
+  }
+
   @media (max-width: 1055px) {
     & .page1 {
       display: flex;
@@ -150,20 +247,7 @@ const Landingpagestyled = styled.div`
       padding-left: 3em;
       padding-right: 3em;
     }
-    & .steps {
-      flex-direction: column;
-    }
-    & .step {
-      width: 50%;
-    }
 
-    & .arrow {
-      width: 17%;
-      height: 0.7rem;
-      transform: rotate(90deg);
-      transition-duration: 0.5s;
-      margin: 2em;
-    }
     & .imageHolder {
       top: -20vh;
     }
@@ -177,12 +261,42 @@ const Landingpagestyled = styled.div`
       line-height: 1.5em;
     }
   }
+  @media (max-width: 700px) {
+    & .procedure1 {
+      grid-template-columns: 1.5fr 4fr;
+    }
+    & .procedureImage {
+      display: none;
+    }
+    & .procedureFeatures {
+      display: none;
+    }
+    & .procedureDescription {
+      text-align: right;
+    }
+    & .arrowImg {
+      top: -18vh;
+      left: -20vw;
+      height: 15rem;
+    }
+
+    & .numProc1 {
+      order: 1;
+    }
+
+    & .descProc1 {
+      order: 2;
+    }
+  }
   @media (max-width: 600px) {
     & .page1 {
       display: flex;
       flex-direction: column;
       padding-left: 3em;
       padding-right: 3em;
+    }
+    & .page2 {
+      top: -8vh;
     }
     & .helloImage {
       width: 50vw;
@@ -195,6 +309,7 @@ const Landingpagestyled = styled.div`
 `;
 
 export const Landingpage = () => {
+  const collegeList = new Array(7);
   return (
     <Landingpagestyled className="Landingpage">
       <div className="page1">
@@ -239,35 +354,105 @@ export const Landingpage = () => {
       <div className="imageHolder">
         <img src={RoundImage} alt="settings with lady" />
       </div>
-      <div className="procedure">
+      <div className="procedures">
         <div className="procedureHeading">How do we work ?</div>
-        <div className="steps">
-          <div className="step">
-            <img src={search} alt="searchingg" />
-            <div className="stepHeading">Select a mentor</div>
-            <div className="stepContent">
-              Select a mentor based on the college / company you are looking for
+        <div className="procedure1">
+          <div className="procedureDescription descProc1">
+            <div className="procedure1heading">
+              You select a mentor or cohort of your choice
+            </div>
+            <div className="procedure1content">
+              Select your mentor or cohort based on your requirements If you are
+              unable to find a mentor please fill the form and we will get back
+              to you
             </div>
           </div>
-          <img src={arrow} alt="arrow" className="arrow" />
-          <div className="step">
-            <img src={laptop} alt="laptop" />
-            <div className="stepHeading">Book a Session</div>
-            <div className="stepContent">
-              Book a slot for a session with your mentor
-            </div>
+          <div className="middlepart numProc1">
+            <div className="procedure1number ">1</div>
           </div>
-          <img src={arrow} alt="arrow" className="arrow" />
-          <div className="step">
-            <img src={user} alt="user" />
-            <div className="stepHeading">1-1 Mentoring Session</div>
-            <div className="stepContent">
-              Get a meeting invite on your email for a mentoring session with
-              your mentor and clarify all your queries.
+
+          <div className="procedureFeatures">
+            <div className="procedure1feature">
+              <img src={consulting} alt="consultingimg" />
+              <div>
+                <p>Mentors</p>
+                <p>Get started now {`>>`}</p>
+              </div>
+            </div>
+            <div className="procedure1feature">
+              <img src={marketing} alt="mktingimg" />
+              <div>
+                <p>Cohorts</p>
+                <p>Get started now {`>>`}</p>
+              </div>
             </div>
           </div>
         </div>
+        <img src={arrow1} alt="arrowss" className="arrowImg" />
+        <div className="procedure1 second">
+          <div className="procedureImage">
+            <img src={procedure2} alt="proc" />
+          </div>
+          <div className="middlepart">
+            <div className="procedure1number" style={{ color: "#3DD598" }}>
+              2
+            </div>
+          </div>
+          <div className="procedureDescription secondDescription">
+            <div className="procedure1heading secondHeading">
+              Book a session with your desired mentor
+            </div>
+            <div className="procedure1content">
+              Book a 1-1 session with your mentor and schedule a meet
+              <br />
+              Join a cohort based on your interest
+            </div>
+          </div>
+        </div>
+        <img
+          src={arrow2}
+          alt="arrowss"
+          className="arrowImg"
+          style={{ position: "relative", top: "-55vh" }}
+        />
+        <div
+          className="procedure1 third"
+          style={{ background: "#FFFAE7" }}
+          style={{ position: "relative", top: "-70vh" }}
+        >
+          <div
+            className="procedureDescription descProc1"
+            style={{ justifyContent: "center" }}
+          >
+            <div className="procedure1heading">
+              Get an invite on your email for your session
+            </div>
+            <div className="procedure1content">
+              Get your meet link on your email, join the meet and discuss all
+              your queries with your mentor
+            </div>
+          </div>
+          <div className="middlepart numProc1">
+            <div className="procedure1number">3</div>
+          </div>
+          <div className="procedureImage">
+            <img src={procedure3} alt="proc" />
+          </div>
+        </div>
       </div>
+      <div className="colleges">
+        <div className="collegeListHeading">Our Mentors Come From</div>
+        <div className="collegeList">
+          <img src={college5} alt="collegeimg" className="collegeImage" />
+          <img src={college2} alt="collegeimg" className="collegeImage" />
+          <img src={college7} alt="collegeimg" className="collegeImage" />
+          <img src={college1} alt="collegeimg" className="collegeImage" />
+          <img src={college3} alt="collegeimg" className="collegeImage" />
+          <img src={college4} alt="collegeimg" className="collegeImage" />
+          <img src={college6} alt="collegeimg" className="collegeImage" />
+        </div>
+      </div>
+      <Footer />
     </Landingpagestyled>
   );
 };
