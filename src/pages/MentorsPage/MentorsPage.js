@@ -4,7 +4,6 @@ import Logo from "../../assets/Mentify-Logo.png";
 import MentorTrophy from "../../assets/mentor-trophy.svg";
 import Typewriter from "typewriter-effect";
 import { MentorCard } from "../../components/MentorCard/MentorCard";
-import "flip-card-wc"
 import { Footer } from "../../components/Footer/Footer";
 
 const MentorsPageStyled = styled.div`
@@ -35,10 +34,21 @@ const MentorsPageStyled = styled.div`
 		margin-top: 1em;
 		margin-right: 0;
 		font-size: 2.5rem;
+		display:flex;
+		flex-wrap:wrap;
 		line-height: 1em;	
+	}
+	& .newline{
+		flex: 0 0 100%;
+	}
+	& .space{
+		margin-right:0.2em;
 	}
 
 	& .yellow{
+		color: #FFB61D;
+	}
+	& .yellowt{
 		color: #FFB61D;
 	}
 	& .green{
@@ -117,6 +127,41 @@ const MentorsPageStyled = styled.div`
 		flex-wrap:wrap;
 	}
 
+	@media (max-width: 992px) {
+	  .mentortrophy {
+	    width: 45%;
+	  }
+	  .content1{
+	  	width:80vw;
+	  }
+	  .content2{
+	  	width:80vw;
+	  }
+	  .yellow2{
+	  	position:absolute;
+	  }
+	  .search input{
+	  	width:12em;
+	  }
+	  
+	}
+
+	@media (max-width: 768px) {
+	  .mentortrophy {
+	    display: none;
+	  }
+	  .content1{
+	  	width:80vw;
+	  }
+	  .content2{
+	  	width:80vw;
+	  }
+	  .yellow2{
+	  	position:absolute;
+	  }
+	}
+
+	
 
 	`;
 
@@ -149,7 +194,7 @@ const MentorsPageStyled = styled.div`
 						<div className="intro">
 					    	<img src={Logo} alt="app-logo" className="logo" />
 					    	<div className="content1">
-					      		<span>All the best</span> <span className="yellow"><Typewriter  options={{ strings: ["<span>Students,</span>", "<span>Mentors,</span>"],autoStart: true,loop: true,}}/></span><span>all in one place.</span>
+					      		<div className="space">All the best </div> <div className="yellowt"><Typewriter  options={{ strings: [" Students,", " Mentors,"],autoStart: true,loop: true,}}/></div><div className="newline">all in one place.</div>
 					    	</div>
 					    	<div className="content2">
 					    		Mentors on <span className="green">mentify</span> will help you achieve your most ambititous goals. <p className="yellow">Come on, let’s smash them together!</p>

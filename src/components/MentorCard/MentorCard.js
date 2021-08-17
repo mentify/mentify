@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import MentorCardMockPic from "../../assets/mentorcard-mockpic.svg";
 import RatingStar from "../../assets/rating-star.svg";
-import "flip-card-wc";
-import ReactCardFlipper from 'react-card-flipper';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 
 
