@@ -24,7 +24,6 @@ import arrow from "../../assets/Arrow.png";
 import styled from "styled-components";
 import { Footer } from "../../components/Footer/Footer";
 
-
 const Contactusstyled = styled.div`
   & {
     display: flex;
@@ -47,21 +46,23 @@ const Contactusstyled = styled.div`
     margin-top: 0.5em;
     margin-right: 0;
     font-style: normal;
-    font-weight: 800;
+    font-weight: bolder;
     font-size: 4rem;
     line-height: 1em;
     font-family: Open Sans;
   }
 
   & .descriptioncontactuscolor {
-    color: yellow;
+    color: #ffb61d;
     font-weight: 500;
+    margin-left: 0.8rem;
   }
 
   & .Videoconference1Image {
     width: auto;
     height: auto;
-    margin-top: 1em;
+    margin: 1em;
+    margin-left: auto;
   }
 
   & .logo {
@@ -70,7 +71,7 @@ const Contactusstyled = styled.div`
 
   & .wave {
     width: 100%;
-    background-color: #B5F7E7;
+    background-color: #b5f7e7;
   }
 
   & .ExamTitles {
@@ -106,7 +107,7 @@ const Contactusstyled = styled.div`
     font-size: 3rem;
     line-height: 1em;
     margin-bottom: 0.5em;
-    margin-left: 2em;
+    text-align: center;
   }
 
   & .details-description {
@@ -129,8 +130,6 @@ const Contactusstyled = styled.div`
     justify-self: flex-start;
     display: flex;
     flex-direction: column;
-
- 
   }
 
   & .reasonsheading {
@@ -140,7 +139,7 @@ const Contactusstyled = styled.div`
     font-size: 4rem;
     text-align: center;
     margin-bottom: 2rem;
-    line-height: 2rem;
+    line-height: 3.5rem;
   }
 
   & .steps {
@@ -187,65 +186,9 @@ const Contactusstyled = styled.div`
     width: 15%;
     height: 2rem;
   }
-
-  @media (max-width: 1055px) {
-
-    & .page1contactus {
-      display: flex;
-      flex-direction: column;
-      padding-left: 3em;
-    }
-
-    & .steps {
-      flex-direction: column;
-    }
-
-    & .step {
-      width: 50%;
-    }
-
-    & .arrow {
-      width: 17%;
-      height: 0.7rem;
-      transform: rotate(90deg);
-      transition-duration: 0.5s;
-      margin: 2em;
-    }
-
-    & .imageHolder {
-      top: -20vh;
-    }
-
-    & .procedureHeading {
-      text-align: center;
-    }
-
-    & .details-description {
-      font-size: 1.75rem;
-      line-height: 1.5em;
-    }
-
-  }
-  @media (max-width: 600px) {
-
-    & .page1contactus {
-      display: flex;
-      flex-direction: column;
-      padding-left: 3em;
-    }
-
-    & .Videoconference1Image {
-      width: 50vw;
-      height: auto;
-    }
-
-    & .imageHolder {
-      top: -20vh;
-    }
-
-  }
+  
   & .foundercard {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 0.75em;
     margin-top: 2em;
     margin-bottom: 1em;
@@ -255,28 +198,27 @@ const Contactusstyled = styled.div`
     width: 31.5em;
     flex-wrap: wrap;
   }
-    & .foundercardmain {
+  & .foundercardmain {
     display: flex;
     flex-wrap: wrap;
-
     justify-content: center;
   }
-   & .foundername {
+  & .foundername {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #252F40;
+    color: #252f40;
   }
   & .foundertitle {
     font-size: 1rem;
     font-weight: 600;
-    color: #17C1E8;
+    color: #17c1e8;
   }
-    & .founderimage {
+  & .founderimage {
     float: left;
     padding-right: 1em;
   }
   & .reasonsimagecard {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 1.5em;
     margin: 2em;
     padding: 1em;
@@ -291,112 +233,117 @@ const Contactusstyled = styled.div`
     display: flex;
     flex-direction: column;
   }
-    & .reasonsimage {
+  & .reasonsimage {
     align-items: center;
   }
 
-      & .reasonsimagemain {
+  & .reasonsimagemain {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-    & .whatsapprectangle{
-    background-color: #14D66D;
+  & .whatsapprectangle {
+    background-color: #14d66d;
     border-radius: 1em;
-    margin: .25em;
-    margin-left: 0em;
     flex-wrap: wrap;
     font: Roboto;
     font-weight: 700;
     font-style: normal;
     font-size: 2rem;
-    color: #FFFFFF;
+    color: #ffffff;
     text-align: center;
     width: auto;
     height: 2.75em;
     align-self: center;
+    z-index: 1;
   }
 
-   & .discordrectangle{
-    background-color: #5B70BC;
+  & .discordrectangle {
+    background-color: #5b70bc;
     border-radius: 1em;
-    margin: .25em;
-    margin-left: 0em;
     flex-wrap: wrap;
     font: Roboto;
     font-weight: 700;
     font-style: normal;
     font-size: 2rem;
-    color: #FFFFFF;
+    color: #ffffff;
     text-align: center;
     width: auto;
     height: 2.75em;
-    margin:0.5em;
     align-self: center;
-
+    z-index: 1;
   }
 
-   & .Rectangles{
+  & .Rectangles {
     display: flex;
-    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-top: 0.5em;
   }
-  
-  & .whatsapp{
+
+  & .whatsapp {
     float: left;
     border-radius: 2em;
     padding: 0.2em;
     padding-left: 0.2em;
     padding-right: 0em;
-
+    height: 100%;
   }
-   & .discord{
+  & .discord {
     float: left;
     border-radius: 2em;
     padding: 0.45em;
-  }  
+  }
 
-  & .discordtext{
-    text-align:center;
+  & .discordtext {
+    text-align: center;
     margin: 0.4em;
     margin-bottom: 0em;
     line-height: 1em;
     font-weight: bold;
+  }
 
-  }  
-
-  & .whatsapptext{
+  & .whatsapptext {
     text-align: center;
     margin-top: 0.4em;
     line-height: 1em;
     font-weight: bold;
     justify-content: center;
-  }  
+  }
 
-  & .rectanglecontactus{
+  & .rectanglecontactus {
     align-items: center;
     z-index: -1;
-  }  
+  }
 
-  & .reasonsbox{
+  & .reasonsbox {
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: auto;
     align-self: center;
     width: 80vw;
     box-sizing: border-box;
-    background: #E3FFF9;
+    background: #e3fff9;
     border-radius: 1em;
     margin-bottom: 2em;
     padding: 1em;
     padding-top: 3em;
     padding-bottom: 3em;
-     grid-template-columns: 4fr 1fr 4fr;
+    grid-template-columns: 4fr 1fr 4fr;
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
     z-index: -1;
-  }  
-
+  }
+  @media (max-width: 1130px) {
+    & .Videoconference1Image{
+      display: none;
+    }
+    & .Rectangles{
+      flex-direction: column;
+    }
+  }
+  
+  }
 `;
 
 export const Contactus = () => {
@@ -406,26 +353,30 @@ export const Contactus = () => {
         <div className="intro">
           <img src={Logo} alt="app-logo" className="logo" />
           <div className="descriptioncontactus">
-            We are a community of 
-          <div className="descriptioncontactuscolor">Students
-          </div>
-          
-          <div className="Contactusbuttons">
-            <div className="Rectangles">
-              <div className="whatsapprectangle">
-                <img src={whatsapp} className="whatsapp"/>
-                <div className="whatsapptext">Join us on Whatsapp</div>
-              </div>
-              <div className="discordrectangle">
-                <img src={discord} className="discord"/>
-                <div className="discordtext">Join us on Discord</div>
+            We are a community
+            <br />
+            of <span className="descriptioncontactuscolor">Students</span>
+            <div className="Contactusbuttons">
+              <div className="Rectangles">
+                <div className="whatsapprectangle">
+                  <img src={whatsapp} className="whatsapp" />
+                  <div className="whatsapptext">
+                    Join us on <strong>Whatsapp</strong>
+                  </div>
+                </div>
+                <div className="discordrectangle">
+                  <img src={discord} className="discord" />
+                  <div className="discordtext">Join us on Discord</div>
+                </div>
               </div>
             </div>
           </div>
-          </div>
-          </div>
-        <img src={Videoconference} alt="Welcome" className="Videoconference1Image" />
-      
+        </div>
+        <img
+          src={Videoconference}
+          alt="Welcome"
+          className="Videoconference1Image"
+        />
       </div>
       <div className="page2contactus">
         <img src={TopShape} alt="top" className="wave" />
@@ -433,93 +384,122 @@ export const Contactus = () => {
           <div className="detailsheadingcontactus">Meet the Team</div>
           <div className="foundercardmain">
             <div className="foundercard">
-              <img src={Sreevas} className="founderimage"/>
+              <img src={Sreevas} className="founderimage" />
               <div className="foundername">Sreevas P Shenoy</div>
               <div className="foundertitle">UI/UX</div>
-              <div>Artist is a term applied to a person who engages in an activity deemed to be an art.</div> 
+              <div>
+                Artist is a term applied to a person who engages in an activity
+                deemed to be an art.
+              </div>
             </div>
-            
+
             <div className="foundercard">
-              <img src={Adhvaith} className="founderimage"/>
+              <img src={Adhvaith} className="founderimage" />
               <div className="foundername">Adhvaith Kuldeep</div>
               <div className="foundertitle">Boss</div>
-              <div>Artist is a term applied to a person who engages in an activity deemed to be an art.</div> 
+              <div>
+                Artist is a term applied to a person who engages in an activity
+                deemed to be an art.
+              </div>
             </div>
             <div className="foundercard">
-              <img src={Sunand} className="founderimage"/>
+              <img src={Sunand} className="founderimage" />
               <div className="foundername">Sunand S Warrier</div>
               <div className="foundertitle">Athlete</div>
-              <div>Artist is a term applied to a person who engages in an activity deemed to be an art.</div> 
+              <div>
+                Artist is a term applied to a person who engages in an activity
+                deemed to be an art.
+              </div>
             </div>
             <div className="foundercard">
-              <img src={Amal} className="founderimage"/>
+              <img src={Amal} className="founderimage" />
               <div className="foundername">Amal Najeena</div>
               <div className="foundertitle">JS Developer</div>
-              <div>Artist is a term applied to a person who engages in an activity deemed to be an art.</div> 
+              <div>
+                Artist is a term applied to a person who engages in an activity
+                deemed to be an art.
+              </div>
             </div>
           </div>
-          
         </div>
         <img src={BottomShape} alt="bottom" className="wave" />
       </div>
-      
+
       <div className="reasonsbox">
-      <div className="reasons">
+        <div className="reasons">
+          <div className="reasonsheading">Here’s why students love us </div>
+          <div className="reasonsimagemain">
+            <div className="reasonsimagecard">
+              <img src={mentor} className="reasonsimage" alt="searchingg" />
+              <div className="reasonsimageheading">1-1 mentorship</div>
+              <div className="reasonsimagecontent">
+                Get personalised attention to all your doubts related to college
+                , branch , placements from college students
+              </div>
+            </div>
 
-        <div className="reasonsheading">Here’s why students love us </div>
-        <div className="reasonsimagemain">
+            <div className="reasonsimagecard">
+              <img src={clock} className="reasonsimage" alt="searchingg" />
+              <div className="reasonsimageheading">24*7 customer support</div>
+              <div className="reasonsimagecontent">
+                If you have any problems , no matter what time it is please
+                reach out to us We are always there to help you out
+              </div>
+            </div>
 
-          <div className="reasonsimagecard">
-            <img src={mentor} className="reasonsimage" alt="searchingg" />
-            <div className="reasonsimageheading">1-1 mentorship</div>
-            <div className="reasonsimagecontent">
-              Get personalised attention to all your doubts related to college , branch , placements from college students
+            <div className="reasonsimagecard">
+              <img
+                src={generationy}
+                className="reasonsimage"
+                alt="searchingg"
+              />
+              <div className="reasonsimageheading">Free webinars</div>
+              <div className="reasonsimagecontent">
+                Our community members will be given access to free webinars
+                which will definitely help them to ace their placements ,masters
+                and so on
+              </div>
+            </div>
+
+            <div className="reasonsimagecard">
+              <img
+                src={moneybackguarantee}
+                className="reasonsimage"
+                alt="searchingg"
+              />
+              <div className="reasonsimageheading">Money back guarantee</div>
+              <div className="reasonsimagecontent">
+                If your mentor has not turned up for the session or hasnt
+                cleared all your doubts , no questions asked full money will be
+                refunded
+              </div>
+            </div>
+
+            <div className="reasonsimagecard">
+              <img
+                src={flexibility}
+                className="reasonsimage"
+                alt="searchingg"
+              />
+              <div className="reasonsimageheading">Flexibility</div>
+              <div className="reasonsimagecontent">
+                You have the freedom to choose the time and date for your
+                mentorship you can also reschedule it to a latter date
+              </div>
+            </div>
+
+            <div className="reasonsimagecard">
+              <img src={tag1} className="reasonsimage" alt="searchingg" />
+              <div className="reasonsimageheading">Lowest price guaranteed</div>
+              <div className="reasonsimagecontent">
+                Yep , You heard it right we value your money and are the only
+                website that provides 1-1 mentorship at this small price
+              </div>
             </div>
           </div>
-
-          <div className="reasonsimagecard">
-            <img src={clock} className="reasonsimage" alt="searchingg" />
-            <div className="reasonsimageheading">24*7 customer  support</div>
-            <div className="reasonsimagecontent">
-              If you have any problems , no matter what time it is please reach out to us We are always there to help you out
-            </div>
-          </div>
-
-          <div className="reasonsimagecard">
-            <img src={generationy} className="reasonsimage" alt="searchingg" />
-            <div className="reasonsimageheading">Free webinars</div>
-            <div className="reasonsimagecontent">
-              Our community members will be given access to free webinars which will definitely help them to ace their placements ,masters and so on
-            </div>
-          </div>
-
-
-          <div className="reasonsimagecard">
-            <img src={moneybackguarantee} className="reasonsimage" alt="searchingg" />
-            <div className="reasonsimageheading">Money back guarantee</div>
-            <div className="reasonsimagecontent">
-              If your mentor has not turned up for the session or hasnt cleared all your doubts , no questions asked full money will be refunded
-            </div>
-          </div>
-
-          <div className="reasonsimagecard">
-            <img src={flexibility} className="reasonsimage" alt="searchingg" />
-            <div className="reasonsimageheading">Flexibility</div>
-            <div className="reasonsimagecontent">
-              You have the freedom to choose the time and date for your mentorship you can also reschedule it to a latter date
-            </div>
-          </div>
-
-          <div className="reasonsimagecard">
-            <img src={tag1} className="reasonsimage" alt="searchingg" />
-            <div className="reasonsimageheading">Lowest price guaranteed</div>
-            <div className="reasonsimagecontent">Yep , You heard it right we value your money and are the only website that provides 1-1 mentorship at this small price
-            </div>
-          </div>
-        </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </Contactusstyled>
   );
 };
