@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../assets/Mentify-Logo.png";
 import Hello from "../../assets/Hello.png";
 import topwave from "../../assets/TopWave.png";
-import bottomwave from "../../assets/BottomWave.png";
+import bottomwave from "../../assets/BottomWave.svg";
 import RoundImage from "../../assets/RoundImage.png";
 import consulting from "../../assets/consulting.png";
 import marketing from "../../assets/marketing.png";
