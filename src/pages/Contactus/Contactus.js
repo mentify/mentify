@@ -16,7 +16,7 @@ import mentor from "../../assets/mentor.png";
 import tag1 from "../../assets/tag1.png";
 import moneybackguarantee from "../../assets/moneybackguarantee.png";
 import rectanglecontactus from "../../assets/Rectanglecontactus.png";
-import whatsapp from "../../assets/whatsapp.png";
+import whatsapp from "../../assets/Whatsapp.png";
 import discord from "../../assets/discord.png";
 import user from "../../assets/user-add.png";
 import laptop from "../../assets/laptop.png";
@@ -162,17 +162,17 @@ const Contactusstyled = styled.div`
     height: auto;
   }
 
-  & .yellowt1{
-    color: #FFB61D;
+  & .yellowt1 {
+    color: #ffb61d;
     margin-left: 0.2em;
   }
 
   & .discordtextcontent {
-    font-size:0.8em;
+    font-size: 0.8em;
   }
 
   & .whatsapptextcontent {
-    font-size:0.8em;
+    font-size: 0.8em;
   }
 
   & .reasonsimageheading {
@@ -201,7 +201,7 @@ const Contactusstyled = styled.div`
     width: 15%;
     height: 2rem;
   }
-  
+
   & .foundercard {
     background-color: #ffffff;
     border-radius: 0.75em;
@@ -252,7 +252,7 @@ const Contactusstyled = styled.div`
     align-items: center;
   }
 
-  & .descriptioncontactustext{
+  & .descriptioncontactustext {
     display: flex;
     flex-wrap: wrap;
   }
@@ -324,7 +324,7 @@ const Contactusstyled = styled.div`
   }
 
   & .whatsapptext {
-    text-align: center;;
+    text-align: center;
     margin: 0.2em;
     line-height: 1em;
     font-weight: bold;
@@ -356,43 +356,41 @@ const Contactusstyled = styled.div`
     margin-top: 2em;
   }
   @media (max-width: 1130px) {
-    & .Videoconference1Image{
+    & .Videoconference1Image {
       display: none;
     }
-    
   }
   @media (max-width: 1400px) {
-   & .Rectangles{
+    & .Rectangles {
       flex-direction: column;
     }
   }
 
   @media (max-width: 600px) {
-   & .foundercard{
+    & .foundercard {
       flex-direction: column;
     }
-     & .founderimage {
-    float:none;
-    padding-right: 0;
-    display: block;
-    margin: 0 auto;
-  }
+    & .founderimage {
+      float: none;
+      padding-right: 0;
+      display: block;
+      margin: 0 auto;
+    }
 
-   & .foundername {
-    text-align: center;
-  }
+    & .foundername {
+      text-align: center;
+    }
 
-   & .foundertitle {
-    text-align: center;
-  }
+    & .foundertitle {
+      text-align: center;
+    }
 
-   & .foundertext {
-    text-align: center;
-  }
-  & .reasonsimagecard {
-    height: auto;
-  }
-  
+    & .foundertext {
+      text-align: center;
+    }
+    & .reasonsimagecard {
+      height: auto;
+    }
   }
 `;
 
@@ -403,22 +401,37 @@ export const Contactus = () => {
         <div className="intro">
           <img src={Logo} alt="app-logo" className="logo" />
           <div className="descriptioncontactus">
-            <div>We are a community
-            <br/>
-            <div className="descriptioncontactustext"> of <span className="yellowt1"><Typewriter  options={{ strings: [" Students", " Mentors"],autoStart: true,loop: true,}}/></span></div>
-          </div>
+            <div>
+              We are a community
+              <br />
+              <div className="descriptioncontactustext">
+                {" "}
+                of{" "}
+                <span className="yellowt1">
+                  <Typewriter
+                    options={{
+                      strings: [" Students", " Mentors"],
+                      autoStart: true,
+                      loop: true,
+                    }}
+                  />
+                </span>
+              </div>
+            </div>
             <div className="Contactusbuttons">
               <div className="Rectangles">
                 <div className="whatsapprectangle">
-                  <img src={whatsapp} className="whatsapp" />
+                  <img src={discord} className="whatsapp" />
                   <div className="whatsapptext">
-                    <span className="whatsapptextcontent">Join us on</span> <strong>Whatsapp</strong>
+                    <span className="whatsapptextcontent">Join us on</span>{" "}
+                    <strong>Whatsapp</strong>
                   </div>
                 </div>
                 <div className="discordrectangle">
                   <img src={discord} className="discord" />
                   <div className="discordtext">
-                  <span className="discordtextcontent">Join us on</span> <strong>Discord</strong>
+                    <span className="discordtextcontent">Join us on</span>{" "}
+                    <strong>Discord</strong>
                   </div>
                 </div>
               </div>
@@ -440,7 +453,7 @@ export const Contactus = () => {
               <img src={Sreevas} className="founderimage" />
               <div className="foundername">Sreevas P Shenoy</div>
               <div className="foundertitle">UI/UX</div>
-              <div className= "foundertext">
+              <div className="foundertext">
                 Artist is a term applied to a person who engages in an activity
                 deemed to be an art.
               </div>
@@ -450,7 +463,7 @@ export const Contactus = () => {
               <img src={Adhvaith} className="founderimage" />
               <div className="foundername">Adhvaith Kuldeep</div>
               <div className="foundertitle">Boss</div>
-              <div className= "foundertext">
+              <div className="foundertext">
                 Artist is a term applied to a person who engages in an activity
                 deemed to be an art.
               </div>
@@ -459,7 +472,7 @@ export const Contactus = () => {
               <img src={Sunand} className="founderimage" />
               <div className="foundername">Sunand S Warrier</div>
               <div className="foundertitle">Athlete</div>
-              <div className= "foundertext">
+              <div className="foundertext">
                 Artist is a term applied to a person who engages in an activity
                 deemed to be an art.
               </div>
@@ -468,7 +481,7 @@ export const Contactus = () => {
               <img src={Amal} className="founderimage" />
               <div className="foundername">Amal Najeena</div>
               <div className="foundertitle">JS Developer</div>
-              <div className= "foundertext">
+              <div className="foundertext">
                 Artist is a term applied to a person who engages in an activity
                 deemed to be an art.
               </div>
