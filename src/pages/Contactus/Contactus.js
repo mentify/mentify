@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../assets/Mentify-Logo.png";
 import Videoconference from "../../assets/Videoconference1.png";
 import TopShape from "../../assets/TopShape.png";
-import BottomShape from "../../assets/BottomShape.png";
+import BottomShape from "../../assets/BottomShape.svg";
 import Sreevas from "../../assets/Sreevas.png";
 import Adhvaith from "../../assets/Adhvaith.png";
 import Sunand from "../../assets/Sunand.png";
@@ -16,13 +16,14 @@ import mentor from "../../assets/mentor.png";
 import tag1 from "../../assets/tag1.png";
 import moneybackguarantee from "../../assets/moneybackguarantee.png";
 import rectanglecontactus from "../../assets/Rectanglecontactus.png";
-import whatsapp from "../../assets/Whatsapp.png";
+import whatsapp from "../../assets/whatsapp.png";
 import discord from "../../assets/discord.png";
 import user from "../../assets/user-add.png";
 import laptop from "../../assets/laptop.png";
 import arrow from "../../assets/Arrow.png";
 import styled from "styled-components";
 import { Footer } from "../../components/Footer/Footer";
+import Typewriter from "typewriter-effect";
 
 const Contactusstyled = styled.div`
   & {
@@ -72,6 +73,7 @@ const Contactusstyled = styled.div`
   & .wave {
     width: 100%;
     background-color: #b5f7e7;
+    margin: 0;
   }
 
   & .ExamTitles {
@@ -85,13 +87,13 @@ const Contactusstyled = styled.div`
 
   & .page2contactus {
     position: relative;
-    top: -8vh;
+    margin-top: 0;
     display: flex;
     flex-direction: column;
   }
 
   & .detailscontactus {
-    padding: 10em;
+    padding: 5em;
     background-size: cover;
     height: fit-content;
     display: flex;
@@ -160,6 +162,19 @@ const Contactusstyled = styled.div`
     height: auto;
   }
 
+  & .yellowt1 {
+    color: #ffb61d;
+    margin-left: 0.2em;
+  }
+
+  & .discordtextcontent {
+    font-size: 0.8em;
+  }
+
+  & .whatsapptextcontent {
+    font-size: 0.8em;
+  }
+
   & .reasonsimageheading {
     font-family: Abhaya Libre ExtraBold;
     font-style: normal;
@@ -186,7 +201,7 @@ const Contactusstyled = styled.div`
     width: 15%;
     height: 2rem;
   }
-  
+
   & .foundercard {
     background-color: #ffffff;
     border-radius: 0.75em;
@@ -237,6 +252,11 @@ const Contactusstyled = styled.div`
     align-items: center;
   }
 
+  & .descriptioncontactustext {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   & .reasonsimagemain {
     display: flex;
     flex-wrap: wrap;
@@ -244,7 +264,7 @@ const Contactusstyled = styled.div`
   }
 
   & .whatsapprectangle {
-    background-color: #14d66d;
+    background-color: #1bd741;
     border-radius: 1em;
     flex-wrap: wrap;
     font: Roboto;
@@ -285,7 +305,7 @@ const Contactusstyled = styled.div`
     float: left;
     border-radius: 2em;
     padding: 0.2em;
-    padding-left: 0.2em;
+    padding-left: 0.4em;
     padding-right: 0em;
     height: 100%;
   }
@@ -297,7 +317,7 @@ const Contactusstyled = styled.div`
 
   & .discordtext {
     text-align: center;
-    margin: 0.4em;
+    margin: 0.2em;
     margin-bottom: 0em;
     line-height: 1em;
     font-weight: bold;
@@ -305,7 +325,7 @@ const Contactusstyled = styled.div`
 
   & .whatsapptext {
     text-align: center;
-    margin-top: 0.4em;
+    margin: 0.2em;
     line-height: 1em;
     font-weight: bold;
     justify-content: center;
@@ -333,17 +353,54 @@ const Contactusstyled = styled.div`
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
     z-index: -1;
+    margin-top: 2em;
   }
   @media (max-width: 1130px) {
-    & .Videoconference1Image{
+    & .Videoconference1Image {
       display: none;
     }
-    & .Rectangles{
+  }
+  @media (max-width: 1400px) {
+    & .Rectangles {
       flex-direction: column;
     }
   }
-  
+
+  @media (max-width: 600px) {
+    & .foundercard {
+      flex-direction: column;
+    }
+    & .founderimage {
+      float: none;
+      padding-right: 0;
+      display: block;
+      margin: 0 auto;
+    }
+
+    & .foundername {
+      text-align: center;
+    }
+
+    & .foundertitle {
+      text-align: center;
+    }
+
+    & .foundertext {
+      text-align: center;
+    }
+    & .reasonsimagecard {
+      height: auto;
+    }
   }
+
+   @media (max-width: 440px) {
+    
+    & .descriptioncontactus {
+      font-size: 3rem;
+    }
+
+
+   }
 `;
 
 export const Contactus = () => {
@@ -353,23 +410,41 @@ export const Contactus = () => {
         <div className="intro">
           <img src={Logo} alt="app-logo" className="logo" />
           <div className="descriptioncontactus">
-            We are a community
-            <br />
-            of <span className="descriptioncontactuscolor">Students</span>
-            <div className="Contactusbuttons">
+            <div>
+              We are a community
+              <br />
+              <div className="descriptioncontactustext">
+                {" "}
+                of{" "}
+                <span className="yellowt1">
+                  <Typewriter
+                    options={{
+                      strings: ["Students", "Mentors"],
+                      autoStart: true,
+                      loop: true,
+                    }}
+                  />
+                </span>
+              </div>
+            </div>
+            {/*<div className="Contactusbuttons">
               <div className="Rectangles">
                 <div className="whatsapprectangle">
                   <img src={whatsapp} className="whatsapp" />
                   <div className="whatsapptext">
-                    Join us on <strong>Whatsapp</strong>
+                    <span className="whatsapptextcontent">Join us on</span>{" "}
+                    <strong>Whatsapp</strong>
                   </div>
                 </div>
                 <div className="discordrectangle">
                   <img src={discord} className="discord" />
-                  <div className="discordtext">Join us on Discord</div>
+                  <div className="discordtext">
+                    <span className="discordtextcontent">Join us on</span>{" "}
+                    <strong>Telegram</strong>
+                  </div>
                 </div>
               </div>
-            </div>
+            </div>*/}
           </div>
         </div>
         <img
@@ -387,7 +462,7 @@ export const Contactus = () => {
               <img src={Sreevas} className="founderimage" />
               <div className="foundername">Sreevas P Shenoy</div>
               <div className="foundertitle">UI/UX</div>
-              <div>
+              <div className="foundertext">
                 Artist is a term applied to a person who engages in an activity
                 deemed to be an art.
               </div>
@@ -397,7 +472,7 @@ export const Contactus = () => {
               <img src={Adhvaith} className="founderimage" />
               <div className="foundername">Adhvaith Kuldeep</div>
               <div className="foundertitle">Boss</div>
-              <div>
+              <div className="foundertext">
                 Artist is a term applied to a person who engages in an activity
                 deemed to be an art.
               </div>
@@ -406,7 +481,7 @@ export const Contactus = () => {
               <img src={Sunand} className="founderimage" />
               <div className="foundername">Sunand S Warrier</div>
               <div className="foundertitle">Athlete</div>
-              <div>
+              <div className="foundertext">
                 Artist is a term applied to a person who engages in an activity
                 deemed to be an art.
               </div>
@@ -415,7 +490,7 @@ export const Contactus = () => {
               <img src={Amal} className="founderimage" />
               <div className="foundername">Amal Najeena</div>
               <div className="foundertitle">JS Developer</div>
-              <div>
+              <div className="foundertext">
                 Artist is a term applied to a person who engages in an activity
                 deemed to be an art.
               </div>
