@@ -16,7 +16,7 @@ import mentor from "../../assets/mentor.png";
 import tag1 from "../../assets/tag1.png";
 import moneybackguarantee from "../../assets/moneybackguarantee.png";
 import rectanglecontactus from "../../assets/Rectanglecontactus.png";
-import whatsapp from "../../assets/Whatsapp.png";
+import whatsapp from "../../assets/whatsapp.png";
 import discord from "../../assets/discord.png";
 import user from "../../assets/user-add.png";
 import laptop from "../../assets/laptop.png";
@@ -392,6 +392,15 @@ const Contactusstyled = styled.div`
       height: auto;
     }
   }
+
+   @media (max-width: 440px) {
+    
+    & .descriptioncontactus {
+      font-size: 3rem;
+    }
+
+
+   }
 `;
 
 export const Contactus = () => {
@@ -410,7 +419,7 @@ export const Contactus = () => {
                 <span className="yellowt1">
                   <Typewriter
                     options={{
-                      strings: [" Students", " Mentors"],
+                      strings: ["Students", "Mentors"],
                       autoStart: true,
                       loop: true,
                     }}
@@ -418,10 +427,10 @@ export const Contactus = () => {
                 </span>
               </div>
             </div>
-            <div className="Contactusbuttons">
+            {/*<div className="Contactusbuttons">
               <div className="Rectangles">
                 <div className="whatsapprectangle">
-                  <img src={discord} className="whatsapp" />
+                  <img src={whatsapp} className="whatsapp" />
                   <div className="whatsapptext">
                     <span className="whatsapptextcontent">Join us on</span>{" "}
                     <strong>Whatsapp</strong>
@@ -431,11 +440,11 @@ export const Contactus = () => {
                   <img src={discord} className="discord" />
                   <div className="discordtext">
                     <span className="discordtextcontent">Join us on</span>{" "}
-                    <strong>Discord</strong>
+                    <strong>Telegram</strong>
                   </div>
                 </div>
               </div>
-            </div>
+            </div>*/}
           </div>
         </div>
         <img
