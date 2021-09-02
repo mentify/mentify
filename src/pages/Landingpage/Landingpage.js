@@ -124,8 +124,6 @@ const Landingpagestyled = styled.div`
   }
 
   & .colleges {
-    position: relative;
-    top: -70vh;
     transition-duration: 0.5s;
   }
 
@@ -250,16 +248,9 @@ export const Landingpage = () => {
         <TrackVisibility>
           <Procedure1 />
         </TrackVisibility>
-        <img src={arrow1} alt="arrowss" className="arrowImg" />
         <TrackVisibility>
           <Procedure2 />
         </TrackVisibility>
-        <img
-          src={arrow2}
-          alt="arrowss"
-          className="arrowImg"
-          style={{ position: "relative", top: "-55vh" }}
-        />
         <TrackVisibility>
           <Procedure3 />
         </TrackVisibility>

@@ -18,8 +18,6 @@ const Procedure3styled = styled.div`
     display: grid;
     grid-template-columns: 4fr 1fr 4fr;
     transition-duration: 0.5s;
-    position: relative;
-    top: -70vh;
     transition-duration: 0.5s;
     transition-timing-function: ease-in;
     animation-duration: 2s;

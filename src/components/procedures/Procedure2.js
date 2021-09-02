@@ -18,8 +18,6 @@ const Procedure2styled = styled.div`
     display: grid;
     grid-template-columns: 4fr 1fr 4fr;
     transition-duration: 0.5s;
-    position: relative;
-    top: -35vh;
     transition-duration: 0.5s;
     transition-timing-function: cubic-bezier(1, 0, 1, 1);
     animation-duration: 2s;
@@ -85,11 +83,6 @@ const Procedure2styled = styled.div`
     }
     & .procedureDescription {
       text-align: right;
-    }
-    & .arrowImg {
-      top: -18vh;
-      left: -20vw;
-      height: 15rem;
     }
   }
   @keyframes popBackground {
