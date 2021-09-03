@@ -120,11 +120,14 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
       <Link to="/" className="link home">
         Home
       </Link>
-      <Link to="/mentors" className="link">
+      <Link to="/mentors" className="link contact">
         Mentors
       </Link>
       <Link to="/contact" className="link contact">
         Contact Us
+      </Link>
+      <Link to="/apply" className="link contact">
+        Apply as a Mentor
       </Link>
       
       <Link to="/signin" className="link auth">

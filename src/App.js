@@ -7,6 +7,8 @@ import { MentorsPage } from "./pages/MentorsPage/MentorsPage";
 import { Registerpage } from "./pages/Registerpage/Registerpage";
 import { Signinpage } from "./pages/Signinpage/Signinpage";
 import { Contactus } from "./pages/Contactus/Contactus";
+import { MentorApply } from "./pages/MentorApply/MentorApply";
+import { MentorForm } from "./pages/MentorForm/MentorForm";
 import { withRouter } from "react-router";
 import firebase from "firebase";
 import { connect } from "react-redux";
@@ -37,11 +39,10 @@ const App = ({ setUserInfo, history }) => {
     <div className="App">
       <Navbar />
       <Switch>
-
+        <Route path="/mentorform" component={MentorForm} />
+        <Route path="/apply" component={MentorApply} />
         <Route path="/contact" component={Contactus} />
-
         <Route path="/mentors" component={MentorsPage} />
-
         <Route path="/signin" component={Signinpage} />
         <Route path="/register" component={Registerpage} />
         <Route path="/" component={Landingpage} /> 
