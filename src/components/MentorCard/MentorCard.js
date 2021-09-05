@@ -3,6 +3,7 @@ import styled from "styled-components";
 import MentorCardMockPic from "../../assets/mentorcard-mockpic.svg";
 import RatingStar from "../../assets/rating-star.svg";
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
+import { Link } from "react-router-dom";
 
 
 const MentorCardStyled = styled.div`
@@ -82,10 +83,10 @@ const MentorCardStyled = styled.div`
                             </div>
                         </div>
                 </FrontSide>
-                <BackSide>
-                    
+                <BackSide> 
+                    <Link to="/booksession" >
                         <div className="booksession"><button >Book a session!</button> </div>
-                    
+                    </Link>
                 </BackSide>
             </Flippy>
             
