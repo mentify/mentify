@@ -5,6 +5,7 @@ import MentorApplyImg from "../../assets/MentorApply.svg";
 import { Link } from "react-router-dom";
 import '../../fonts/Abhaya_Libre/AbhayaLibre-Regular.ttf'; 
 import Logo from "../../assets/Mentify-Logo.png";
+import Plus from "../../assets/plus.svg";
 import Background from "../../assets/background.svg";
 
 const MentorFormStyled = styled.div`
@@ -30,6 +31,7 @@ const MentorFormStyled = styled.div`
     & .imgdisplay{
         width:6em;
         height:6em;
+        position:relative;
         border-radius:8em;
         background-color:#E7EAEE;
         border:0.1em solid black;
@@ -55,7 +57,7 @@ const MentorFormStyled = styled.div`
         flex-direction: column;
         justify-content:center;
         margin-bottom:0;
-        margin-top:2em;
+        margin-top:1.5em;
     }
 
      & .input100 {
@@ -70,14 +72,16 @@ const MentorFormStyled = styled.div`
       height: 4em;
       border-radius: 5em;
       padding: 0 4em 0 4em;
-      margin-left:1em;
-      margin-right:1em;
+      margin:0.5em;
       border: 0.1rem solid black;    
+      outline:none;
     }
     & .submitbtn{
+        margin-top:2em;
         text-align:center;
         position:relative;
         margin-bottom:1em;
+        margin-bottom:2em;
     }
 
     & .submitbtn input{
@@ -126,11 +130,14 @@ const MentorFormStyled = styled.div`
      }
     }
     & .form{
-        border:0.1em solid black;
+        border:0.15em solid black;
         border-radius:1em;
         margin:2em;
+        padding-left:2em;
+        padding-right:2em;
         align-self:center;
         width:fit-content;
+        box-shadow: 10px 10px 5px grey;
      }
      & .heading{
         font-family: ABeeZee;
@@ -156,10 +163,12 @@ const MentorFormStyled = styled.div`
       position: absolute;
       border-radius: 25px;
       bottom: 0;
-      left: 0;
+      left: 0.8em;
+      top:0;
       z-index: -1;
-      width: 16.5em;
+      width: 15.5em;
       height: 100%;
+      align-items:center;
       box-shadow: 0px 0px 0px 0px;
       color: rgba(87, 184, 70, 0.8);
     }
@@ -215,6 +224,16 @@ const MentorFormStyled = styled.div`
         flex-wrap:wrap;
         justify-content:center;
     }
+    & .plus{
+        position:absolute;
+        top:4.3em;
+        right:-0.1em;
+        width:1.5em;
+        height:1.5em;
+        background-color:#FBD341    ;
+        border-radius:3em;
+        border:0.1em solid black;
+    }
     
     `;
 
@@ -237,7 +256,6 @@ const MentorFormStyled = styled.div`
                 <MentorFormStyled className="MentorFormStyled">
                 <div className="logo"> <img src={Logo}/></div>
                     <form className="form">
-                        <div className="heading">Apply as a mentor</div>
                         <div className= "imgupload">
                             <input 
                                 type="file" 
@@ -248,9 +266,10 @@ const MentorFormStyled = styled.div`
                                           display: "none"
                                         }}/>
                             <div className="imgdisplay" onClick={() => imageUploader.current.click()}>
-                                <img ref={uploadedImage}/>
+                                <div><img  ref={uploadedImage}/></div>
+                                <div className="plus"> <img  src={Plus}/></div>
                             </div>
-                                <div className="imgdesc">Upload a profile pic</div>
+                                
                         </div>
                         <div className="inputs">
                             

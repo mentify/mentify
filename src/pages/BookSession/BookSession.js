@@ -26,26 +26,26 @@ const BookSessionStyled = styled.div`
         display:flex;
         justify-content:center;
         flex-wrap:wrap;
-        padding:2em;
+        padding:2em 4em 2em 4em;
     }
     & .dp img{
-        width:8em;
-        height:8em;
+        width:13em;
+        height:13em;
         border-radius:8em;
     }
     & .desc{
-        font-size:1.3rem;
+        font-size:1.5rem;
         font-family:Roboto;
         font-weight:600;
         display:flex;
-        text-align:left;
+        text-align:center;
         flex-direction:column;
     }
     & .desc *{
         margin-bottom:1em; 
     }
     & .name{
-        font-size:1.7rem;
+        font-size:2rem;
     }
     & .yellow{
         background-color:#FBD341;
