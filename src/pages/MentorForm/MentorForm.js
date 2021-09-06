@@ -17,7 +17,6 @@ const MentorFormStyled = styled.div`
         margin: 0;
         padding:0;
         justify-content:center;
-        background: url(pattern_waves-2_1_2_0-0_0_1__ffffff_b6f7e7_fbd341_00);
     }  
     
     & .imgupload{
@@ -36,10 +35,12 @@ const MentorFormStyled = styled.div`
         background-color:#E7EAEE;
         border:0.1em solid black;
     }
-    & .imgdisplay img{
-        width:100%;
-        height:100%;
+    & .dp{
         position:relative;
+        width:6em;
+        height:6em;
+        left:-0.08em;
+        top:-0.1em;
         border-radius:8em;
     }
     & .imgdesc{
@@ -230,9 +231,13 @@ const MentorFormStyled = styled.div`
         right:-0.1em;
         width:1.5em;
         height:1.5em;
+        text-align:center;
         background-color:#FBD341    ;
         border-radius:3em;
         border:0.1em solid black;
+    }
+    & .plus img{
+        height:1.3em;
     }
     
     `;
@@ -266,7 +271,7 @@ const MentorFormStyled = styled.div`
                                           display: "none"
                                         }}/>
                             <div className="imgdisplay" onClick={() => imageUploader.current.click()}>
-                                <div><img  ref={uploadedImage}/></div>
+                                <div><img className="dp" ref={uploadedImage}/></div>
                                 <div className="plus"> <img  src={Plus}/></div>
                             </div>
                                 
