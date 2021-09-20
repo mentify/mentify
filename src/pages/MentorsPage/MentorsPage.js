@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Logo from "../../assets/Mentify-Logo.png";
 import MentorTrophy from "../../assets/mentor-trophy.svg";
 import Typewriter from "typewriter-effect";
 import { MentorCard } from "../../components/MentorCard/MentorCard";
 import { Footer } from "../../components/Footer/Footer";
+import firebase from "../../firebase.config.js";
+import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 
 const MentorsPageStyled = styled.div`
 	& {
@@ -165,70 +167,63 @@ const MentorsPageStyled = styled.div`
 
 	`;
 
-	export class MentorsPage extends React.Component {
-		constructor() {
-			super()
-			this.state = {
-				mentors: [],
-				searchfield: ''
-			}
-		}
-		componentDidMount() {
-			fetch('https://jsonplaceholder.typicode.com/users')
-				.then(response=> response.json())
-				.then(console.log())
-				.then(users => {this.setState({ mentors: users})});
-			console.log(this.state.mentors)
-		}
+export const MentorsPage = () => {
+  const [mentors, setMentors] = useState([]);
 
-		searchChange=(event)=>{
-			this.setState({ searchfield: event.target.value })
-			console.log(this.state.searchfield)
-		}
-		render(){
-			const FilteredMentors=this.state.mentors.filter(mentor=>{return mentor.name.toLowerCase().includes(this.state.searchfield.toLowerCase())})
-			console.log(FilteredMentors)
-			return (
-				<MentorsPageStyled className="MentorsPageStyled">
-					<div className="toppart">
-						<div className="intro">
-					    	<img src={Logo} alt="app-logo" className="logo" />
-					    	<div className="content1">
-					      		<div className="space">All the best </div> <div className="yellowt"><Typewriter  options={{ strings: [" Students,", " Mentors,"],autoStart: true,loop: true,}}/></div><div className="newline">all in one place.</div>
-					    	</div>
-					    	<div className="content2">
-					    		Mentors on <span className="green">mentify</span> will help you achieve your most ambititous goals. <p className="yellow">Come on, let’s smash them together!</p>
-					    	</div>
-				  		</div>
-				  		<img src={MentorTrophy} alt="mentor-trophy" className="mentortrophy" />
-					</div>
-					<div className="mainpart">
-						<div className="heading">
-						Explore mentors
-						</div>
-						<div className="desc">
-							There are over 100+ mentors on mentify!
-						</div>
-						<div className="search" >
-							<input
-								type='search'
-								placeholder='Search anything ....'
-							  	onChange={this.searchChange}
-							/>
-						</div>
-						<div className="mentorcards" >
-							{
-								FilteredMentors.map((user,i)=> {return(
-									<MentorCard name={FilteredMentors[i].name} college={FilteredMentors[i].company.name}/>)})
-								}
-							
-							
-						</div>
-						
-					</div>
-					<Footer/>
-				</MentorsPageStyled>
-			
-		);
-	}
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("mentors")
+      .onSnapshot((snap) => {
+        let currentMentors = [];
+        snap.docs.forEach((mentor) => currentMentors.push(mentor.data()));
+        setMentors(currentMentors);
+      });
+  }, []);
+
+  return (
+    <MentorsPageStyled className="MentorsPageStyled">
+      <div className="toppart">
+        <div className="intro">
+          <img src={Logo} alt="app-logo" className="logo" />
+          <div className="content1">
+            <div className="space">All the best </div>
+            <div className="yellowt">
+              <Typewriter
+                options={{
+                  strings: [" Students,", " Mentors,"],
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
+            </div>
+            <div className="newline">all in one place.</div>
+          </div>
+          <div className="content2">
+            Mentors on <span className="green">mentify</span> will help you
+            achieve your most ambititous goals.{" "}
+            <p className="yellow">Come on, let’s smash them together!</p>
+          </div>
+        </div>
+        <img src={MentorTrophy} alt="mentor-trophy" className="mentortrophy" />
+      </div>
+      <div className="mainpart">
+        <div className="heading">Explore mentors</div>
+        <div className="desc">There are over 100+ mentors on mentify!</div>
+        <div className="search">
+          <input type="search" placeholder="Search anything ...." />
+        </div>
+        <div className="mentorcards">
+          {mentors.length > 0 ? (
+            mentors.map((mentor) => {
+              return <MentorCard name={mentor.name} college={mentor.college} />;
+            })
+          ) : (
+            <LoadingIcon />
+          )}
+        </div>
+      </div>
+      <Footer />
+    </MentorsPageStyled>
+  );
 };
