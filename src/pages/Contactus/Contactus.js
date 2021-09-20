@@ -7,20 +7,12 @@ import Sreevas from "../../assets/Sreevas.png";
 import Adhvaith from "../../assets/Adhvaith.png";
 import Sunand from "../../assets/Sunand.png";
 import Amal from "../../assets/Amal.png";
-import RoundImage from "../../assets/RoundImage.png";
-import search from "../../assets/search.png";
 import clock from "../../assets/clock.png";
 import flexibility from "../../assets/flexibility.png";
 import generationy from "../../assets/generationy.png";
 import mentor from "../../assets/mentor.png";
 import tag1 from "../../assets/tag1.png";
 import moneybackguarantee from "../../assets/moneybackguarantee.png";
-import rectanglecontactus from "../../assets/Rectanglecontactus.png";
-import whatsapp from "../../assets/whatsapp.png";
-import discord from "../../assets/discord.png";
-import user from "../../assets/user-add.png";
-import laptop from "../../assets/laptop.png";
-import arrow from "../../assets/Arrow.png";
 import styled from "styled-components";
 import { Footer } from "../../components/Footer/Footer";
 import Typewriter from "typewriter-effect";
@@ -393,14 +385,11 @@ const Contactusstyled = styled.div`
     }
   }
 
-   @media (max-width: 440px) {
-    
+  @media (max-width: 440px) {
     & .descriptioncontactus {
       font-size: 3rem;
     }
-
-
-   }
+  }
 `;
 
 export const Contactus = () => {
