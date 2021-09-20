@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { Footer } from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import Amal from "../../assets/Amal.png";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import { differenceInCalendarDays } from 'date-fns';
 
 const BookSessionStyled = styled.div`
     & {
@@ -182,8 +185,37 @@ const BookSessionStyled = styled.div`
     }
     `;
 
-    export const BookSession =()=> {
-            return (
+    export class BookSession extends React.Component {
+        disabledDates = [
+          new Date(2021, 8, 23),
+          new Date(2021, 8, 22),
+        ];
+
+        constructor() {
+            super()
+            this.state = {
+                date:'',
+                today:new Date()
+            }
+        }
+
+        onchange=(date)=>{
+            this.setState({date:date })
+        }
+
+        isSameDay=(a, b)=> {
+          return differenceInCalendarDays(a, b) === 0;
+        }
+
+        tileDisabled=({ date, view })=> {
+          // Disable tiles in month view only
+          if (view === 'month') {
+            // Check if a date React-Calendar wants to check is on the list of disabled dates
+            return this.disabledDates.find(dDate => this.isSameDay(dDate, date));
+          }
+        }
+
+        render(){return (
                 <BookSessionStyled className="BookSessionStyled">
                     <div className="toppart">
                         <div className="dp"><img src={Amal}/></div>
@@ -207,7 +239,14 @@ const BookSessionStyled = styled.div`
                             </div>
                         </div>
                         <div className="calendar">
-                            BOOK A SESSIONNNN (yet to do) btw should i scale up the size of everything to fit the screen better?  
+                            <Calendar
+                                onChange={this.onchange}
+                                value={this.state.date}
+                                tileDisabled={this.tileDisabled}
+
+                            />
+                            {console.log(this.state.date)}
+                            {console.log(this.disabledDates)}
                         </div>
                     </div>
                     <div className="bottompart">
@@ -223,4 +262,5 @@ const BookSessionStyled = styled.div`
                 </BookSessionStyled>
             
         );
+    }
 };
