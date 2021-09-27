@@ -8,22 +8,37 @@ const StyledFooter = styled.div`
     flex-direction: column;
     margin-top: auto;
     background: #b5f7e7;
-    padding: 3em;
+    padding-left: 3em;
+    padding-right:3em;
+    padding-top:0.7em;
     width: 100%;
     box-sizing: border-box;
   }
   ul {
     list-style-type: none;
   }
+  li{
+    margin:0.5em;
+  }
   input {
-    height: 2em;
-    width: 10vw;
+    height: 2.3em;
+    width: 12vw;
     margin-right: 1em;
+    font-family: ABeeZee;
+    text-align: center;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 600;
   }
   button {
-    cursor: pointer;
+     cursor: pointer;
     outline: none;
     border: 1px solid gray;
+    border-radius: 0.75em;
+    padding: 0.5em;
+    background-color: #FBD341;
+    font-weight: bold;
+    
   }
   img {
     height: 2em;
@@ -33,11 +48,13 @@ const StyledFooter = styled.div`
     gap: 2em;
   }
   & .newsLetter {
+    margin-top:2em;
     display: flex;
     flex-direction: column;
     margin-left: auto;
     align-items: center;
   }
+
   & .newsEmail {
     display: flex;
     margin-top: 1em;
@@ -47,10 +64,18 @@ const StyledFooter = styled.div`
     justify-content: center;
     align-items: center;
     gap: 0.5em;
+    font-style: italic;
+    font-size:1.3em;
+    font-weight: 500;
+    margin-bottom:0.7em;
+
   }
   hr {
     margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
+  }
+  & .sub{
+    font-weight:500;
   }
 `;
 
@@ -71,7 +96,7 @@ export const Footer = () => {
           <li>Contact Us</li>
         </ul>
         <div className="newsLetter">
-          <p>Subscribe to our newsletter</p>
+          <p className="sub">Subscribe to our newsletter</p>
           <div className="newsEmail">
             <input type="text" placeholder="Enter your email" />
             <button>Subscribe</button>
@@ -80,7 +105,7 @@ export const Footer = () => {
       </div>
       <hr />
       <p className="made">
-        Made with lots of <img src={love} alt="lovee" /> in kerala
+        Made with lots of <img src={love} alt="lovee" /> in Kerala
       </p>
     </StyledFooter>
   );
