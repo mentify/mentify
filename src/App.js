@@ -6,7 +6,7 @@ import { Landingpage } from "./pages/Landingpage/Landingpage";
 import { MentorsPage } from "./pages/MentorsPage/MentorsPage";
 import { Registerpage } from "./pages/Registerpage/Registerpage";
 import { Signinpage } from "./pages/Signinpage/Signinpage";
-import { Contactus } from "./pages/Contactus/Contactus";
+import { AboutUs } from "./pages/AboutUs/AboutUs";
 import { MentorApply } from "./pages/MentorApply/MentorApply";
 import { MentorForm } from "./pages/MentorForm/MentorForm";
 import { BookSession } from "./pages/BookSession/BookSession";
@@ -43,7 +43,7 @@ const App = ({ setUserInfo, history }) => {
         <Route path="/booksession/:mentorId" component={BookSession} />
         <Route path="/mentorform" component={MentorForm} />
         <Route path="/apply" component={MentorApply} />
-        <Route path="/contact" component={Contactus} />
+        <Route path="/about" component={AboutUs} />
         <Route path="/mentors" component={MentorsPage} />
         <Route path="/signin" component={Signinpage} />
         <Route path="/register" component={Registerpage} />

@@ -123,8 +123,8 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
       <Link to="/mentors" className="link contact">
         Mentors
       </Link>
-      <Link to="/contact" className="link contact">
-        Contact Us
+      <Link to="/about" className="link contact">
+        About us
       </Link>
       <Link to="/apply" className="link contact">
         Apply as a Mentor
