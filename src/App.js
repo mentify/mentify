@@ -40,14 +40,14 @@ const App = ({ setUserInfo, history }) => {
     <div className="App">
       <Navbar />
       <Switch>
-        <Route path="/booksession" component={BookSession} />
+        <Route path="/booksession/:mentorId" component={BookSession} />
         <Route path="/mentorform" component={MentorForm} />
         <Route path="/apply" component={MentorApply} />
         <Route path="/contact" component={Contactus} />
         <Route path="/mentors" component={MentorsPage} />
         <Route path="/signin" component={Signinpage} />
         <Route path="/register" component={Registerpage} />
-        <Route path="/" component={Landingpage} /> 
+        <Route path="/" component={Landingpage} />
       </Switch>
     </div>
   );

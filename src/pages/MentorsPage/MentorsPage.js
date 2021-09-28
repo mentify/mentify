@@ -216,7 +216,14 @@ export const MentorsPage = () => {
         <div className="mentorcards">
           {mentors.length > 0 ? (
             mentors.map((mentor) => {
-              return <MentorCard name={mentor.name} college={mentor.college} />;
+              return (
+                <MentorCard
+                  name={mentor.name}
+                  college={mentor.college}
+                  id={mentor.id}
+                  photoURL={mentor.photoURL}
+                />
+              );
             })
           ) : (
             <LoadingIcon />

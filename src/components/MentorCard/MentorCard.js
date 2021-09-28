@@ -58,21 +58,21 @@ const MentorCardStyled = styled.div`
   }
 `;
 
-export const MentorCard = ({ name, college }) => {
+export const MentorCard = ({ name, college, id, photoURL }) => {
   return (
     <MentorCardStyled className="MentorCardStyled">
       <Flippy flipOnHover={true} className="card">
         <FrontSide>
           <div>
-            <img src={MentorCardMockPic} alt="mentor-dp" className="dp" />
+            <img src={photoURL} alt="mentor-dp" className="dp" />
             <div className="name">{name}</div>
             <div className="college">{college}</div>
           </div>
         </FrontSide>
         <BackSide>
-          <Link to="/booksession">
+          <Link to={`/booksession/${id}`}>
             <div className="booksession">
-              <button>Book a session!</button>{" "}
+              <button>Book a session!</button>
             </div>
           </Link>
         </BackSide>

@@ -6,6 +6,7 @@ import Plus from "../../assets/plus.svg";
 import firebase from "../../firebase.config";
 import "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
+import { AES } from "crypto-js";
 
 const MentorFormStyled = styled.div`
   & {
@@ -245,8 +246,7 @@ export const MentorForm = () => {
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
   const [dp, setDP] = useState(null);
-
-  const [photoURL, setPhotoURL] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [mentorName, setMentorName] = useState(null);
   const [number, setNumber] = useState(null);
   const [mentorEmail, setMentorEmail] = useState(null);
@@ -274,11 +274,14 @@ export const MentorForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     if (!mentorName || !number || !college || !branch || !mentorEmail) {
       alert("Please enter all the required details.");
+      setLoading(false);
       return;
     }
-    const id = uuidv4();
+
+    const id = AES.encrypt(JSON.stringify(mentorEmail), "mentify").toString();
 
     storage
       .ref(`mentors/${id}`)
@@ -287,48 +290,49 @@ export const MentorForm = () => {
         storage
           .ref(`mentors/${id}`)
           .getDownloadURL()
-          .then((url) => setPhotoURL(url))
-      )
-      .then(() =>
-        firebase
-          .firestore()
-          .collection("appliedMentors")
-          .doc(`${mentorEmail}`)
-          .set({
-            name: mentorName,
-            email: mentorEmail,
-            phone: number,
-            college: college,
-            linkedIn: linkedIn,
-            branch: branch,
-            jeeMainsPercentile: jee,
-            bitsatMarks: bitsat,
-            jeeAdvancedRank: advanced,
-            collegeAdmits: admits,
-            photoURL: photoURL,
-          })
-          .then(() => {
-            setMentorName("");
-            setMentorEmail("");
-            setNumber("");
-            setCollege("");
-            setJEE("");
-            setBranch("");
-            setLinkedIn("");
-            setBitsat("");
-            setAdmits("");
-            setAdvanced("");
-            setPhotoURL("");
-            uploadedImage.current.src = "";
-            alert(
-              "Your application has been submitted! We will review your application and get back to you"
-            );
-          })
+          .then((url) =>
+            firebase
+              .firestore()
+              .collection("mentors")
+              .doc(`${mentorEmail}`)
+              .set({
+                id: id,
+                name: mentorName,
+                email: mentorEmail,
+                phone: number,
+                college: college,
+                linkedIn: linkedIn,
+                branch: branch,
+                jeeMainsPercentile: jee,
+                bitsatMarks: bitsat,
+                jeeAdvancedRank: advanced,
+                collegeAdmits: admits,
+                photoURL: url,
+              })
+              .then(() => {
+                setMentorName("");
+                setMentorEmail("");
+                setNumber("");
+                setCollege("");
+                setJEE("");
+                setBranch("");
+                setLinkedIn("");
+                setBitsat("");
+                setAdmits("");
+                setAdvanced("");
+                uploadedImage.current.src = "";
+                setLoading(false);
+                alert(
+                  "Your application has been submitted! We will review your application and get back to you"
+                );
+              })
+          )
       )
       .catch((e) => {
         if (e.message === "Missing or insufficient permissions.")
           alert("This email already exists!");
         else alert(e.message);
+        setLoading(false);
       });
   };
 
@@ -504,7 +508,12 @@ export const MentorForm = () => {
           </div>
         </div>
         <div className="submitbtn" onClick={handleSubmit}>
-          <input type="submit" value=" Apply as a Mentor" />
+          <input
+            type="submit"
+            value=" Apply as a Mentor"
+            disabled={loading}
+            style={{ backgroundColor: loading ? "#fbd555" : "#fbd341" }}
+          />
         </div>
       </form>
     </MentorFormStyled>
