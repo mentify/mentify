@@ -274,7 +274,7 @@ const AboutUsStyled = styled.div`
 	}
 
 	& .gmailrectangle {
-		background-color: #BB001B;
+		background-color: #CC5D5D;
 		border-radius: 1em;
 		flex-wrap: wrap;
 		font: Roboto;
@@ -309,7 +309,7 @@ const AboutUsStyled = styled.div`
 	}
 	& .gmail {
 		float: left;
-		border-radius: 2em;
+		
 		padding: 0.45em;
 		width:3em;
 	}
