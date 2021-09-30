@@ -6,7 +6,7 @@ import { Landingpage } from "./pages/Landingpage/Landingpage";
 import { MentorsPage } from "./pages/MentorsPage/MentorsPage";
 import { Registerpage } from "./pages/Registerpage/Registerpage";
 import { Signinpage } from "./pages/Signinpage/Signinpage";
-import { AboutUs } from "./pages/Aboutus/Aboutus";
+import { AboutUs } from "./pages/AboutUs/Aboutus";
 import { MentorApply } from "./pages/MentorApply/MentorApply";
 import { MentorForm } from "./pages/MentorForm/MentorForm";
 import { BookSession } from "./pages/BookSession/BookSession";
