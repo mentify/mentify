@@ -310,6 +310,7 @@ export const MentorForm = () => {
                 photoURL: url,
               })
               .then(() => {
+                
                 setMentorName("");
                 setMentorEmail("");
                 setNumber("");
