@@ -8,7 +8,7 @@ import Adhvaith from "../../assets/Adhvaith.png";
 import Sunand from "../../assets/Sunand.png";
 import Amal from "../../assets/Amal.png";
 import gmail from "../../assets/gmail.svg";
-import whatsapp from "../../assets/Whatsapp.svg";
+import whatsapp from "../../assets/whatsapp.svg";
 import clock from "../../assets/clock.png";
 import flexibility from "../../assets/flexibility.png";
 import generationy from "../../assets/generationy.png";
