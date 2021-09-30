@@ -14,7 +14,7 @@ const Nav = styled.div`
 		background: #b5f7e7;
 		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 		display: flex;
-		align-items: center;
+		align-items: center; 
 		gap: 2em;
 		width: 100%;
 		box-sizing: border-box;

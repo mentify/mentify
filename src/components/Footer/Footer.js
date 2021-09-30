@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import love from "../../assets/heart.png";
+import { Link } from "react-router-dom";
 
 const StyledFooter = styled.div`
 	& {
@@ -78,6 +79,10 @@ const StyledFooter = styled.div`
 	& .footerTop{
 		margin-top:-1.5em;
 	}
+	& .link{
+		text-decoration:none;
+		color:black;
+	}
 	@media (max-width: 992px) {
 	& ul{
 			margin-left:-2em;
@@ -148,16 +153,16 @@ export const Footer = () => {
 		<StyledFooter>
 			<div className="footerTop">
 				<ul>
-					<li>Home</li>
-					<li>About Us</li>
-					<li>Mentors</li>
-					<li>Cohorts</li>
+					<li><Link to="/" className="link">Home</Link></li>
+					<li><Link to="/about" className="link">About Us</Link></li>
+					<li><Link to="/mentors" className="link">Mentors</Link></li>
+					{/*<li><Link to="/" className="link">Cohorts</Link></li>*/}
 				</ul>
 				<ul>
-					<li>Sign Up</li>
-					<li>Sign In</li>
-					<li>Become a mentor</li>
-					<li>Contact Us</li>
+					<li><Link to="/register" className="link">Sign Up</Link></li>
+					<li><Link to="/signin" className="link">Sign In</Link></li>
+					<li><Link to="/apply" className="link">Become a mentor</Link></li>
+					{/*<li><Link to="/about" className="link">About Us</Link></li>*/}
 				</ul>
 				<div className="newsLetter">
 					<p>Subscribe to our newsletter</p>
