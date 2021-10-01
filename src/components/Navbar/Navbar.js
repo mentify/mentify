@@ -61,7 +61,7 @@ const Nav = styled.div`
 		padding-bottom: 1em;
 		gap: 1em;
 		background: white;
-		z-index: 3;
+		z-index:0;
 		border: 1px gray solid;
 		display: none;
 	}
