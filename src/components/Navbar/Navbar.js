@@ -8,7 +8,7 @@ import firebase from "../../firebase.config.js";
 import { signOutUser } from "../../redux/user/user-actions";
 
 const Nav = styled.div`
-  & {
+  <<<<<<< HEAD & {
     height: 10vh;
     min-height: 50px;
     background: #b5f7e7;
