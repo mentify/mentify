@@ -9,6 +9,7 @@ import { AES, enc } from "crypto-js";
 import firebase from "../../firebase.config.js";
 import { differenceInCalendarDays } from "date-fns";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
+import { connect } from "react-redux";
 
 const LoaderHolder = styled.div`
   & {
@@ -464,7 +465,7 @@ const Date2 = new Date();
 //API CREDS
 const REACT_APP_GAPI = window.gapi;
 
-export const BookSession = () => {
+const BookSession = ({ currentUser }) => {
   const { mentorId } = useParams();
   const [date, setDate] = useState("");
   const [slots, setSlots] = useState([]);
@@ -528,6 +529,13 @@ export const BookSession = () => {
   };
 
   const createEvent = () => {
+    if (!currentUser) {
+      alert("Please log in or sign up to continue!");
+      return;
+    }
+
+    window.location.href = "https://pages.razorpay.com/mentifypayments";
+
     REACT_APP_GAPI.load("client:auth2", () => {
       REACT_APP_GAPI.client.init({
         apiKey: process.env.REACT_APP_API_KEY_CALENDAR,
@@ -731,3 +739,9 @@ export const BookSession = () => {
     </BookSessionStyled>
   );
 };
+
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(BookSession);

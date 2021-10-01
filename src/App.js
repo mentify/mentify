@@ -9,7 +9,7 @@ import { Signinpage } from "./pages/Signinpage/Signinpage";
 import { AboutUs } from "./pages/Aboutus/Aboutus";
 import { MentorApply } from "./pages/MentorApply/MentorApply";
 import { MentorForm } from "./pages/MentorForm/MentorForm";
-import { BookSession } from "./pages/BookSession/BookSession";
+import BookSession from "./pages/BookSession/BookSession";
 import { withRouter } from "react-router";
 import firebase from "firebase";
 import { connect } from "react-redux";
