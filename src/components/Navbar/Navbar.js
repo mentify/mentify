@@ -183,6 +183,14 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
           <Link to="/about" className="link drop" onClick={onDropDownClick}>
             About Us
           </Link>
+          <hr className="line" />
+          <Link to="/mentors" className="link drop" onClick={onDropDownClick}>
+            Mentors
+          </Link>
+          <hr className="line" />
+          <Link to="/apply" className="link drop" onClick={onDropDownClick}>
+            Apply as a Mentor
+          </Link>
         </div>
       )}
     </Nav>

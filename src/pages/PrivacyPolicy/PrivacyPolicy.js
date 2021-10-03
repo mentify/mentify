@@ -137,7 +137,7 @@ We may share your information for reasons not described in this policy:
 We may share your information other than as described in this Policy if we notify you and you consent to the sharing. We will tell you before we do this.
 
 <br/>
-<br/>
+<br/>   
 <h2>YOUR CONSENT:</h2>
 By using the mentify.in Platform and the Services provided therein, you agree and consent to the collection, transfer, use, storage, disclosure and sharing of your information as described and collected by us in accordance with this Policy. If you do not agree with the Policy, please do not use or access the  mentify.in Platform.
 <br/>
