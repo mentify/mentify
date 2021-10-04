@@ -432,6 +432,8 @@ const BookSessionStyled = styled.div`
 			font-size:1rem
 		}
 
+
+		.
 	}
 
 	@media (max-width: 768px) {
@@ -477,6 +479,54 @@ const BookSessionStyled = styled.div`
 		}
 		.price{
 			font-size:1rem
+		}
+		.scores{
+			font-size:1rem;
+			gap:0em;
+		}
+		.scores1{
+			margin-right:1em;
+			margin-left:1em;
+		}
+		.ts{
+			font-size:1.3rem;
+		}
+
+		.testscores{
+			width:70vw;
+			margin-left:auto;
+			margin-right:auto;
+		}
+		.name{
+			margin-top:-1.5em;
+		}
+		.dp img{
+			width:15em;
+			height:auto;
+		}
+		.collegeadmitsheading{
+			font-size:1.3rem;
+		}
+		.collegeadmits{
+			width:80vw;
+		}
+		.colleges{
+			font-size:1.1rem;
+		}
+		.react-calendar__navigation__label__labelText{
+			font-size:1.3rem;
+		}
+		.slotheading{
+			font-size:1.3rem;
+		}
+	
+		.slotbtn{
+			width:10em;
+			font-size:1rem;
+		}
+		.bookbtn button{
+			width:10em;
+			font-size:1.3rem;
 		}
 	}
 `;

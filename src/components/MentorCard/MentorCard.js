@@ -77,6 +77,24 @@ const MentorCardStyled = styled.div`
 		text-align:right;
 		flex-direction: column-reverse;
 	}
+	@media (max-width: 992px) {
+		.name{
+			font-size:1.3rem;
+		}
+		.college{
+			font-size:1rem;
+		}
+	}
+	@media (max-width: 768) {
+		.name{
+			font-size:1.3rem;
+		}
+		.college{
+			font-size:1rem;
+		}
+	}
+
+
 `;
 
 export const MentorCard = ({ name, college, id, photoURL }) => {
