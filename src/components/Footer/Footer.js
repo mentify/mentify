@@ -161,7 +161,7 @@ export const Footer = () => {
 				<ul>
 					<li><Link to="/register" className="link">Sign Up</Link></li>
 					<li><Link to="/signin" className="link">Sign In</Link></li>
-					<li><Link to="/apply" className="link">Become a mentor</Link></li>
+					<li><Link to="/privacypolicy" className="link">Privacy Policy</Link></li>
 					{/*<li><Link to="/about" className="link">About Us</Link></li>*/}
 				</ul>
 				<div className="newsLetter">

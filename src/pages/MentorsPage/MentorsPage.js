@@ -122,10 +122,10 @@ const MentorsPageStyled = styled.div`
 		border: 0.1em black solid;
 	}
 	& .mentorcards{
-		margin-bottom:10em;
+		margin-bottom:8em;
 		display:flex;
 		justify-content:center;
-		gap:6em;
+		gap:4em;
 		flex-wrap:wrap;
 	}
 
@@ -145,7 +145,20 @@ const MentorsPageStyled = styled.div`
 	  .search input{
 	  	width:12em;
 	  }
-	  
+	  .content1{
+	  	font-size:1.7rem;
+	  }
+	  .content2{
+	  	font-size:1.5rem;
+	  }
+	  .heading{
+	  	font-size:1.5rem;
+	  }
+	  .desc{
+	  	font-size:1.5rem;
+	  }
+	 
+	 
 	}
 
 	@media (max-width: 768px) {
@@ -160,6 +173,18 @@ const MentorsPageStyled = styled.div`
 	  }
 	  .yellow2{
 	  	position:absolute;
+	  }
+	  .content1{
+	  	font-size:1.7rem;
+	  }
+	  .content2{
+	  	font-size:1.5rem;
+	  }
+	  .heading{
+	  	font-size:1.5rem;
+	  }
+	  .desc{
+	  	font-size:1.5rem;
 	  }
 	}
 

@@ -8,7 +8,6 @@ import firebase from "../../firebase.config.js";
 import { signOutUser } from "../../redux/user/user-actions";
 
 const Nav = styled.div`
-  <<<<<<< HEAD & {
     height: 10vh;
     min-height: 50px;
     background: #b5f7e7;
@@ -183,6 +182,14 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
           <hr className="line" />
           <Link to="/about" className="link drop" onClick={onDropDownClick}>
             About Us
+          </Link>
+          <hr className="line" />
+          <Link to="/mentors" className="link drop" onClick={onDropDownClick}>
+            Mentors
+          </Link>
+          <hr className="line" />
+          <Link to="/apply" className="link drop" onClick={onDropDownClick}>
+            Apply as a Mentor
           </Link>
         </div>
       )}
