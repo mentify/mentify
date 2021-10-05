@@ -486,7 +486,7 @@ const AboutUsStyled = styled.div`
       font-size:2.3rem;
     }
     .whatsapptextcontent{
-      font-size:1rem;
+      font-size:1.2rem;
       margin-top:-0.2em;
     }
     .whatsappname{
@@ -507,7 +507,9 @@ const AboutUsStyled = styled.div`
       margin-top:0.2em;
     }
     .gmail{
-      height:2em;
+      height:1.5em;
+      margin-top:0.2em;
+      margin-left:-0.3em;
     }
   }
 `;
