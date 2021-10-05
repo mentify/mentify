@@ -217,6 +217,7 @@ const Landingpagestyled = styled.div`
 		.imageHolder{
 			margin-top:7em;
 			margin-bottom:5em;
+			display:none;
 		}
 		.colleges{
 			margin-top:-7em;
@@ -234,6 +235,9 @@ const Landingpagestyled = styled.div`
 			margin-top:0em;
 			font-size:2.3rem;
 		}
+		.procedureHeading{
+			margin-top:6em;
+		}
 	}
 	@media (max-width: 1024px) {
 		.helloImage{
@@ -245,6 +249,7 @@ const Landingpagestyled = styled.div`
 		.imageHolder{
 			margin-top:7em;
 			margin-bottom:5em;
+			display:none;
 		}
 		.colleges{
 			margin-top:-7em;
@@ -260,6 +265,9 @@ const Landingpagestyled = styled.div`
 		}
 		.collegeListHeading{
 			margin-top:0em;
+		}
+		.procedureHeading{
+			margin-top:6em;
 		}
 	}
 `;

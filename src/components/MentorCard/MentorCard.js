@@ -65,7 +65,7 @@ const MentorCardStyled = styled.div`
 	}
 	& .greentop{
 		background-color:#B5F7E7;
-		height:4em;
+		height:3em;
 		margin:-0.75em;
 		padding-right:1em;
 		padding-bottom:0.5em;
