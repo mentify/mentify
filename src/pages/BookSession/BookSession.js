@@ -519,7 +519,7 @@ const BookSessionStyled = styled.div`
 		.slotheading{
 			font-size:1.3rem;
 		}
-	
+		
 		.slotbtn{
 			width:10em;
 			font-size:1rem;
