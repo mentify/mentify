@@ -534,8 +534,6 @@ const BookSession = ({ currentUser }) => {
       return;
     }
 
-    window.location.href = "https://pages.razorpay.com/mentifypayments";
-
     REACT_APP_GAPI.load("client:auth2", () => {
       REACT_APP_GAPI.client.init({
         apiKey: process.env.REACT_APP_API_KEY_CALENDAR,
