@@ -12,13 +12,13 @@ import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 import { connect } from "react-redux";
 
 const LoaderHolder = styled.div`
-  & {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+	& {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 `;
 
 const BookSessionStyled = styled.div`
@@ -533,12 +533,16 @@ const BookSessionStyled = styled.div`
 
 //DATABASE STUFF
 const mentorEmailId = "adhvaithkul@gmail.com";
-const preferredSlots = new Map([
-  [1, [7, 7.5, 8, 8.5]],
-  [4, [15, 15.5, 16]],
-  [6, [22, 22.5, 23, 23.5]],
+/*const preferredSlots1 = new Map([
+	[1, [7, 7.5, 8, 8.5]],
+	[2, [15, 15.5, 16]],
+	[3, [15, 15.5, 16]],
+	[4, [15, 15.5, 16]],
+	[5, [15, 15.5, 16]],
+	[7, [15, 15.5, 16]],
+	[6, [22, 22.5, 23, 23.5]],
 ]);
-const bookedSlots = [];
+const bookedSlots = [];*/
 
 const Date1 = new Date(2021, 11, 1);
 const Date2 = new Date();
@@ -547,144 +551,145 @@ const Date2 = new Date();
 const REACT_APP_GAPI = window.gapi;
 
 const BookSession = ({ currentUser }) => {
-  const { mentorId } = useParams();
-  const [date, setDate] = useState("");
-  const [slots, setSlots] = useState([]);
-  const [selectedSlot, setSelectedSlot] = useState("");
-  const [slotsToBeDisplayed, setSlotsToBeDisplayed] = useState([]);
-  const [mentorData, setMentorData] = useState(null);
+	const { mentorId } = useParams();
+	const [date, setDate] = useState("");
+	const [slots, setSlots] = useState([]);
+	const [selectedSlot, setSelectedSlot] = useState("");
+	const [preferredSlots, setPreferredSlots] = useState("");
+	const [bookedSlots, setBookedSlots] = useState("");
+	const [slotsToBeDisplayed, setSlotsToBeDisplayed] = useState([]);
+	const [mentorData, setMentorData] = useState(null);
 
-  useEffect(() => {
-    var bytes = AES.decrypt(mentorId, "mentify");
-    var mentorEmail = JSON.parse(bytes.toString(enc.Utf8));
-    console.log(mentorEmail);
-    firebase
-      .firestore()
-      .collection("mentors")
-      .doc(mentorEmail)
-      .get()
-      .then((doc) => setMentorData(doc.data()));
-  }, []);
+	useEffect(() => {
+		var bytes = AES.decrypt(mentorId, "mentify");
+		var mentorEmail = JSON.parse(bytes.toString(enc.Utf8));
+		console.log(mentorEmail);
+		firebase
+			.firestore()
+			.collection("mentors")
+			.doc(mentorEmail)
+			.get()
+			.then((doc) => {setMentorData(doc.data())
+									setBookedSlots(doc.data().bookedSlots)});
+	}, []);
 
-  console.log(mentorData);
+	console.log(bookedSlots);
+	console.log(slotsToBeDisplayed,"stbd")
 
-  const onchange = (date) => {
-    setDate(date);
-    const a = date.getDay();
-    const b = preferredSlots.get(a);
-    setSlots(b);
-    setSlotsToBeDisplayed(b);
-    console.log(bookedSlots, "booked slots");
-    console.log(date, "date");
-    slotsToBeDisplayed.forEach((svalue, sindex) => {
-      bookedSlots.forEach((value, index) => {
-        if (value === date && bookedSlots[index + 1] === svalue) {
-          slotsToBeDisplayed.splice(sindex, 1);
-        }
-      });
-    });
-    console.log(slots, "slots");
-    console.log(slotsToBeDisplayed, "slots tbd");
-    console.log(preferredSlots, "pref");
-    /*slotsToBeDisplayed.forEach((value,index)=>bookedSlots.get(date)===value?slotsToBeDisplayed.splice(index,1):null)
-     */
-  };
+	const onchange = (date) => {
+		setDate(date);
+		console.log(mentorData,"aaaa")
+		const a = date.getDay();
+		const b = mentorData.preferredSlots[a];
+		setSlots(b);
+		setSlotsToBeDisplayed(b);
+		console.log(date)
+		/*slotsToBeDisplayed.forEach((svalue, sindex) => {
+				bookedSlots.forEach((value, index) => {
+				if ( value[0].getTime() === date.getTime() && bookedSlots[index][1] == svalue) {
+					console.log("eee")
+					setSlotsToBeDisplayed([...slotsToBeDisplayed.slice(0,sindex),...slotsToBeDisplayed.slice(sindex+1)])
+				}
+			});
+		});*/
 
-  const isSameDay = (a, b) => {
-    return b.getDay() === a;
-  };
+		/*slotsToBeDisplayed.forEach((value,index)=>bookedSlots.get(date)===value?slotsToBeDisplayed.splice(index,1):null)
+		 */
+	};
 
-  const tileDisabled = ({ date, view }) => {
-    if (view === "month") {
-      for (let key of preferredSlots.keys()) {
-        if (isSameDay(key, date)) {
-          return false;
-        }
-      }
-      return true;
-    }
-  };
 
-  const selectSlot = (slot) => {
-    setSelectedSlot(slot);
-  };
 
-  const createEvent = () => {
-    if (!currentUser) {
-      alert("Please log in or sign up to continue!");
-      return;
-    }
+	const tileDisabled = ({ date, view }) => {
+		if (view === "month" && mentorData.preferredSlots) {
+			for (let key in mentorData.preferredSlots) {
+				if (key==date.getDay()) {
+					return false;
+				}
+			}
+			return true;
+		}
+	};
 
-    REACT_APP_GAPI.load("client:auth2", () => {
-      REACT_APP_GAPI.client.init({
-        apiKey: process.env.REACT_APP_API_KEY_CALENDAR,
-        clientId: process.env.REACT_APP_CLIENT_ID_CALENDAR,
-        discoveryDocs: [process.env.REACT_APP_DISCOVERY_DOCS_CALENDAR],
-        scope: process.env.REACT_APP_SCOPES_CALENDAR,
-      });
-      let meetingmonth = date.getMonth() + 1;
-      let meetingday = date.getDate();
-      var meetinghr = 0;
-      var meetingmin = 0;
-      var meetinghr2 = 0;
-      var meetingmin2 = 0;
-      if (selectedSlot - Math.floor(selectedSlot) == 0) {
-        meetinghr = selectedSlot;
-        meetingmin = 0;
-        meetingmin2 = 30;
-        meetinghr2 = selectedSlot;
-      } else {
-        meetinghr = Math.floor(selectedSlot);
-        meetingmin = 30;
-        meetinghr2 = Math.floor(selectedSlot) + 1;
-        meetingmin2 = 0;
-      }
-      REACT_APP_GAPI.client.load("calendar", "v3", () => console.log("loaded"));
-      REACT_APP_GAPI.auth2
-        .getAuthInstance()
-        .signIn()
-        .then(() => {
-          var event = {
-            sendUpdates: "all",
-            sendNotifications: true,
-            summary: "Mentify Session",
-            description:
-              "One on One mentorship with a mentor from your dream college.",
-            start: {
-              dateTime: `2021-${meetingmonth}-${meetingday}T${meetinghr}:${meetingmin}:00+05:30`,
-              timeZone: "Asia/Kolkata",
-            },
-            end: {
-              dateTime: `2021-${meetingmonth}-${meetingday}T${meetinghr2}:${meetingmin2}:00+05:30`,
-              timeZone: "Asia/Kolkata",
-            },
-            attendees: [{ email: mentorEmailId }],
-            conferenceData: {
-              createRequest: {
-                requestId: "test",
-                conferenceSolutionKey: { type: "hangoutsMeet" },
-              },
-            },
-            reminders: {
-              useDefault: false,
-              overrides: [
-                { method: "email", minutes: 24 * 60 },
-                { method: "email", minutes: 60 },
-                { method: "popup", minutes: 10 },
-                { method: "popup", minutes: 60 },
-              ],
-            },
-          };
-          var request = REACT_APP_GAPI.client.calendar.events.insert({
-            calendarId: "primary",
-            resource: event,
-            conferenceDataVersion: 1,
-          });
-          request.execute((event) => {
-            console.log(event);
-            window.open(event.htmlLink);
-          });
-          /*console.log("map get", bookedSlots.get(date))
+	const selectSlot = (slot) => {
+		setSelectedSlot(slot);
+	};
+
+	const createEvent = () => {
+		if (!currentUser) {
+			alert("Please log in or sign up to continue!");
+			return;
+		}
+
+		REACT_APP_GAPI.load("client:auth2", () => {
+			REACT_APP_GAPI.client.init({
+				apiKey: process.env.REACT_APP_API_KEY_CALENDAR,
+				clientId: process.env.REACT_APP_CLIENT_ID_CALENDAR,
+				discoveryDocs: [process.env.REACT_APP_DISCOVERY_DOCS_CALENDAR],
+				scope: process.env.REACT_APP_SCOPES_CALENDAR,
+			});
+			let meetingmonth = date.getMonth() + 1;
+			let meetingday = date.getDate();
+			var meetinghr = 0;
+			var meetingmin = 0;
+			var meetinghr2 = 0;
+			var meetingmin2 = 0;
+			if (selectedSlot - Math.floor(selectedSlot) == 0) {
+				meetinghr = selectedSlot;
+				meetingmin = 0;
+				meetingmin2 = 30;
+				meetinghr2 = selectedSlot;
+			} else {
+				meetinghr = Math.floor(selectedSlot);
+				meetingmin = 30;
+				meetinghr2 = Math.floor(selectedSlot) + 1;
+				meetingmin2 = 0;
+			}
+			REACT_APP_GAPI.client.load("calendar", "v3", () => console.log("loaded"));
+			REACT_APP_GAPI.auth2
+				.getAuthInstance()
+				.signIn()
+				.then(() => {
+					var event = {
+						sendUpdates: "all",
+						sendNotifications: true,
+						summary: "Mentify Session",
+						description:
+							"One on One mentorship with a mentor from your dream college.",
+						start: {
+							dateTime: `2021-${meetingmonth}-${meetingday}T${meetinghr}:${meetingmin}:00+05:30`,
+							timeZone: "Asia/Kolkata",
+						},
+						end: {
+							dateTime: `2021-${meetingmonth}-${meetingday}T${meetinghr2}:${meetingmin2}:00+05:30`,
+							timeZone: "Asia/Kolkata",
+						},
+						attendees: [{ email: mentorEmailId }],
+						conferenceData: {
+							createRequest: {
+								requestId: "test",
+								conferenceSolutionKey: { type: "hangoutsMeet" },
+							},
+						},
+						reminders: {
+							useDefault: false,
+							overrides: [
+								{ method: "email", minutes: 24 * 60 },
+								{ method: "email", minutes: 60 },
+								{ method: "popup", minutes: 10 },
+								{ method: "popup", minutes: 60 },
+							],
+						},
+					};
+					var request = REACT_APP_GAPI.client.calendar.events.insert({
+						calendarId: "primary",
+						resource: event,
+						conferenceDataVersion: 1,
+					});
+					request.execute((event) => {
+						console.log(event);
+						window.open(event.htmlLink);
+					});
+					/*console.log("map get", bookedSlots.get(date))
 
 						if(bookedSlots.get(date)){
 							console.log("pushing to the array")
@@ -694,134 +699,137 @@ const BookSession = ({ currentUser }) => {
 							console.log("creating new key-value pair")
 							bookedSlots.set(date,[selectedSlot])
 						}*/
-          bookedSlots.push(date);
-          bookedSlots.push(selectedSlot);
-          console.log(bookedSlots);
-        });
-    });
-  };
-  const mapGet = (mp, key) => {
-    console.log("map get mpky", bookedSlots.get(date));
-    return mp.get(key);
-  };
+					
+					setBookedSlots([...bookedSlots,[date,selectedSlot]]);
+					firebase.firestore().collection("mentors").doc(mentorData.email).update({bookedSlots:bookedSlots})
+				});
+		});
+	};
+	const mapGet = (mp, key) => {
+		console.log("map get mpky", mentorData.bookedSlots.get(date));
+		return mp.get(key);
+	};
 
-  return (
-    <BookSessionStyled className="BookSessionStyled">
-      {mentorData ? (
-        <>
-          <div className="toppart">
-            <div className="mainbox">
-              <div className="topgreen1">
-                <div className="mentify">mentify.in</div>
-              </div>
-              <div className="innermainbox">
-                <div className="dp">
-                  <img src={mentorData.photoURL} />
-                </div>
-                <div className="desc">
-                  <div className="name">{mentorData.name}</div>
-                  <div className="college">{mentorData.college} </div>
-                  <div className="branch">{mentorData.branch}</div>
-                  <div className="price">
-                    <span className="yellow"> ₹ 350 </span> for a 30 min session
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="secondarybox">
-              <div className="testscores">
-                <div className="ts">Test Scores</div>
-                <div className="scores1">
-                  <div className="scores">
-                    <span className="test">JEE Mains</span>
-                    <span className="yellow1">
-                      {mentorData.jeeMainsPercentile}
-                    </span>
-                  </div>
-                  <div className="scores">
-                    <span className="test">JEE Advance</span>
-                    <span className="yellow1">
-                      {mentorData.jeeAdvancedRank}
-                    </span>
-                  </div>
-                  <div className="scores">
-                    <span className="test">BITSAT</span>
-                    <span className="yellow1">{mentorData.bitsatMarks}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="collegeadmits">
-                <div className="collegeadmitsheading">College Admits</div>
-                <div className="colleges">{mentorData.collegeAdmits}</div>
-              </div>
-            </div>
-          </div>
+	return (
+		
 
-          <div className="bottompart">
-            <div className="calendar">
-              <Calendar
-                onChange={onchange}
-                value={date}
-                tileDisabled={tileDisabled}
-                maxDate={Date1}
-                minDate={Date2}
-              />
-            </div>
-            <div className="timeslot">
-              <div>
-                {date ? (
-                  <div className="slotheading">Select a time slot </div>
-                ) : (
-                  <div className="slotheading">
-                    {" "}
-                    Select a day from the calendar
-                  </div>
-                )}
-              </div>
-              <div className="slotbuttons">
-                {slotsToBeDisplayed.map((slot) =>
-                  slot - Math.floor(slot) == 0 ? (
-                    <button
-                      className="slotbtn"
-                      onClick={() => selectSlot(slot)}
-                    >
-                      {slot}:00 to {slot}:30
-                    </button>
-                  ) : (
-                    <button
-                      className="slotbtn"
-                      onClick={() => selectSlot(slot)}
-                    >
-                      {Math.floor(slot)}:30 to {Math.floor(slot) + 1}:00
-                    </button>
-                  )
-                )}
-              </div>
-              <div className="bookbtn">
-                {date ? (
-                  <button onClick={createEvent}>
-                    <p>Book Session</p>
-                  </button>
-                ) : (
-                  <img className="calendarselect" src={CalendarSelect} />
-                )}
-              </div>
-            </div>
-          </div>
-        </>
-      ) : (
-        <LoaderHolder>
-          <LoadingIcon />
-        </LoaderHolder>
-      )}
+		<BookSessionStyled className="BookSessionStyled">
+			{mentorData ? (
+				<>
+					<div className="toppart">
+						<div className="mainbox">
+							<div className="topgreen1">
+								<div className="mentify">mentify.in</div>
+							</div>
+							<div className="innermainbox">
+								<div className="dp">
+									<img src={mentorData.photoURL} />
+								</div>
+								<div className="desc">
+									<div className="name">{mentorData.name}</div>
+									<div className="college">{mentorData.college} </div>
+									<div className="branch">{mentorData.branch}</div>
+									<div className="price">
+										<span className="yellow"> ₹ 350 </span> for a 30 min session
+									</div>
+								</div>
+							</div>
+						</div>
+						<div className="secondarybox">
+							<div className="testscores">
+								<div className="ts">Test Scores</div>
+								<div className="scores1">
+									<div className="scores">
+										<span className="test">JEE Mains</span>
+										<span className="yellow1">
+											{mentorData.jeeMainsPercentile}
+										</span>
+									</div>
+									<div className="scores">
+										<span className="test">JEE Advance</span>
+										<span className="yellow1">
+											{mentorData.jeeAdvancedRank}
+										</span>
+									</div>
+									<div className="scores">
+										<span className="test">BITSAT</span>
+										<span className="yellow1">{mentorData.bitsatMarks}</span>
+									</div>
+								</div>
+							</div>
+							<div className="collegeadmits">
+								<div className="collegeadmitsheading">College Admits</div>
+								<div className="colleges">{mentorData.collegeAdmits}</div>
+							</div>
+						</div>
+					</div>
 
-      <Footer />
-    </BookSessionStyled>
-  );
+					<div className="bottompart">
+						<div className="calendar">
+							<Calendar
+								onChange={onchange}
+								value={date}
+								tileDisabled={tileDisabled}
+								maxDate={Date1}
+								minDate={Date2}
+							/>
+						</div>
+						<div className="timeslot">
+							<div>
+								{date ? (
+									<div className="slotheading">Select a time slot </div>
+								) : (
+									<div className="slotheading">
+										{" "}
+										Select a day from the calendar
+									</div>
+								)}
+							</div>
+							<div className="slotbuttons">
+								{slotsToBeDisplayed.map((slot) =>
+									slot - Math.floor(slot) == 0 ? (
+										<button
+											className="slotbtn"
+											onClick={() => selectSlot(slot)}
+										>
+											{slot}:00 to {slot}:30
+										</button>
+									) : (
+										<button
+											className="slotbtn"
+											onClick={() => selectSlot(slot)}
+										>
+											{Math.floor(slot)}:30 to {Math.floor(slot) + 1}:00
+										</button>
+									)
+								)}
+							</div>
+							<div className="bookbtn">
+								{date ? (
+									<button onClick={createEvent}>
+										<p>Book Session</p>
+									</button>
+								) : (
+									<img className="calendarselect" src={CalendarSelect} />
+								)}
+							</div>
+						</div>
+					</div>
+				</>
+			) : (
+				<LoaderHolder>
+					<LoadingIcon />
+				</LoaderHolder>
+			)}
+
+			<Footer />
+		</BookSessionStyled>
+		
+	);
 };
 
 const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+	currentUser: state.user.currentUser,
 });
 
 export default connect(mapStateToProps)(BookSession);
