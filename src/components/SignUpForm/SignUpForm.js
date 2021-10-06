@@ -263,6 +263,7 @@ const SignInFormStyled = styled.div`
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    pointer-events: all;
   }
   /*& .google-btn {
     cursor: pointer;
