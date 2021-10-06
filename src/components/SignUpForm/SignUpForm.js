@@ -593,7 +593,7 @@ export const SignInForm = ({ heading }) => {
               </div>
             )}
             </div>*/}
-          <img src={google} className="google" />
+          <img src={google} className="google" onClick={onGoogleSignUp} />
           {heading === "Sign In" ? (
             <div>
               <div className="text-center p-t-12 ">
