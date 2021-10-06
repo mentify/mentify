@@ -586,6 +586,7 @@ const BookSession = ({ currentUser }) => {
         const a = date.getDay();
         const slotsPreffered = mentorData.preferredSlots[a];
         const slotsBooked = doc.data().bookedSlots[date];
+        console.log(slotsBooked, slotsPreffered);
         if (slotsBooked) {
           let slotTaken = {};
           for (let i = 0; i < slotsBooked.length; i++) {

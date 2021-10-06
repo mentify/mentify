@@ -3,6 +3,7 @@ import styled from "styled-components";
 import googleLogo from "../../assets/googlelogo.svg";
 import firebase from "../../firebase.config.js";
 import { Link } from "react-router-dom";
+import google from "../../assets/google-signin.png";
 
 const SignInFormStyled = styled.div`
   & a {
@@ -115,6 +116,9 @@ const SignInFormStyled = styled.div`
 
   & .login100-form {
     width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   & .text-center {
@@ -252,7 +256,15 @@ const SignInFormStyled = styled.div`
     background: #fff;
     padding: 0 10px;
   }
-  & .google-btn {
+
+  & .google{
+    cursor: pointer;
+    width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /*& .google-btn {
     cursor: pointer;
     width: auto;
     margin-top: 0.6em;
@@ -292,7 +304,8 @@ const SignInFormStyled = styled.div`
 
     &:active {
       background: #1669f2;
-    }
+    }*/
+
   }
   @media (max-width: 1290px) {
     & {
@@ -562,7 +575,7 @@ export const SignInForm = ({ heading }) => {
           <div className=" orline text-center p-t-12 ">
             <span>OR</span>
           </div>
-          <div class="google-btn" onClick={onGoogleSignUp}>
+          {/*<div class="google-btn" onClick={onGoogleSignUp}>
             <div class="google-icon-wrapper">
               <img class="google-icon" src={googleLogo} alt="google" />
             </div>
@@ -579,8 +592,8 @@ export const SignInForm = ({ heading }) => {
                 </p>
               </div>
             )}
-          </div>
-
+            </div>*/}
+          <img src={google} className="google" />
           {heading === "Sign In" ? (
             <div>
               <div className="text-center p-t-12 ">
