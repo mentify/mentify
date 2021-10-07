@@ -14,7 +14,12 @@ const MentorCardStyled = styled.div`
 		border: 0px white;
 		border: 2px solid black;
 	}
-
+	& .flippy-front{
+		border:0.1em solid black;
+	}
+	& .flippy-back{
+		border:0.1em solid black;
+	}
 	& .box {
 		width: fit-content;
 		min-width: 10em;
@@ -32,6 +37,7 @@ const MentorCardStyled = styled.div`
 		left:-3em;	
 		margin-bottom:-4em;
 		margin-right:5em;
+		border:0.1em solid black;
 
 	}
 
@@ -66,13 +72,15 @@ const MentorCardStyled = styled.div`
 	& .greentop{
 		background-color:#B5F7E7;
 		height:3em;
-		margin:-0.75em;
+		margin:-0.73em;
 		padding-right:1em;
 		padding-bottom:0.5em;
 		font-size:1.4rem;
 		font-weight:600;
 		font-family:Roboto;
 		text-align: bottom;
+		border-bottom:0.1em solid black;
+		border-bottom:0.1em solid black;
 		display: flex;
 		text-align:right;
 		flex-direction: column-reverse;
