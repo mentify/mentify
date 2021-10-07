@@ -263,6 +263,7 @@ const SignInFormStyled = styled.div`
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    pointer-events: all;
   }
   /*& .google-btn {
     cursor: pointer;
@@ -593,7 +594,7 @@ export const SignInForm = ({ heading }) => {
               </div>
             )}
             </div>*/}
-          <img src={google} className="google" />
+          <img src={google} className="google" onClick={onGoogleSignUp} />
           {heading === "Sign In" ? (
             <div>
               <div className="text-center p-t-12 ">
