@@ -10,6 +10,7 @@ import firebase from "../../firebase.config.js";
 import { differenceInCalendarDays } from "date-fns";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 import { connect } from "react-redux";
+import google from "../../assets/google-signin.png";
 
 const LoaderHolder = styled.div`
   & {
@@ -45,6 +46,13 @@ const BookSessionStyled = styled.div`
 		flex-direction: column;
 		box-shadow: 5px 5px #888888;
 	}
+	& .google{
+		cursor: pointer;
+		width: 70%;
+		height: auto;
+		margin-left: 3.5em;
+		pointer-events: all;
+	  }
 	& .topgreen1 {
 		height: 4em;
 		padding-right: 1em;
@@ -801,7 +809,6 @@ const BookSession = ({ currentUser }) => {
                   <div className="slotheading">Select a time slot </div>
                 ) : (
                   <div className="slotheading">
-                    {" "}
                     Select a day from the calendar
                   </div>
                 )}
@@ -827,9 +834,10 @@ const BookSession = ({ currentUser }) => {
               </div>
               <div className="bookbtn">
                 {date ? (
-                  <button onClick={createEvent}>
+                  /*<button onClick={createEvent}>
                     <p>Book Session</p>
-                  </button>
+                  </button>*/
+                  <img src={google} onClick={createEvent} className="google" />
                 ) : (
                   <img className="calendarselect" src={CalendarSelect} />
                 )}
