@@ -9,7 +9,6 @@ import { Footer } from "../../components/Footer/Footer";
 import firebase from "../../firebase.config.js";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 
-
 const MentorsPageStyled = styled.div`
 	& {
 		display: flex;
@@ -208,83 +207,92 @@ const MentorsPageStyled = styled.div`
 	`;
 
 export const MentorsPage = () => {
-	const [mentors, setMentors] = useState([]);
-	const [searchField, setSearchField] = useState("");
-	const [filteredMentors, setFilteredMentors]=useState([]); 
+  const [mentors, setMentors] = useState([]);
+  const [searchField, setSearchField] = useState("");
+  const [filteredMentors, setFilteredMentors] = useState([]);
 
-	useEffect(() => {
-		firebase
-			.firestore()
-			.collection("mentors")
-			.onSnapshot((snap) => {
-				let currentMentors = [];
-				snap.docs.forEach((mentor) => currentMentors.push(mentor.data()));
-				setMentors(currentMentors);
-				setFilteredMentors(currentMentors);
-			});
-	}, []);
-	
-	const searchChange=(event)=>{
-		setSearchField(event.target.value);
-		setFilteredMentors(mentors.filter(mentor =>{
-				return mentor.college.toLowerCase().includes(searchField.toLowerCase());
-			})
-		)
-	}
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("mentors")
+      .onSnapshot((snap) => {
+        let currentMentors = [];
+        snap.docs.forEach((mentor) => currentMentors.push(mentor.data()));
+        setMentors(currentMentors);
+        setFilteredMentors(currentMentors);
+      });
+  }, []);
 
-	return (
-		<MentorsPageStyled className="MentorsPageStyled">
-			<div className="toppart">
-				<div className="intro">
-					<img src={Logo} alt="app-logo" className="logo" />
-					<div className="content1">
-						<div className="space">All the best </div>
-						<div className="yellowt">
-							<Typewriter
-								options={{
-									strings: [" Students,", " Mentors,"],
-									autoStart: true,
-									loop: true,
-								}}
-							/>
-						</div>
-						<div className="newline">all in one place.</div>
-					</div>
-					<div className="content2">
-						Mentors on <span className="green">mentify</span> will help you
-						achieve your most ambititous goals.{" "}
-						<p className="yellow">Come on, let’s smash them together!</p>
+  const searchChange = (event) => {
+    setSearchField(event.target.value);
+    setFilteredMentors(
+      mentors.filter((mentor) => {
+        return mentor.college
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase());
+      })
+    );
+  };
 
-					</div>
-				</div>
-				<img src={MentorTrophy} alt="mentor-trophy" className="mentortrophy" />
-
-			</div>
-			<div className="mainpart">
-				<div className="heading">Explore mentors</div>
-				<div className="desc">There are over 100+ mentors on mentify!</div>
-				<div className="search">
-					<input type="search" placeholder="Search college ...." onChange={searchChange} />
-					<button className="searchicon"> <i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
-				</div>
-				<div className="mentorcards">
-					{filteredMentors.length > 0 ? (
-						filteredMentors.map((mentor) => {
-							return (
-								<MentorCard
-									name={mentor.name}
-									college={mentor.college}
-									id={mentor.id}
-									photoURL={mentor.photoURL}
-								/>
-							);
-						})
-					) : (
-						<img className="noSearchResults"src={noResults}/>
-					)}
-				</div>
-			</div>
-			<Footer />
-		</MentorsPageStyled>
-	);
+  return (
+    <MentorsPageStyled className="MentorsPageStyled">
+      <div className="toppart">
+        <div className="intro">
+          <img src={Logo} alt="app-logo" className="logo" />
+          <div className="content1">
+            <div className="space">All the best </div>
+            <div className="yellowt">
+              <Typewriter
+                options={{
+                  strings: [" Students,", " Mentors,"],
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
+            </div>
+            <div className="newline">all in one place.</div>
+          </div>
+          <div className="content2">
+            Mentors on <span className="green">mentify</span> will help you
+            achieve your most ambititous goals.{" "}
+            <p className="yellow">Come on, let’s smash them together!</p>
+          </div>
+        </div>
+        <img src={MentorTrophy} alt="mentor-trophy" className="mentortrophy" />
+      </div>
+      <div className="mainpart">
+        <div className="heading">Explore mentors</div>
+        <div className="desc">There are over 100+ mentors on mentify!</div>
+        <div className="search">
+          <input
+            type="search"
+            placeholder="Search college ...."
+            onChange={searchChange}
+            value={searchField}
+          />
+          <button className="searchicon">
+            {" "}
+            <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div className="mentorcards">
+          {filteredMentors.length > 0 ? (
+            filteredMentors.map((mentor) => {
+              return (
+                <MentorCard
+                  name={mentor.name}
+                  college={mentor.college}
+                  id={mentor.id}
+                  photoURL={mentor.photoURL}
+                />
+              );
+            })
+          ) : (
+            <img className="noSearchResults" src={noResults} />
+          )}
+        </div>
+      </div>
+      <Footer />
+    </MentorsPageStyled>
+  );
 };

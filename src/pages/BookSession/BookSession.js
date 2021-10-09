@@ -790,7 +790,7 @@ const BookSession = ({ currentUser }) => {
               noOfBookings: mentorData.noOfBookings + 1,
             })
             .then(() => console.log("updated"));
-          console.log(currentUser);
+
           firebase
             .firestore()
             .collection("bookings")
