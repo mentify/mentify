@@ -612,18 +612,20 @@ const BookSession = ({ currentUser }) => {
       return;
     }
 
+    const data = await fetch("https://mentify-api.herokuapp.com/razorpay", {
+      method: "POST",
+    }).then((t) => t.json());
+
     const options = {
-      key: __DEV__ ? "rzp_test_uTCojMx6Obx3mZ" : "rzp_live_C1Vn19veyekSGk",
-      currency: "INR",
-      amount: "15000",
-      order_id: "order_9A33XWu170gUtm",
+      key: __DEV__ ? "rzp_test_Hu7Les2vMgg6Xp" : "rzp_live_C1Vn19veyekSGk",
+      currency: data.currency,
+      amount: data.amount.toString(),
+      order_id: data.id,
       name: "Payment",
       description: `Book a one-one session with ${mentorData.name}`,
       image: { mentify },
       handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
+        createEvent();
       },
       prefill: {
         name: `${mentorData.name}`,
