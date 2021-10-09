@@ -887,11 +887,14 @@ const BookSession = ({ currentUser }) => {
               </div>
               <div className="bookbtn">
                 {date ? (
-                  <img
+                  /*<img
                     src={google}
                     onClick={displayRazorpay}
                     className="google"
-                  />
+                  />*/
+                  <button onClick={displayRazorpay}>
+                    <p>Book Session</p>
+                  </button>
                 ) : (
                   <img className="calendarselect" src={CalendarSelect} />
                 )}

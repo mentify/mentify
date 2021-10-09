@@ -110,7 +110,7 @@ const MentorsPageStyled = styled.div`
 	}
 	& .search{
 		margin-top:1.5em;
-		width:50%;
+		width:100%;;
 		margin-bottom:4em;
 		display:flex;
 		flex-wrap:wrap;
@@ -118,7 +118,7 @@ const MentorsPageStyled = styled.div`
 	}
 	& .search input{
 		text-align:left;
-		width:60%;
+		width:30%;
 		font-size: 1.3rem;
 		height:1em;
 		padding:1em;
@@ -137,6 +137,7 @@ const MentorsPageStyled = styled.div`
 		width:5em;
 		background-color:#B5F7E7;
 		border:none;
+		border:0.15em solid black;
 
 	}
 	& .noSearchResults{
@@ -296,7 +297,7 @@ export const MentorsPage = () => {
           </button>
         </div>
         <div className="mentorcards">
-          {filteredMentors.length > 0 ? (
+          {mentors.length > 0? filteredMentors.length > 0 ? (
             filteredMentors.map((mentor) => {
               return (
                 <MentorCard
@@ -309,7 +310,7 @@ export const MentorsPage = () => {
             })
           ) : (
             <img className="noSearchResults" src={noResults} />
-          )}
+          ):<LoadingIcon/>}
         </div>
       </div>
       <Footer />
