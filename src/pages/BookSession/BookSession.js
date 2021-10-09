@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Footer } from "../../components/Footer/Footer";
 import { useParams } from "react-router-dom";
-import Amal from "../../assets/Amal.png";
 import CalendarSelect from "../../assets/calendarSelect.svg";
 import Calendar from "react-calendar";
 import { AES, enc } from "crypto-js";
 import firebase from "../../firebase.config.js";
-import { differenceInCalendarDays } from "date-fns";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 import { connect } from "react-redux";
 import google from "../../assets/google-signin.png";
@@ -565,7 +563,7 @@ const BookSession = ({ currentUser }) => {
   const [slots, setSlots] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState("");
   const [preferredSlots, setPreferredSlots] = useState("");
-  const [bookedSlots, setBookedSlots] = useState("");
+  const [bookedSlots, setBookedSlots] = useState([]);
   const [slotsToBeDisplayed, setSlotsToBeDisplayed] = useState([]);
   const [mentorData, setMentorData] = useState(null);
 
@@ -617,7 +615,7 @@ const BookSession = ({ currentUser }) => {
     }).then((t) => t.json());
 
     const options = {
-      key: __DEV__ ? "rzp_test_Hu7Les2vMgg6Xp" : "rzp_live_C1Vn19veyekSGk",
+      key: "rzp_test_Hu7Les2vMgg6Xp",
       currency: data.currency,
       amount: data.amount.toString(),
       order_id: data.id,
@@ -648,20 +646,20 @@ const BookSession = ({ currentUser }) => {
         const a = date.getDay();
         const slotsPreffered = mentorData.preferredSlots[a];
         const slotsBooked = doc.data().bookedSlots[date];
-        console.log(slotsBooked, slotsPreffered);
+        let displaySlots = [];
         if (slotsBooked) {
           let slotTaken = {};
           for (let i = 0; i < slotsBooked.length; i++) {
             slotTaken[slotsBooked[i]] = true;
           }
           for (let j = 0; j < slotsPreffered.length; j++) {
-            if (slotTaken[slotsPreffered[j]]) {
-              slotsPreffered.splice(j, 1);
-              j--;
+            if (!slotTaken[slotsPreffered[j]]) {
+              displaySlots.push(slotsPreffered[j]);
             }
           }
         }
-        setSlotsToBeDisplayed(slotsPreffered);
+        if (displaySlots.length) setSlotsToBeDisplayed(displaySlots);
+        else setSlotsToBeDisplayed(slotsPreffered);
       });
 
     /*slotsToBeDisplayed.forEach((svalue, sindex) => {
