@@ -31,6 +31,14 @@ const BookSessionStyled = styled.div`
 		padding: 0;
 		justify-content: center;
 	}
+
+	& .paymentLoader{
+		position: absolute;
+		top: 40vh;
+		left: 40vw;
+		height: 20vh;  
+	}
+	
 	& .toppart {
 		display: flex;
 		flex-wrap: wrap;
@@ -362,7 +370,7 @@ const BookSessionStyled = styled.div`
 		background-color: #b5f7e7;
 	}
 	& .react-calendar__tile--now {
-		background: white;
+		background: #b5f7e7;
 	}
 	& .react-calendar__tile--now:enabled:hover,
 	.react-calendar__tile--now:enabled:focus {
@@ -538,23 +546,11 @@ const BookSessionStyled = styled.div`
 	}
 `;
 
-//DATABASE STUFF
 const mentorEmailId = "adhvaithkul@gmail.com";
-/*const preferredSlots1 = new Map([
-	[1, [7, 7.5, 8, 8.5]],
-	[2, [15, 15.5, 16]],
-	[3, [15, 15.5, 16]],
-	[4, [15, 15.5, 16]],
-	[5, [15, 15.5, 16]],
-	[7, [15, 15.5, 16]],
-	[6, [22, 22.5, 23, 23.5]],
-]);
-const bookedSlots = [];*/
 
 const Date1 = new Date(2021, 11, 1);
 const Date2 = new Date();
 
-//API CREDS
 const REACT_APP_GAPI = window.gapi;
 
 const BookSession = ({ currentUser }) => {
@@ -566,6 +562,7 @@ const BookSession = ({ currentUser }) => {
   const [bookedSlots, setBookedSlots] = useState([]);
   const [slotsToBeDisplayed, setSlotsToBeDisplayed] = useState([]);
   const [mentorData, setMentorData] = useState(null);
+  const [paymentLoading, setPaymentLoading] = useState(false);
 
   useEffect(() => {
     var bytes = AES.decrypt(decodeURIComponent(mentorId), "mentify");
@@ -597,6 +594,7 @@ const BookSession = ({ currentUser }) => {
   };
 
   const displayRazorpay = async () => {
+    setPaymentLoading(true);
     if (!currentUser) {
       alert("Please log in or sign up to continue!");
       return;
@@ -609,6 +607,7 @@ const BookSession = ({ currentUser }) => {
       alert(
         "Failed to load razorpay. Please check your internet connectivity."
       );
+      setPaymentLoading(false);
       return;
     }
 
@@ -634,6 +633,7 @@ const BookSession = ({ currentUser }) => {
     };
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
+    setPaymentLoading(false);
   };
 
   const onchange = (date) => {
@@ -662,18 +662,6 @@ const BookSession = ({ currentUser }) => {
         if (displaySlots.length) setSlotsToBeDisplayed(displaySlots);
         else setSlotsToBeDisplayed(slotsPreffered);
       });
-
-    /*slotsToBeDisplayed.forEach((svalue, sindex) => {
-				bookedSlots.forEach((value, index) => {
-				if ( value[0].getTime() === date.getTime() && bookedSlots[index][1] == svalue) {
-					console.log("eee")
-					setSlotsToBeDisplayed([...slotsToBeDisplayed.slice(0,sindex),...slotsToBeDisplayed.slice(sindex+1)])
-				}
-			});
-		});*/
-
-    /*slotsToBeDisplayed.forEach((value,index)=>bookedSlots.get(date)===value?slotsToBeDisplayed.splice(index,1):null)
-     */
   };
 
   const tileDisabled = ({ date, view }) => {
@@ -766,16 +754,7 @@ const BookSession = ({ currentUser }) => {
               "Your session has been booked. Please check your registered google calendar for the meeting details. You will also get reminders on your email prior to the meet."
             );
           });
-          /*console.log("map get", bookedSlots.get(date))
 
-						if(bookedSlots.get(date)){
-							console.log("pushing to the array")
-							bookedSlots.get(date).push(selectedSlot)
-						}
-						else{
-							console.log("creating new key-value pair")
-							bookedSlots.set(date,[selectedSlot])
-						}*/
           if (bookedSlots[date]) {
             bookedSlots[date] = [...bookedSlots[date], selectedSlot];
           } else bookedSlots[date] = [selectedSlot];
@@ -790,15 +769,21 @@ const BookSession = ({ currentUser }) => {
               noOfBookings: mentorData.noOfBookings + 1,
             })
             .then(() => console.log("updated"));
-          firebase.firestore().collection("bookings").doc().set({
-            mentorName: mentorData.name,
-            studentName: currentUser.name,
-            mentorEmail: mentorData.email,
-            studentEmail: currentUser.email,
-            bookedAt: todaysDate,
-            bookedDate: date,
-            bookedSlot: selectedSlot,
-          });
+
+          firebase
+            .firestore()
+            .collection("bookings")
+            .doc()
+            .set({
+              mentorName: mentorData.name,
+              studentName: currentUser.displayName,
+              mentorEmail: mentorData.email,
+              studentEmail: currentUser.email,
+              bookedOn: todaysDate,
+              bookedDate: date,
+              bookedSlot: selectedSlot,
+            })
+            .catch((err) => console.log(err.message));
         });
     });
   };
@@ -885,6 +870,7 @@ const BookSession = ({ currentUser }) => {
                     <button
                       className="slotbtn"
                       onClick={() => selectSlot(slot)}
+                      disabled={paymentLoading}
                     >
                       {slot}:00 to {slot}:30
                     </button>
@@ -892,6 +878,7 @@ const BookSession = ({ currentUser }) => {
                     <button
                       className="slotbtn"
                       onClick={() => selectSlot(slot)}
+                      disabled={paymentLoading}
                     >
                       {Math.floor(slot)}:30 to {Math.floor(slot) + 1}:00
                     </button>
@@ -900,14 +887,11 @@ const BookSession = ({ currentUser }) => {
               </div>
               <div className="bookbtn">
                 {date ? (
-                  <button onClick={displayRazorpay}>
-                    <p>Book Session</p>
-                  </button>
-                  /*<img
+                  <img
                     src={google}
                     onClick={displayRazorpay}
                     className="google"
-                  />*/
+                  />
                 ) : (
                   <img className="calendarselect" src={CalendarSelect} />
                 )}
