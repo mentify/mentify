@@ -11,6 +11,7 @@ import { differenceInCalendarDays } from "date-fns";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 import { connect } from "react-redux";
 import google from "../../assets/google-signin.png";
+import mentify from "../../assets/Mentify-Logo.png";
 
 const LoaderHolder = styled.div`
   & {
@@ -583,6 +584,57 @@ const BookSession = ({ currentUser }) => {
       });
   }, []);
 
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+
+  const __DEV__ = document.domain === "localhost";
+
+  const displayRazorpay = async () => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert(
+        "Failed to load razorpay. Please check your internet connectivity."
+      );
+      return;
+    }
+
+    const options = {
+      key: __DEV__ ? "rzp_test_uTCojMx6Obx3mZ" : "rzp_live_C1Vn19veyekSGk",
+      currency: "INR",
+      amount: "15000",
+      order_id: "order_9A33XWu170gUtm",
+      name: "Payment",
+      description: `Book a one-one session with ${mentorData.name}`,
+      image: { mentify },
+      handler: function (response) {
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+      },
+      prefill: {
+        name: `${mentorData.name}`,
+        email: `${mentorData.email}`,
+        phone_number: `${mentorData.phone}`,
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+
   const onchange = (date) => {
     setDate(date);
     firebase
@@ -837,7 +889,11 @@ const BookSession = ({ currentUser }) => {
                   /*<button onClick={createEvent}>
                     <p>Book Session</p>
                   </button>*/
-                  <img src={google} onClick={createEvent} className="google" />
+                  <img
+                    src={google}
+                    onClick={displayRazorpay}
+                    className="google"
+                  />
                 ) : (
                   <img className="calendarselect" src={CalendarSelect} />
                 )}
