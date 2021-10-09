@@ -790,15 +790,21 @@ const BookSession = ({ currentUser }) => {
               noOfBookings: mentorData.noOfBookings + 1,
             })
             .then(() => console.log("updated"));
-          firebase.firestore().collection("bookings").doc().set({
-            mentorName: mentorData.name,
-            studentName: currentUser.name,
-            mentorEmail: mentorData.email,
-            studentEmail: currentUser.email,
-            bookedAt: todaysDate,
-            bookedDate: date,
-            bookedSlot: selectedSlot,
-          });
+          console.log(currentUser);
+          firebase
+            .firestore()
+            .collection("bookings")
+            .doc()
+            .set({
+              mentorName: mentorData.name,
+              studentName: currentUser.displayName,
+              mentorEmail: mentorData.email,
+              studentEmail: currentUser.email,
+              bookedOn: todaysDate,
+              bookedDate: date,
+              bookedSlot: selectedSlot,
+            })
+            .catch((err) => console.log(err.message));
         });
     });
   };
