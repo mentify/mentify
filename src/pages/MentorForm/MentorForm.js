@@ -310,6 +310,11 @@ export const MentorForm = () => {
                 jeeAdvancedRank: advanced,
                 collegeAdmits: admits,
                 photoURL: url,
+                preferredSlots: {
+                  1: [17, 17.5, 18],
+                  4: [17, 17.5, 18, 18.5],
+                  6: [15, 15.5, 16],
+                },
               })
               .then(() => {
                 setMentorName("");
