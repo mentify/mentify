@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Logo from "../../assets/Mentify-Logo.png";
 import MentorTrophy from "../../assets/mentor-trophy.svg";
+import noResults from "../../assets/noResults.svg";
 import Typewriter from "typewriter-effect";
 import { MentorCard } from "../../components/MentorCard/MentorCard";
 import { Footer } from "../../components/Footer/Footer";
 import firebase from "../../firebase.config.js";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
+
 
 const MentorsPageStyled = styled.div`
 	& {
@@ -138,6 +140,11 @@ const MentorsPageStyled = styled.div`
 		border:none;
 
 	}
+	& .noSearchResults{
+		width:40em;
+		margin-top:-5em;
+		margin-bottom:-8em;
+	}
 
 	@media (max-width: 992px) {
 		.mentortrophy {
@@ -198,8 +205,6 @@ const MentorsPageStyled = styled.div`
 		}
 	}
 
-	
-
 	`;
 
 export const MentorsPage = () => {
@@ -218,11 +223,9 @@ export const MentorsPage = () => {
 				setFilteredMentors(currentMentors);
 			});
 	}, []);
-
+	
 	const searchChange=(event)=>{
-		console.log(event.target.value)
 		setSearchField(event.target.value);
-		console.log(mentors)
 		setFilteredMentors(mentors.filter(mentor =>{
 				return mentor.college.toLowerCase().includes(searchField.toLowerCase());
 			})
@@ -251,9 +254,11 @@ export const MentorsPage = () => {
 						Mentors on <span className="green">mentify</span> will help you
 						achieve your most ambititous goals.{" "}
 						<p className="yellow">Come on, let’s smash them together!</p>
+
 					</div>
 				</div>
 				<img src={MentorTrophy} alt="mentor-trophy" className="mentortrophy" />
+
 			</div>
 			<div className="mainpart">
 				<div className="heading">Explore mentors</div>
@@ -275,7 +280,7 @@ export const MentorsPage = () => {
 							);
 						})
 					) : (
-						<LoadingIcon />
+						<img className="noSearchResults"src={noResults}/>
 					)}
 				</div>
 			</div>
