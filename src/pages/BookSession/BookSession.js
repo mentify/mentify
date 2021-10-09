@@ -39,7 +39,7 @@ const BookSessionStyled = styled.div`
 		padding: 2em;
 	}
 	& .mainbox {
-		width: 40em;
+		width: 50em;
 		border: 2px solid black;
 		display: flex;
 		flex-direction: column;
@@ -76,7 +76,7 @@ const BookSessionStyled = styled.div`
 		justify-content: center;
 	}
 	& .dp img {
-		width: 12em;
+		width: 15em;
 		height: 15em;
 		margin-left: 2em;
 		border-radius: 1em;
@@ -160,7 +160,7 @@ const BookSessionStyled = styled.div`
 		margin-right: 1.5em;
 	}
 	& .calendar {
-		width: 40em;
+		width: 50em;
 		height: fit-content;
 		display: flex;
 		font-size: 1em;
@@ -269,7 +269,7 @@ const BookSessionStyled = styled.div`
 	}
 
 	& .react-calendar {
-		max-width: 40em;
+		max-width: 50em;
 		font-size: 1rem;
 		background: white;
 		font-family: "Proza Libre", sans-serif;
@@ -727,7 +727,7 @@ const BookSession = ({ currentUser }) => {
         .then(() => {
           var event = {
             sendUpdates: "all",
-            sendNotifications: true,
+            sendInvites: true,
             summary: "Mentify Session",
             description:
               "One on One mentorship with a mentor from your dream college.",
@@ -751,6 +751,8 @@ const BookSession = ({ currentUser }) => {
               overrides: [
                 { method: "email", minutes: 24 * 60 },
                 { method: "email", minutes: 60 },
+                { method: "email", minutes: 10 },
+
                 { method: "popup", minutes: 10 },
                 { method: "popup", minutes: 60 },
               ],
@@ -762,7 +764,7 @@ const BookSession = ({ currentUser }) => {
             conferenceDataVersion: 1,
           });
           request.execute((event) => {
-            window.open(event.htmlLink);
+            alert("Your session has been booked. Please check your registered google calendar for the meeting details. You will also get reminders on your email prior to the meet.")          
           });
           /*console.log("map get", bookedSlots.get(date))
 
@@ -811,7 +813,7 @@ const BookSession = ({ currentUser }) => {
                   <div className="college">{mentorData.college} </div>
                   <div className="branch">{mentorData.branch}</div>
                   <div className="price">
-                    <span className="yellow"> ₹ 350 </span> for a 30 min session
+                    <span className="yellow"> ₹ 150 </span> for a 30 min session
                   </div>
                 </div>
               </div>
