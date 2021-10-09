@@ -3,6 +3,7 @@ import styled from "styled-components";
 import consulting from "../../assets/consulting.png";
 import marketing from "../../assets/marketing.png";
 import p1 from "../../assets/procedure1_bg.png";
+import { Link } from "react-router-dom"; 
 
 const Procedure1styled = styled.div`
   & {
@@ -115,7 +116,7 @@ const Procedure1 = ({ isVisible }) => {
         </div>
         <div className="procedure1content">
           Select your mentor or cohort based on your requirements If you are
-          unable to find a mentor please fill the form and we will get back to
+          unable to find a mentor please write to us and we will get back to
           you
         </div>
       </div>
@@ -127,8 +128,10 @@ const Procedure1 = ({ isVisible }) => {
         <div className="procedure1feature">
           <img src={consulting} alt="consultingimg" />
           <div>
+          <Link to="/mentors" style={{textDecoration:"none", color:"black"}}>
             <p>Mentors</p>
             <p>Get started now {`>>`}</p>
+          </Link>
           </div>
         </div>
         <div className="procedure1feature">

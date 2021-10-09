@@ -111,7 +111,7 @@ const MentorsPageStyled = styled.div`
 	}
 	& .search{
 		margin-top:1.5em;
-		width:50%;
+		width:100%;
 		margin-bottom:4em;
 		display:flex;
 		flex-wrap:wrap;
@@ -119,7 +119,7 @@ const MentorsPageStyled = styled.div`
 	}
 	& .search input{
 		text-align:left;
-		width:60%;
+		width:30%;
 		font-size: 1.3rem;
 		height:1em;
 		padding:1em;
@@ -138,6 +138,7 @@ const MentorsPageStyled = styled.div`
 		width:5em;
 		background-color:#B5F7E7;
 		border:none;
+		border:0.15em solid black;
 
 	}
 	& .noSearchResults{
@@ -174,6 +175,16 @@ const MentorsPageStyled = styled.div`
 		.desc{
 			font-size:1.5rem;
 		}
+		.search input{
+			min-width:8em;
+			font-size:1rem;
+		}
+		.searchicon{
+			width:4em;
+			height:2.5em;
+			margin-top:0.1em;
+
+		}
 	 
 	 
 	}
@@ -203,6 +214,16 @@ const MentorsPageStyled = styled.div`
 		.desc{
 			font-size:1.5rem;
 		}
+		.search input{
+			min-width:8em;
+			font-size:1rem;
+		}
+		.searchicon{
+			width:4em;
+			height:2.5em;
+			margin-top:0.1em;
+			
+		}
 	}
 
 	`;
@@ -223,11 +244,11 @@ export const MentorsPage = () => {
 				setFilteredMentors(currentMentors);
 			});
 	}, []);
-	
+
 	const searchChange=(event)=>{
 		setSearchField(event.target.value);
 		setFilteredMentors(mentors.filter(mentor =>{
-				return mentor.college.toLowerCase().includes(searchField.toLowerCase());
+				return mentor.college.toLowerCase().includes(event.target.value.toLowerCase());
 			})
 		)
 	}
@@ -268,7 +289,9 @@ export const MentorsPage = () => {
 					<button className="searchicon"> <i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
 				</div>
 				<div className="mentorcards">
-					{filteredMentors.length > 0 ? (
+				{mentors.length>0?
+
+					filteredMentors.length > 0 ? (
 						filteredMentors.map((mentor) => {
 							return (
 								<MentorCard
@@ -281,7 +304,8 @@ export const MentorsPage = () => {
 						})
 					) : (
 						<img className="noSearchResults"src={noResults}/>
-					)}
+					):<LoadingIcon/>}
+
 				</div>
 			</div>
 			<Footer />

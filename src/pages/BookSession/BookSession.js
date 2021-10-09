@@ -362,7 +362,7 @@ const BookSessionStyled = styled.div`
 		background-color: #b5f7e7;
 	}
 	& .react-calendar__tile--now {
-		background: #b5f7e7;
+		background: white;
 	}
 	& .react-calendar__tile--now:enabled:hover,
 	.react-calendar__tile--now:enabled:focus {
@@ -900,14 +900,14 @@ const BookSession = ({ currentUser }) => {
               </div>
               <div className="bookbtn">
                 {date ? (
-                  /*<button onClick={createEvent}>
+                  <button onClick={displayRazorpay}>
                     <p>Book Session</p>
-                  </button>*/
-                  <img
+                  </button>
+                  /*<img
                     src={google}
                     onClick={displayRazorpay}
                     className="google"
-                  />
+                  />*/
                 ) : (
                   <img className="calendarselect" src={CalendarSelect} />
                 )}

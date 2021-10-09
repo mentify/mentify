@@ -93,6 +93,13 @@ const Landingpagestyled = styled.div`
 		line-height: 1.5em;
 		margin-bottom: 0.75em;
 	}
+	& .details-description1 {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 2rem;
+		line-height: 1.5em;
+		margin-bottom: 0.75em;
+	}
 	& .imageHolder {
 		display: flex;
 		justify-content: center;
@@ -152,7 +159,14 @@ const Landingpagestyled = styled.div`
 	& .collegeImage:hover {
 		transform: scale(1.05);
 	}
-
+	& .iitmadras{
+		width:17em;
+		height:auto;
+	}
+	& .iitpatna{
+		width:17em;
+		height:auto;
+	}
 	@media (max-width: 1055px) {
 		& .page1 {
 			display: flex;
@@ -299,17 +313,17 @@ export const Landingpage = () => {
 				<div className="details">
 					<div className="details-heading">Why Mentify ?</div>
 					<div className="details-description">
-						Choosing a college right after 12th isnt an easy task, We help you
-						connect with students in those colleges you looking out for
+						Choosing a college right after the 12th isn't an easy task. We help you connect with students in those colleges you are looking out for.
+
 					</div>
 					<div className="details-description">
-						How to build my resume, Publish research papers? We help you
-						connect with students who have walked the path you wish to walk
+						How to build my resume, Publish research papers? We help you connect with students who have walked the path you wish to walk.
+
 					</div>
 					<div className="details-description">
-						Getting internship in while in college isnt an easy task, We help
-						you connect with students interning in various top firms you wish to
-						intern for
+						
+	Getting an internship while in college isn't an easy task. We help you connect with students interning in various top firms you wish to intern for
+
 					</div>
 				</div>
 				<img src={bottomwave} alt="bottom" className="wave" />
@@ -337,8 +351,8 @@ export const Landingpage = () => {
 					<img src={college7} alt="collegeimg" className="collegeImage" />
 					<img src={college1} alt="collegeimg" className="collegeImage" />
 					<img src={college3} alt="collegeimg" className="collegeImage" />
-					<img src={college4} alt="collegeimg" className="collegeImage" />
-					<img src={college6} alt="collegeimg" className="collegeImage" />
+					<img src={college4} alt="collegeimg" className="iitmadras collegeImage" />
+					<img src={college6} alt="collegeimg" className="iitpatna collegeImage" />
 				</div>
 			</div>
 			<Footer />

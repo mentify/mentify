@@ -6,12 +6,13 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import firebase from "../../firebase.config.js";
 import { signOutUser } from "../../redux/user/user-actions";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 const Nav = styled.div`
     height: 10vh;
     min-height: 50px;
     background: #b5f7e7;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     display: flex;
     align-items: center;
     gap: 2em;
@@ -141,12 +142,14 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
       >
         {currentUser ? "Sign Out" : "Sign Up"}
       </Link>
-      <img
-        src={dropdown}
-        className="dropdown-img"
-        onClick={onDropDownClick}
-        alt="nav-drops"
-      />
+      
+        <img
+          src={dropdown}
+          className="dropdown-img"
+          onClick={onDropDownClick}
+          alt="nav-drops"
+        />
+      
 
       {currentUser ? (
         <div

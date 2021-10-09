@@ -37,6 +37,7 @@ const SignInFormStyled = styled.div`
   & input {
     outline: none;
     border: none;
+    z-index:-1;
   }
 
   & input::-webkit-input-placeholder {
@@ -116,8 +117,7 @@ const SignInFormStyled = styled.div`
 
   & .login100-form {
     width: 90%;
-    display: flex;
-    flex-direction: column;
+    
     align-items: center;
   }
 
@@ -264,6 +264,12 @@ const SignInFormStyled = styled.div`
     margin-left: auto;
     margin-right: auto;
     pointer-events: all;
+    
+
+  }
+  & .googlebtn{
+    display:flex;
+    justify-content:center;
   }
   /*& .google-btn {
     cursor: pointer;
@@ -472,7 +478,7 @@ export const SignInForm = ({ heading }) => {
                 <b>Welcome Back!</b>
               </div>
             ) : (
-              <div>
+              <div style={{marginBottom:"-1em"}}>
                 <b>Welcome</b>
               </div>
             )}
@@ -594,7 +600,11 @@ export const SignInForm = ({ heading }) => {
               </div>
             )}
             </div>*/}
-          <img src={google} className="google" onClick={onGoogleSignUp} />
+            <div className="googlebtn">
+
+              <img style={{marginBottom:heading==="Sign In"?"0em":"-2em"}} src={google} className="google" onClick={onGoogleSignUp} />
+          
+            </div>
           {heading === "Sign In" ? (
             <div>
               <div className="text-center p-t-12 ">

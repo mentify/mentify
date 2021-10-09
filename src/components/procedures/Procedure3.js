@@ -120,8 +120,7 @@ export const Procedure3 = ({ isVisible }) => {
           Get an invite on your email for your session
         </div>
         <div className="procedure1content">
-          Get your meet link on your email, join the meet and discuss all your
-          queries with your mentor
+          Get your meet link on your email, join the meeting, and discuss your queries with your mentor.
         </div>
       </div>
       <div className="middlepart numProc1">

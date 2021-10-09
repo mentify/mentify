@@ -221,6 +221,7 @@ const AboutUsStyled = styled.div`
     font-size: 1rem;
     font-weight: 600;
     color: #17c1e8;
+    margin-bottom:1em;
   }
   & .founderimage {
     float: left;
@@ -580,39 +581,46 @@ export const AboutUs = () => {
             <div className="foundercard">
               <img src={Sreevas} className="founderimage" />
               <div className="foundername">Sreevas P Shenoy</div>
-              <div className="foundertitle">UI/UX</div>
+
+              <div className="foundertitle">Co-Founder </div>
               <div className="foundertext">
-                Artist is a term applied to a person who engages in an activity
-                deemed to be an art.
+                Chemical Engineering
               </div>
+              <br/>
+              <div className="foundertext"> Allapuzha, Kerala </div>
             </div>
 
             <div className="foundercard">
               <img src={Adhvaith} className="founderimage" />
               <div className="foundername">Adhvaith Kuldeep</div>
-              <div className="foundertitle">Boss</div>
+ 
+              <div className="foundertitle">Developer</div>
               <div className="foundertext">
-                Artist is a term applied to a person who engages in an activity
-                deemed to be an art.
+                Mechanical Engineering
               </div>
+              <br/>
+              <div className="foundertext"> Kochi, Kerala </div>
             </div>
             <div className="foundercard">
               <img src={Sunand} className="founderimage" />
               <div className="foundername">Sunand S Warrier</div>
-              <div className="foundertitle">Athlete</div>
+            
+              <div className="foundertitle">Co-Founder</div>
               <div className="foundertext">
-                Artist is a term applied to a person who engages in an activity
-                deemed to be an art.
+                Electronics and Communication Engineering
               </div>
+              <br/>
+              <div className="foundertext"> Trivandrum, Kerala </div>
             </div>
             <div className="foundercard">
               <img src={Amal} className="founderimage" />
               <div className="foundername">Amal Najeena</div>
-              <div className="foundertitle">JS Developer</div>
+              <div className="foundertitle">Developer</div>
               <div className="foundertext">
-                Artist is a term applied to a person who engages in an activity
-                deemed to be an art.
+                Electrical and Electronics Engineering
               </div>
+              <br/>
+              <div className="foundertext"> Trivandrum, Kerala </div>
             </div>
           </div>
         </div>
@@ -627,8 +635,8 @@ export const AboutUs = () => {
               <img src={mentor} className="reasonsimage" alt="searchingg" />
               <div className="reasonsimageheading">1-1 mentorship</div>
               <div className="reasonsimagecontent">
-                Get personalised attention to all your doubts related to college
-                , branch , placements from college students
+                Get personalised attention to all your doubts related to college, branch, placements from college students.
+
               </div>
             </div>
 
@@ -636,8 +644,8 @@ export const AboutUs = () => {
               <img src={clock} className="reasonsimage" alt="searchingg" />
               <div className="reasonsimageheading">24*7 customer support</div>
               <div className="reasonsimagecontent">
-                If you have any problems , no matter what time it is please
-                reach out to us We are always there to help you out
+                If you have any problems, no matter what time it is, please reach out to us. We are always there to help you out.
+
               </div>
             </div>
 
@@ -649,9 +657,8 @@ export const AboutUs = () => {
               />
               <div className="reasonsimageheading">Free webinars</div>
               <div className="reasonsimagecontent">
-                Our community members will be given access to free webinars
-                which will definitely help them to ace their placements ,masters
-                and so on
+                Our community members will be given access to free webinars, which will help them to ace their placements, masters and so on.
+
               </div>
             </div>
 
@@ -663,9 +670,7 @@ export const AboutUs = () => {
               />
               <div className="reasonsimageheading">Money back guarantee</div>
               <div className="reasonsimagecontent">
-                If your mentor has not turned up for the session or hasnt
-                cleared all your doubts , no questions asked full money will be
-                refunded
+                If your mentor has not turned up for the session or hasn't cleared all your doubts, no questions asked, full money will be refunded.
               </div>
             </div>
 
@@ -677,8 +682,8 @@ export const AboutUs = () => {
               />
               <div className="reasonsimageheading">Flexibility</div>
               <div className="reasonsimagecontent">
-                You have the freedom to choose the time and date for your
-                mentorship you can also reschedule it to a latter date
+                You have the freedom to choose the time and date for your mentorship. You can also reschedule it to a later date.
+
               </div>
             </div>
 
@@ -686,8 +691,8 @@ export const AboutUs = () => {
               <img src={tag1} className="reasonsimage" alt="searchingg" />
               <div className="reasonsimageheading">Lowest price guaranteed</div>
               <div className="reasonsimagecontent">
-                Yep , You heard it right we value your money and are the only
-                website that provides 1-1 mentorship at this small price
+                Yep, You heard it right. We value your money and are the only website that provides 1-1 mentorship at this small price
+
               </div>
             </div>
           </div>
