@@ -134,7 +134,11 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
           ? `Hey ${currentUser.displayName.split(" ")[0]}!`
           : "Sign In"}
       </Link>
-      <Link className="link signup" onClick={onSignOutClick} to="/">
+      <Link
+        className="link signup"
+        onClick={onSignOutClick}
+        to={currentUser ? "/signin" : "/register"}
+      >
         {currentUser ? "Sign Out" : "Sign Up"}
       </Link>
       <img
