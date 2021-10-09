@@ -281,7 +281,9 @@ export const MentorForm = () => {
       return;
     }
 
-    const id = AES.encrypt(JSON.stringify(mentorEmail), "mentify").toString();
+    const id = encodeURIComponent(
+      AES.encrypt(JSON.stringify(mentorEmail), "mentify").toString()
+    );
 
     storage
       .ref(`mentors/${id}`)
@@ -310,7 +312,6 @@ export const MentorForm = () => {
                 photoURL: url,
               })
               .then(() => {
-                
                 setMentorName("");
                 setMentorEmail("");
                 setNumber("");
