@@ -568,7 +568,7 @@ const BookSession = ({ currentUser }) => {
   const [mentorData, setMentorData] = useState(null);
 
   useEffect(() => {
-    var bytes = AES.decrypt(mentorId, "mentify");
+    var bytes = AES.decrypt(decodeURIComponent(mentorId), "mentify");
     var mentorEmail = JSON.parse(bytes.toString(enc.Utf8));
 
     firebase
@@ -596,9 +596,11 @@ const BookSession = ({ currentUser }) => {
     });
   };
 
-  const __DEV__ = document.domain === "localhost";
-
   const displayRazorpay = async () => {
+    if (!currentUser) {
+      alert("Please log in or sign up to continue!");
+      return;
+    }
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -626,9 +628,8 @@ const BookSession = ({ currentUser }) => {
         createEvent();
       },
       prefill: {
-        name: `${mentorData.name}`,
-        email: `${mentorData.email}`,
-        phone_number: `${mentorData.phone}`,
+        name: `${currentUser.name}`,
+        email: `${currentUser.email}`,
       },
     };
     const paymentObject = new window.Razorpay(options);
@@ -690,12 +691,9 @@ const BookSession = ({ currentUser }) => {
     setSelectedSlot(slot);
   };
 
-  const createEvent = () => {
-    if (!currentUser) {
-      alert("Please log in or sign up to continue!");
-      return;
-    }
+  const todaysDate = new Date();
 
+  const createEvent = () => {
     REACT_APP_GAPI.load("client:auth2", () => {
       REACT_APP_GAPI.client.init({
         apiKey: process.env.REACT_APP_API_KEY_CALENDAR,
@@ -764,7 +762,9 @@ const BookSession = ({ currentUser }) => {
             conferenceDataVersion: 1,
           });
           request.execute((event) => {
-            alert("Your session has been booked. Please check your registered google calendar for the meeting details. You will also get reminders on your email prior to the meet.")          
+            alert(
+              "Your session has been booked. Please check your registered google calendar for the meeting details. You will also get reminders on your email prior to the meet."
+            );
           });
           /*console.log("map get", bookedSlots.get(date))
 
@@ -785,8 +785,20 @@ const BookSession = ({ currentUser }) => {
             .firestore()
             .collection("mentors")
             .doc(mentorData.email)
-            .update({ bookedSlots: bookedSlots })
+            .update({
+              bookedSlots: bookedSlots,
+              noOfBookings: mentorData.noOfBookings + 1,
+            })
             .then(() => console.log("updated"));
+          firebase.firestore().collection("bookings").doc().set({
+            mentorName: mentorData.name,
+            studentName: currentUser.name,
+            mentorEmail: mentorData.email,
+            studentEmail: currentUser.email,
+            bookedAt: todaysDate,
+            bookedDate: date,
+            bookedSlot: selectedSlot,
+          });
         });
     });
   };
