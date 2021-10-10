@@ -45,6 +45,16 @@ const BookingsPage = styled.div`
   & .icon1{
     margin-right:0.3em;
   }
+  @media (max-width: 768px) {
+    .noBookings{
+      width:25em
+    }
+  }
+  @media (max-width: 768px) {
+    .noBookings{
+      width:25em
+    }
+  }
 `;
 
 const BookingsSummary = ({ currentUser }) => {
@@ -71,10 +81,12 @@ const BookingsSummary = ({ currentUser }) => {
       <BookingsPage>
         <div className="newBooking"></div>
 
-          <div className="heading"><i class="fa fa-calendar icon1"></i>    Booking Summary</div>
+
 
           {bookingsOfCurrentUser ? (
             bookingsOfCurrentUser.length > 0 ? (
+              <div>
+              <div className="heading"><i class="fa fa-calendar icon1"></i>    Booking Summary</div>
               <div className="bookings">
                 {bookingsOfCurrentUser.map((bkng) => (
                   <Booking
@@ -87,9 +99,11 @@ const BookingsSummary = ({ currentUser }) => {
                     bookedOn={bkng.bookedOn.seconds}
                   />
                 ))}
-              </div>
-            ) : (
+              </div></div>
+            ) : (<div>
+            <div className="heading">No Sessions found</div>
               <img className="noBookings" src={noBookings} />
+              </div>
             )
           ) : (
             <LoadingIcon />
