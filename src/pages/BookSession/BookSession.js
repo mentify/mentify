@@ -9,6 +9,7 @@ import firebase from "../../firebase.config.js";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 import { connect } from "react-redux";
 import mentify from "../../assets/Mentify-Logo.png";
+import { withRouter } from "react-router";
 
 const LoaderHolder = styled.div`
   & {
@@ -552,7 +553,7 @@ const Date2 = new Date();
 
 const REACT_APP_GAPI = window.gapi;
 
-const BookSession = ({ currentUser }) => {
+const BookSession = ({ currentUser, history }) => {
   const { mentorId } = useParams();
   const [date, setDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
@@ -766,9 +767,8 @@ const BookSession = ({ currentUser }) => {
             conferenceDataVersion: 1,
           });
           request.execute((event) => {
-            alert(
-              "Your session has been booked. Please check your registered google calendar for the meeting details. You will also get reminders on your email prior to the meet."
-            );
+            alert("Your session has been booked. Press OK to continue.");
+            history.push("/bookingsSummary");
           });
 
           if (bookedSlots[date]) {
@@ -927,4 +927,4 @@ const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
 });
 
-export default connect(mapStateToProps)(BookSession);
+export default withRouter(connect(mapStateToProps)(BookSession));

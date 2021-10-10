@@ -127,9 +127,11 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
       <Link to="/apply" className="link contact">
         Apply as a Mentor
       </Link>
-      <Link to="/bookingsSummary" className="link contact">
-        Booking Summary
-      </Link>
+      {currentUser ? (
+        <Link to="/bookingsSummary" className="link contact">
+          Booking Summary
+        </Link>
+      ) : null}
 
       <Link to="/signin" className="link auth">
         {currentUser
@@ -171,6 +173,13 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
           <hr className="line" />
           <Link to="/apply" className="link drop" onClick={onDropDownClick}>
             Apply as a Mentor
+          </Link>
+          <Link
+            to="/bookingsSummary"
+            className="link drop"
+            onClick={onDropDownClick}
+          >
+            Booking Summary
           </Link>
         </div>
       ) : (
