@@ -122,7 +122,7 @@ export const MentorCard = ({ name, college, id, photoURL }) => {
         <BackSide>
           <Link to={`/booksession/${id}`}>
             <div className="booksession">
-              <button>Book a session!</button>
+              <button>View Mentor Profile</button>
             </div>
           </Link>
         </BackSide>

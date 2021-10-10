@@ -47,12 +47,12 @@ const BookingsPage = styled.div`
   }
   @media (max-width: 768px) {
     .noBookings{
-      width:25em
+      width:22em
     }
   }
   @media (max-width: 768px) {
     .noBookings{
-      width:25em
+      width:22em
     }
   }
 `;

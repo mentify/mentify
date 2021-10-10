@@ -105,7 +105,7 @@ export const MentorApply = () => {
     <MentorApplyStyled className="MentorApplyStyled">
       <div className="toppart">
         <div className="line1">
-          Mentor <span className="yellow">Students</span> and earn upto ₹20,000
+          Mentor <span className="yellow">students</span> and earn upto ₹20,000
           per month
         </div>
         <div className="line2">Every student has some experience to share</div>

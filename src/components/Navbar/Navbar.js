@@ -174,6 +174,7 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
           <Link to="/apply" className="link drop" onClick={onDropDownClick}>
             Apply as a Mentor
           </Link>
+           <hr className="line" />
           <Link
             to="/bookingsSummary"
             className="link drop"
