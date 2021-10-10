@@ -795,6 +795,8 @@ const BookSession = ({ currentUser }) => {
             bookedDate: date,
             bookedSlot: selectedSlot,
             mentorPhotoURL: mentorData.photoURL,
+            mentorCollege: mentorData.college,
+            mentorBranch: mentorData.branch,
           });
         });
     });
