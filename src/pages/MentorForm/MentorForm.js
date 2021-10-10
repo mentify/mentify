@@ -315,6 +315,8 @@ export const MentorForm = () => {
                   4: [17, 17.5, 18, 18.5],
                   6: [15, 15.5, 16],
                 },
+                bookedSlots: [],
+                noOfBookings: 0,
               })
               .then(() => {
                 setMentorName("");
