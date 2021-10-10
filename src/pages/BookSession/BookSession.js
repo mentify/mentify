@@ -555,9 +555,7 @@ const REACT_APP_GAPI = window.gapi;
 const BookSession = ({ currentUser }) => {
   const { mentorId } = useParams();
   const [date, setDate] = useState("");
-  const [slots, setSlots] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState("");
-  const [preferredSlots, setPreferredSlots] = useState("");
   const [bookedSlots, setBookedSlots] = useState([]);
   const [slotsToBeDisplayed, setSlotsToBeDisplayed] = useState([]);
   const [mentorData, setMentorData] = useState(null);
@@ -566,7 +564,6 @@ const BookSession = ({ currentUser }) => {
   useEffect(() => {
     var bytes = AES.decrypt(decodeURIComponent(mentorId), "mentify");
     var mentorEmail = JSON.parse(bytes.toString(enc.Utf8));
-
     firebase
       .firestore()
       .collection("mentors")
@@ -593,11 +590,6 @@ const BookSession = ({ currentUser }) => {
   };
 
   const displayRazorpay = async () => {
-    setPaymentLoading(true);
-    if (!currentUser) {
-      alert("Please log in or sign up to continue!");
-      return;
-    }
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -633,6 +625,30 @@ const BookSession = ({ currentUser }) => {
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
     setPaymentLoading(false);
+  };
+
+  const validateBooking = () => {
+    setPaymentLoading(true);
+
+    if (!currentUser) {
+      alert("Please log in or sign up to continue!");
+      return;
+    }
+
+    firebase
+      .firestore()
+      .collection("mentors")
+      .doc(mentorData.email)
+      .get()
+      .then((doc) => {
+        if (doc.data().bookedSlots[date]) {
+          if (doc.data().bookedSlots[date].includes(selectedSlot)) {
+            alert("This slot has already been booked!");
+            setPaymentLoading(false);
+            return;
+          } else displayRazorpay();
+        }
+      });
   };
 
   const onchange = (date) => {
@@ -758,6 +774,7 @@ const BookSession = ({ currentUser }) => {
             bookedSlots[date] = [...bookedSlots[date], selectedSlot];
           } else bookedSlots[date] = [selectedSlot];
           setBookedSlots(bookedSlots);
+
           firebase
             .firestore()
             .collection("mentors")
@@ -881,7 +898,7 @@ const BookSession = ({ currentUser }) => {
                     onClick={displayRazorpay}
                     className="google"
                   />*/
-                  <button onClick={displayRazorpay}>
+                  <button onClick={validateBooking}>
                     <p>Book Session</p>
                   </button>
                 ) : (

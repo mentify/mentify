@@ -6,6 +6,7 @@ import Plus from "../../assets/plus.svg";
 import firebase from "../../firebase.config";
 import "firebase/storage";
 import { AES } from "crypto-js";
+import { connect } from "react-redux";
 
 const MentorFormStyled = styled.div`
   & {
@@ -241,7 +242,7 @@ const MentorFormStyled = styled.div`
 
 const storage = firebase.storage();
 
-export const MentorForm = () => {
+const MentorForm = ({ currentUser }) => {
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
   const [dp, setDP] = useState(null);
@@ -272,6 +273,10 @@ export const MentorForm = () => {
   };
 
   const handleSubmit = (e) => {
+    if (!currentUser) {
+      alert("Please sign in to apply.");
+      return;
+    }
     e.preventDefault();
     setLoading(true);
     if (!mentorName || !number || !college || !branch || !mentorEmail) {
@@ -314,7 +319,7 @@ export const MentorForm = () => {
                   4: [17, 17.5, 18, 18.5],
                   6: [15, 15.5, 16],
                 },
-                bookedSlots: [],
+                bookedSlots: {},
                 noOfBookings: 0,
               })
               .then(() => {
@@ -527,3 +532,9 @@ export const MentorForm = () => {
     </MentorFormStyled>
   );
 };
+
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(MentorForm);

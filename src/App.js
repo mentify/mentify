@@ -8,7 +8,7 @@ import { Registerpage } from "./pages/Registerpage/Registerpage";
 import { Signinpage } from "./pages/Signinpage/Signinpage";
 import { AboutUs } from "./pages/Aboutus/Aboutus";
 import { MentorApply } from "./pages/MentorApply/MentorApply";
-import { MentorForm } from "./pages/MentorForm/MentorForm";
+import MentorForm from "./pages/MentorForm/MentorForm";
 import { PrivacyPolicy } from "./pages/PrivacyPolicy/PrivacyPolicy";
 import BookSession from "./pages/BookSession/BookSession";
 import { withRouter } from "react-router";
