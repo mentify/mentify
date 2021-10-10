@@ -590,6 +590,7 @@ const BookSession = ({ currentUser }) => {
   };
 
   const displayRazorpay = async () => {
+    console.log("workingg");
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -647,7 +648,7 @@ const BookSession = ({ currentUser }) => {
             setPaymentLoading(false);
             return;
           } else displayRazorpay();
-        }
+        } else displayRazorpay();
       });
   };
 
@@ -793,6 +794,7 @@ const BookSession = ({ currentUser }) => {
             bookedOn: todaysDate,
             bookedDate: date,
             bookedSlot: selectedSlot,
+            mentorPhotoURL: mentorData.photoURL,
           });
         });
     });

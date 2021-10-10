@@ -127,6 +127,9 @@ const Navbar = ({ currentUser, history, signOutCurrentUser }) => {
       <Link to="/apply" className="link contact">
         Apply as a Mentor
       </Link>
+      <Link to="/bookingsSummary" className="link contact">
+        Booking Summary
+      </Link>
 
       <Link to="/signin" className="link auth">
         {currentUser

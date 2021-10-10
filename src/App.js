@@ -15,6 +15,7 @@ import { withRouter } from "react-router";
 import firebase from "firebase";
 import { connect } from "react-redux";
 import { setUser } from "./redux/user/user-actions";
+import BookingsSummary from "./pages/BookingsSummary/BookingsSummary";
 
 const App = ({ setUserInfo, history }) => {
   useEffect(() => {
@@ -41,6 +42,7 @@ const App = ({ setUserInfo, history }) => {
     <div className="App">
       <Navbar />
       <Switch>
+        <Route path="/bookingsSummary" component={BookingsSummary} />
         <Route path="/privacypolicy" component={PrivacyPolicy} />
         <Route path="/booksession/:mentorId" component={BookSession} />
         <Route path="/mentorform" component={MentorForm} />
