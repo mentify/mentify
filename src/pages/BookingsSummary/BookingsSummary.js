@@ -19,22 +19,20 @@ const BookingsPage = styled.div`
   & .bookings {
     padding: 1.5em;
     height: fit-content;
-    background: #b5f7e7;
+
   }
   & .container1 {
     display: flex;
     flex-direction: column;
-    background: #b5f7e7;
-    box-shadow: 2px 2px 4px 4px grey;
-    padding: 2em 10em;
+    background:#ffffff;
     justify-content: center;
     text-align: center;
-    border: 0.1em solid black;
+    border-radius:1em;
   }
   & .heading {
     font-size: 2.4rem;
     font-family: "Proza Libre", sans-serif;
-    text-decoration: underline;
+    text-align:center;
   }
   & .bookings {
     display: flex;
@@ -43,6 +41,9 @@ const BookingsPage = styled.div`
   }
   & .noBookings {
     width: 40em;
+  }
+  & .icon1{
+    margin-right:0.3em;
   }
 `;
 
@@ -68,8 +69,8 @@ const BookingsSummary = ({ currentUser }) => {
     <>
       <BookingsPage>
         <div className="newBooking"></div>
-        <div className="container1">
-          <div className="heading">Booking Summary</div>
+
+          <div className="heading"><i class="fa fa-calendar icon1"></i>    Booking Summary</div>
 
           {bookingsOfCurrentUser ? (
             bookingsOfCurrentUser.length > 0 ? (
@@ -92,7 +93,7 @@ const BookingsSummary = ({ currentUser }) => {
           ) : (
             <LoadingIcon />
           )}
-        </div>
+
       </BookingsPage>
       <Footer />
     </>
