@@ -50,16 +50,17 @@ const BookingsSummary = ({ currentUser }) => {
   const [bookingsOfCurrentUser, setBookingsOfCurrentUser] = useState(null);
 
   useEffect(() => {
-    firebase
-      .firestore()
-      .collection("bookings")
-      .onSnapshot((ref) => {
-        setBookingsOfCurrentUser(
-          ref.docs
-            .filter((doc) => doc.data().studentEmail === currentUser.email)
-            .map((doc) => doc.data())
-        );
-      });
+    if (currentUser)
+      firebase
+        .firestore()
+        .collection("bookings")
+        .onSnapshot((ref) => {
+          setBookingsOfCurrentUser(
+            ref.docs
+              .filter((doc) => doc.data().studentEmail === currentUser.email)
+              .map((doc) => doc.data())
+          );
+        });
   }, []);
 
   console.log(bookingsOfCurrentUser);
