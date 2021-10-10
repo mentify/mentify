@@ -8,7 +8,6 @@ import { AES, enc } from "crypto-js";
 import firebase from "../../firebase.config.js";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 import { connect } from "react-redux";
-import google from "../../assets/google-signin.png";
 import mentify from "../../assets/Mentify-Logo.png";
 
 const LoaderHolder = styled.div`
@@ -759,7 +758,6 @@ const BookSession = ({ currentUser }) => {
             bookedSlots[date] = [...bookedSlots[date], selectedSlot];
           } else bookedSlots[date] = [selectedSlot];
           setBookedSlots(bookedSlots);
-          console.log(bookedSlots);
           firebase
             .firestore()
             .collection("mentors")
@@ -770,26 +768,17 @@ const BookSession = ({ currentUser }) => {
             })
             .then(() => console.log("updated"));
 
-          firebase
-            .firestore()
-            .collection("bookings")
-            .doc()
-            .set({
-              mentorName: mentorData.name,
-              studentName: currentUser.displayName,
-              mentorEmail: mentorData.email,
-              studentEmail: currentUser.email,
-              bookedOn: todaysDate,
-              bookedDate: date,
-              bookedSlot: selectedSlot,
-            })
-            .catch((err) => console.log(err.message));
+          firebase.firestore().collection("bookings").doc().set({
+            mentorName: mentorData.name,
+            studentName: currentUser.displayName,
+            mentorEmail: mentorData.email,
+            studentEmail: currentUser.email,
+            bookedOn: todaysDate,
+            bookedDate: date,
+            bookedSlot: selectedSlot,
+          });
         });
     });
-  };
-  const mapGet = (mp, key) => {
-    console.log("map get mpky", mentorData.bookedSlots.get(date));
-    return mp.get(key);
   };
 
   return (

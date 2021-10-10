@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import MentorCardMockPic from "../../assets/mentorcard-mockpic.svg";
-import RatingStar from "../../assets/rating-star.svg";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import { Link } from "react-router-dom";
 

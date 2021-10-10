@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import googleLogo from "../../assets/googlelogo.svg";
 import firebase from "../../firebase.config.js";
 import { Link } from "react-router-dom";
 import google from "../../assets/google-signin.png";
@@ -478,7 +477,7 @@ export const SignInForm = ({ heading }) => {
                 <b>Welcome Back!</b>
               </div>
             ) : (
-              <div style={{marginBottom:"-1em"}}>
+              <div style={{ marginBottom: "-1em" }}>
                 <b>Welcome</b>
               </div>
             )}
@@ -600,11 +599,14 @@ export const SignInForm = ({ heading }) => {
               </div>
             )}
             </div>*/}
-            <div className="googlebtn">
-
-              <img style={{marginBottom:heading==="Sign In"?"0em":"-2em"}} src={google} className="google" onClick={onGoogleSignUp} />
-          
-            </div>
+          <div className="googlebtn">
+            <img
+              style={{ marginBottom: heading === "Sign In" ? "0em" : "-2em" }}
+              src={google}
+              className="google"
+              onClick={onGoogleSignUp}
+            />
+          </div>
           {heading === "Sign In" ? (
             <div>
               <div className="text-center p-t-12 ">

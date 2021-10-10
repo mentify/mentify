@@ -5,7 +5,6 @@ import Logo from "../../assets/Mentify-Logo.png";
 import Plus from "../../assets/plus.svg";
 import firebase from "../../firebase.config";
 import "firebase/storage";
-import { v4 as uuidv4 } from "uuid";
 import { AES } from "crypto-js";
 
 const MentorFormStyled = styled.div`
