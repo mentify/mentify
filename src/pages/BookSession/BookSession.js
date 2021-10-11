@@ -609,7 +609,7 @@ const BookSession = ({ currentUser, history }) => {
 		}).then((t) => t.json());
 
 		const options = {
-			key: "rzp_test_Hu7Les2vMgg6Xp",
+			key: "rzp_live_C1Vn19veyekSGk",
 			currency: data.currency,
 			amount: data.amount.toString(),
 			order_id: data.id,
