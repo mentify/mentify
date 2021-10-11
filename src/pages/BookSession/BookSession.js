@@ -609,7 +609,7 @@ const BookSession = ({ currentUser, history }) => {
 		}).then((t) => t.json());
 
 		const options = {
-			key: "rzp_live_C1Vn19veyekSGk",
+			key: process.env.REACT_APP_RAZORPAY_KEY_ID,
 			currency: data.currency,
 			amount: data.amount.toString(),
 			order_id: data.id,
