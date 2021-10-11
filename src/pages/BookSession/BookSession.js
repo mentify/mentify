@@ -864,7 +864,7 @@ const BookSession = ({ currentUser, history }) => {
                     </span>
                   </div>
                   <div className="scores">
-                    <span className="test">JEE Advance</span>
+                    <span className="test">JEE Advanced</span>
                     <span className="yellow1">
                       {mentorData.jeeAdvancedRank}
                     </span>
