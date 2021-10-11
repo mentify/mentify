@@ -10,7 +10,7 @@ import { signOutUser } from "../../redux/user/user-actions";
 const Nav = styled.div`
     height: 10vh;
     min-height: 50px;
-    background: #b5f7e7;
+    background: red;
     display: flex;
     align-items: center;
     gap: 2em;
