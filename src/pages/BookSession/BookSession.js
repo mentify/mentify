@@ -617,7 +617,7 @@ const BookSession = ({ currentUser, history }) => {
       description: `Book a one-one session with ${mentorData.name}`,
       image: { mentify },
       handler: function (response) {
-        createEvent();
+        createCurrentBooking();
       },
       prefill: {
         name: `${currentUser.name}`,
@@ -634,6 +634,7 @@ const BookSession = ({ currentUser, history }) => {
 
     if (!currentUser) {
       alert("Please log in or sign up to continue!");
+      setPaymentLoading(false);
       return;
     }
 
@@ -698,6 +699,32 @@ const BookSession = ({ currentUser, history }) => {
 
   const todaysDate = new Date();
 
+  const createCurrentBooking = () => {
+    if (bookedSlots[date]) {
+      bookedSlots[date] = [...bookedSlots[date], selectedSlot];
+    } else bookedSlots[date] = [selectedSlot];
+    setBookedSlots(bookedSlots);
+
+    firebase
+      .firestore()
+      .collection("currentBooking")
+      .doc(currentUser.email)
+      .set({
+        mentorName: mentorData.name,
+        studentName: currentUser.displayName,
+        mentorEmail: mentorData.email,
+        studentEmail: currentUser.email,
+        bookedOn: todaysDate,
+        bookedDate: date,
+        bookedSlot: selectedSlot,
+        mentorPhotoURL: mentorData.photoURL,
+        mentorCollege: mentorData.college,
+        mentorBranch: mentorData.branch,
+      });
+
+    history.push("/bookingsSummary");
+  };
+
   const createEvent = () => {
     REACT_APP_GAPI.load("client:auth2", () => {
       REACT_APP_GAPI.client.init({
@@ -723,6 +750,7 @@ const BookSession = ({ currentUser, history }) => {
         meetinghr2 = Math.floor(selectedSlot) + 1;
         meetingmin2 = 0;
       }
+
       REACT_APP_GAPI.client.load("calendar", "v3", () => console.log("loaded"));
       REACT_APP_GAPI.auth2
         .getAuthInstance()
