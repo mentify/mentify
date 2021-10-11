@@ -243,7 +243,7 @@ export const Booking = ({
                 </div>
               </div>
               <div className="checkCalendar">
-					Please check your Google Calender for the Meeting Link
+					Please check your registered mail for the Meeting Link
 				</div>
             </div>
 			{/*<div className="container">

@@ -5,6 +5,7 @@ import TopShape from "../../assets/TopShape.png";
 import BottomShape from "../../assets/BottomShape.svg";
 import Sreevas from "../../assets/Sreevas.png";
 import Adhvaith from "../../assets/Adhvaith.png";
+import AP from "../../assets/AP.jpeg";
 import Abhi from "../../assets/abhi.jpeg";
 import Sunand from "../../assets/Sunand.png";
 import Amal from "../../assets/Amal.png";
@@ -671,7 +672,7 @@ export const AboutUs = () => {
 						<div className="person"><img src={Govind}/><div className="personName">Govind Sekhar</div>Maggi Hair 🍜</div>
 						<div className="person"><img src={Rishab}/><div className="personName">Rishab Saphal</div>Valo Addict 🎮</div>
 						<div className="person"><img src={Abhi}/><div className="personName">Abhinav Manoj</div>Hooper 🏀</div>
-						<div className="person"><img src={Rishab}/><div className="personName">AP</div>Whatsapp Warrior 👾</div>
+						<div className="person"><img src={AP}/><div className="personName">AP</div>Whatsapp Warrior 👾</div>
 					</div>
 				</div>
 				<img src={BottomShape} alt="bottom" className="wave" />

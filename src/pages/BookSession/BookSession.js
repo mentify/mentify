@@ -12,13 +12,13 @@ import mentify from "../../assets/Mentify-Logo.png";
 import { withRouter } from "react-router";
 
 const LoaderHolder = styled.div`
-  & {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+	& {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 `;
 
 const BookSessionStyled = styled.div`
@@ -59,7 +59,7 @@ const BookSessionStyled = styled.div`
 		height: auto;
 		margin-left: 3.5em;
 		pointer-events: all;
-	  }
+		}
 	& .topgreen1 {
 		height: 4em;
 		padding-right: 1em;
@@ -554,405 +554,406 @@ const Date2 = new Date();
 const REACT_APP_GAPI = window.gapi;
 
 const BookSession = ({ currentUser, history }) => {
-  const { mentorId } = useParams();
-  const [date, setDate] = useState("");
-  const [selectedSlot, setSelectedSlot] = useState("");
-  const [bookedSlots, setBookedSlots] = useState([]);
-  const [slotsToBeDisplayed, setSlotsToBeDisplayed] = useState([]);
-  const [mentorData, setMentorData] = useState(null);
-  const [paymentLoading, setPaymentLoading] = useState(false);
+	const { mentorId } = useParams();
+	const [date, setDate] = useState("");
+	const [selectedSlot, setSelectedSlot] = useState("");
+	const [bookedSlots, setBookedSlots] = useState([]);
+	const [slotsToBeDisplayed, setSlotsToBeDisplayed] = useState([]);
+	const [mentorData, setMentorData] = useState(null);
+	const [paymentLoading, setPaymentLoading] = useState(false);
 
-  useEffect(() => {
-    var bytes = AES.decrypt(decodeURIComponent(mentorId), "mentify");
-    var mentorEmail = JSON.parse(bytes.toString(enc.Utf8));
-    firebase
-      .firestore()
-      .collection("mentors")
-      .doc(mentorEmail)
-      .get()
-      .then((doc) => {
-        setMentorData(doc.data());
-        setBookedSlots(doc.data().bookedSlots);
-      });
-  }, []);
+	useEffect(() => {
+		var bytes = AES.decrypt(decodeURIComponent(mentorId), "mentify");
+		var mentorEmail = JSON.parse(bytes.toString(enc.Utf8));
+		firebase
+			.firestore()
+			.collection("mentors")
+			.doc(mentorEmail)
+			.get()
+			.then((doc) => {
+				setMentorData(doc.data());
+				setBookedSlots(doc.data().bookedSlots);
+			});
+	}, []);
 
-  const loadScript = (src) => {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
-      document.body.appendChild(script);
-    });
-  };
+	const loadScript = (src) => {
+		return new Promise((resolve) => {
+			const script = document.createElement("script");
+			script.src = src;
+			script.onload = () => {
+				resolve(true);
+			};
+			script.onerror = () => {
+				resolve(false);
+			};
+			document.body.appendChild(script);
+		});
+	};
 
-  const displayRazorpay = async () => {
-    console.log("workingg");
-    const res = await loadScript(
-      "https://checkout.razorpay.com/v1/checkout.js"
-    );
+	const displayRazorpay = async () => {
+		console.log("workingg");
+		const res = await loadScript(
+			"https://checkout.razorpay.com/v1/checkout.js"
+		);
 
-    if (!res) {
-      alert(
-        "Failed to load razorpay. Please check your internet connectivity."
-      );
-      setPaymentLoading(false);
-      return;
-    }
+		if (!res) {
+			alert(
+				"Failed to load razorpay. Please check your internet connectivity."
+			);
+			setPaymentLoading(false);
+			return;
+		}
 
-    const data = await fetch("https://mentify-api.herokuapp.com/razorpay", {
-      method: "POST",
-    }).then((t) => t.json());
+		const data = await fetch("https://mentify-api.herokuapp.com/razorpay", {
+			method: "POST",
+		}).then((t) => t.json());
 
-    const options = {
-      key: "rzp_test_Hu7Les2vMgg6Xp",
-      currency: data.currency,
-      amount: data.amount.toString(),
-      order_id: data.id,
-      name: "Payment",
-      description: `Book a one-one session with ${mentorData.name}`,
-      image: { mentify },
-      handler: function (response) {
-        createCurrentBooking();
-      },
-      prefill: {
-        name: `${currentUser.name}`,
-        email: `${currentUser.email}`,
-      },
-    };
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
-    setPaymentLoading(false);
-  };
+		const options = {
+			key: "rzp_test_Hu7Les2vMgg6Xp",
+			currency: data.currency,
+			amount: data.amount.toString(),
+			order_id: data.id,
+			name: "Payment",
+			description: `Book a one-one session with ${mentorData.name}`,
+			image: { mentify },
+			handler: function (response) {
+				createCurrentBooking();
+			},
+			prefill: {
+				name: `${currentUser.name}`,
+				email: `${currentUser.email}`,
+			},
+		};
+		const paymentObject = new window.Razorpay(options);
+		paymentObject.open();
+		setPaymentLoading(false);
+	};
 
-  const validateBooking = () => {
-    setPaymentLoading(true);
+	const validateBooking = () => {
+		setPaymentLoading(true);
 
-    if (!currentUser) {
-      alert("Please log in or sign up to continue!");
-      setPaymentLoading(false);
-      return;
-    }
+		if (!currentUser) {
+			alert("Please log in or sign up to continue!");
+			setPaymentLoading(false);
+			return;
+		}
 
-    firebase
-      .firestore()
-      .collection("mentors")
-      .doc(mentorData.email)
-      .get()
-      .then((doc) => {
-        if (doc.data().bookedSlots[date]) {
-          if (doc.data().bookedSlots[date].includes(selectedSlot)) {
-            alert("This slot has already been booked!");
-            setPaymentLoading(false);
-            return;
-          } else displayRazorpay();
-        } else displayRazorpay();
-      });
-  };
+		firebase
+			.firestore()
+			.collection("mentors")
+			.doc(mentorData.email)
+			.get()
+			.then((doc) => {
+				if (doc.data().bookedSlots[date]) {
+					if (doc.data().bookedSlots[date].includes(selectedSlot)) {
+						alert("This slot has already been booked!");
+						setPaymentLoading(false);
+						return;
+					} else displayRazorpay();
+				} else displayRazorpay();
+			});
+	};
 
-  const onchange = (date) => {
-    setDate(date);
-    firebase
-      .firestore()
-      .collection("mentors")
-      .doc(mentorData.email)
-      .get()
-      .then((doc) => {
-        const a = date.getDay();
-        const slotsPreffered = mentorData.preferredSlots[a];
-        const slotsBooked = doc.data().bookedSlots[date];
-        let displaySlots = [];
-        if (slotsBooked) {
-          let slotTaken = {};
-          for (let i = 0; i < slotsBooked.length; i++) {
-            slotTaken[slotsBooked[i]] = true;
-          }
-          for (let j = 0; j < slotsPreffered.length; j++) {
-            if (!slotTaken[slotsPreffered[j]]) {
-              displaySlots.push(slotsPreffered[j]);
-            }
-          }
-        }
-        if (displaySlots.length) setSlotsToBeDisplayed(displaySlots);
-        else setSlotsToBeDisplayed(slotsPreffered);
-      });
-  };
+	const onchange = (date) => {
+		setDate(date);
+		firebase
+			.firestore()
+			.collection("mentors")
+			.doc(mentorData.email)
+			.get()
+			.then((doc) => {
+				const a = date.getDay();
+				const slotsPreffered = mentorData.preferredSlots[a];
+				const slotsBooked = doc.data().bookedSlots[date];
+				let displaySlots = [];
+				if (slotsBooked) {
+					let slotTaken = {};
+					for (let i = 0; i < slotsBooked.length; i++) {
+						slotTaken[slotsBooked[i]] = true;
+					}
+					for (let j = 0; j < slotsPreffered.length; j++) {
+						if (!slotTaken[slotsPreffered[j]]) {
+							displaySlots.push(slotsPreffered[j]);
+						}
+					}
+				}
+				if (displaySlots.length) setSlotsToBeDisplayed(displaySlots);
+				else setSlotsToBeDisplayed(slotsPreffered);
+			});
+	};
 
-  const tileDisabled = ({ date, view }) => {
-    if (view === "month" && mentorData.preferredSlots) {
-      for (let key in mentorData.preferredSlots) {
-        if (key == date.getDay()) {
-          return false;
-        }
-      }
-      return true;
-    }
-  };
+	const tileDisabled = ({ date, view }) => {
+		if (view === "month" && mentorData.preferredSlots) {
+			for (let key in mentorData.preferredSlots) {
+				if (key == date.getDay()) {
+					return false;
+				}
+			}
+			return true;
+		}
+	};
 
-  const selectSlot = (slot) => {
-    setSelectedSlot(slot);
-  };
+	const selectSlot = (slot) => {
+		setSelectedSlot(slot);
+	};
 
-  const todaysDate = new Date();
+	const todaysDate = new Date();
 
-  const createCurrentBooking = () => {
-    if (bookedSlots[date]) {
-      bookedSlots[date] = [...bookedSlots[date], selectedSlot];
-    } else bookedSlots[date] = [selectedSlot];
-    setBookedSlots(bookedSlots);
+	const createCurrentBooking = () => {
+		if (bookedSlots[date]) {
+			bookedSlots[date] = [...bookedSlots[date], selectedSlot];
+		} else bookedSlots[date] = [selectedSlot];
+		setBookedSlots(bookedSlots);
+		firebase
+			.firestore()
+			.collection("mentors")
+			.doc(mentorData.email)
+			.update({
+					bookedSlots: bookedSlots,
+					noOfBookings: mentorData.noOfBookings + 1,
+				})
+			.then(() => console.log("updated"));
+		firebase
+			.firestore()
+			.collection("bookings")
+			.doc()
+			.set({
+				mentorName: mentorData.name,
+				studentName: currentUser.displayName,
+				mentorEmail: mentorData.email,
+				studentEmail: currentUser.email,
+				bookedOn: todaysDate,
+				bookedDate: date,
+				bookedSlot: selectedSlot,
+				mentorPhotoURL: mentorData.photoURL,
+				mentorCollege: mentorData.college,
+				mentorBranch: mentorData.branch,
+			})
+			.then(()=> {
+								alert("Congrats 🎉🎊 Your session has been booked. You will be getting an email with the meeting details by tonight.");
+								history.push("/bookingsSummary")
+							}
+					)
+	};
 
-    firebase
-      .firestore()
-      .collection("currentBooking")
-      .doc(currentUser.email)
-      .set({
-        mentorName: mentorData.name,
-        studentName: currentUser.displayName,
-        mentorEmail: mentorData.email,
-        studentEmail: currentUser.email,
-        bookedOn: todaysDate,
-        bookedDate: date,
-        bookedSlot: selectedSlot,
-        mentorPhotoURL: mentorData.photoURL,
-        mentorCollege: mentorData.college,
-        mentorBranch: mentorData.branch,
-      });
+	// const createEvent = () => {
+	// 	REACT_APP_GAPI.load("client:auth2", () => {
+	// 		REACT_APP_GAPI.client.init({
+	// 			apiKey: process.env.REACT_APP_API_KEY_CALENDAR,
+	// 			clientId: process.env.REACT_APP_CLIENT_ID_CALENDAR,
+	// 			discoveryDocs: [process.env.REACT_APP_DISCOVERY_DOCS_CALENDAR],
+	// 			scope: process.env.REACT_APP_SCOPES_CALENDAR,
+	// 		});
+	// 		let meetingmonth = date.getMonth() + 1;
+	// 		let meetingday = date.getDate();
+	// 		var meetinghr = 0;
+	// 		var meetingmin = 0;
+	// 		var meetinghr2 = 0;
+	// 		var meetingmin2 = 0;
+	// 		if (selectedSlot - Math.floor(selectedSlot) == 0) {
+	// 			meetinghr = selectedSlot;
+	// 			meetingmin = 0;
+	// 			meetingmin2 = 30;
+	// 			meetinghr2 = selectedSlot;
+	// 		} else {
+	// 			meetinghr = Math.floor(selectedSlot);
+	// 			meetingmin = 30;
+	// 			meetinghr2 = Math.floor(selectedSlot) + 1;
+	// 			meetingmin2 = 0;
+	// 		}
 
-    history.push("/bookingsSummary");
-  };
+	// 		REACT_APP_GAPI.client.load("calendar", "v3", () => console.log("loaded"));
+	// 		REACT_APP_GAPI.auth2
+	// 			.getAuthInstance()
+	// 			.signIn()
+	// 			.then(() => {
+	// 				var event = {
+	// 					sendUpdates: "all",
+	// 					sendInvites: true,
+	// 					summary: "Mentify Session",
+	// 					description:
+	// 						"One on One mentorship with a mentor from your dream college.",
+	// 					start: {
+	// 						dateTime: `2021-${meetingmonth}-${meetingday}T${meetinghr}:${meetingmin}:00+05:30`,
+	// 						timeZone: "Asia/Kolkata",
+	// 					},
+	// 					end: {
+	// 						dateTime: `2021-${meetingmonth}-${meetingday}T${meetinghr2}:${meetingmin2}:00+05:30`,
+	// 						timeZone: "Asia/Kolkata",
+	// 					},
+	// 					attendees: [{ email: mentorEmailId }],
+	// 					conferenceData: {
+	// 						createRequest: {
+	// 							requestId: "test",
+	// 							conferenceSolutionKey: { type: "hangoutsMeet" },
+	// 						},
+	// 					},
+	// 					reminders: {
+	// 						useDefault: false,
+	// 						overrides: [
+	// 							{ method: "email", minutes: 24 * 60 },
+	// 							{ method: "email", minutes: 60 },
+	// 							{ method: "email", minutes: 10 },
 
-  const createEvent = () => {
-    REACT_APP_GAPI.load("client:auth2", () => {
-      REACT_APP_GAPI.client.init({
-        apiKey: process.env.REACT_APP_API_KEY_CALENDAR,
-        clientId: process.env.REACT_APP_CLIENT_ID_CALENDAR,
-        discoveryDocs: [process.env.REACT_APP_DISCOVERY_DOCS_CALENDAR],
-        scope: process.env.REACT_APP_SCOPES_CALENDAR,
-      });
-      let meetingmonth = date.getMonth() + 1;
-      let meetingday = date.getDate();
-      var meetinghr = 0;
-      var meetingmin = 0;
-      var meetinghr2 = 0;
-      var meetingmin2 = 0;
-      if (selectedSlot - Math.floor(selectedSlot) == 0) {
-        meetinghr = selectedSlot;
-        meetingmin = 0;
-        meetingmin2 = 30;
-        meetinghr2 = selectedSlot;
-      } else {
-        meetinghr = Math.floor(selectedSlot);
-        meetingmin = 30;
-        meetinghr2 = Math.floor(selectedSlot) + 1;
-        meetingmin2 = 0;
-      }
+	// 							{ method: "popup", minutes: 10 },
+	// 							{ method: "popup", minutes: 60 },
+	// 						],
+	// 					},
+	// 				};
+	// 				var request = REACT_APP_GAPI.client.calendar.events.insert({
+	// 					calendarId: "primary",
+	// 					resource: event,
+	// 					conferenceDataVersion: 1,
+	// 				});
+	// 				request.execute((event) => {
+	// 					alert("Your session has been booked. Press OK to continue.");
+	// 					history.push("/bookingsSummary");
+	// 				});
 
-      REACT_APP_GAPI.client.load("calendar", "v3", () => console.log("loaded"));
-      REACT_APP_GAPI.auth2
-        .getAuthInstance()
-        .signIn()
-        .then(() => {
-          var event = {
-            sendUpdates: "all",
-            sendInvites: true,
-            summary: "Mentify Session",
-            description:
-              "One on One mentorship with a mentor from your dream college.",
-            start: {
-              dateTime: `2021-${meetingmonth}-${meetingday}T${meetinghr}:${meetingmin}:00+05:30`,
-              timeZone: "Asia/Kolkata",
-            },
-            end: {
-              dateTime: `2021-${meetingmonth}-${meetingday}T${meetinghr2}:${meetingmin2}:00+05:30`,
-              timeZone: "Asia/Kolkata",
-            },
-            attendees: [{ email: mentorEmailId }],
-            conferenceData: {
-              createRequest: {
-                requestId: "test",
-                conferenceSolutionKey: { type: "hangoutsMeet" },
-              },
-            },
-            reminders: {
-              useDefault: false,
-              overrides: [
-                { method: "email", minutes: 24 * 60 },
-                { method: "email", minutes: 60 },
-                { method: "email", minutes: 10 },
+					// if (bookedSlots[date]) {
+					// 	bookedSlots[date] = [...bookedSlots[date], selectedSlot];
+					// } else bookedSlots[date] = [selectedSlot];
+					// setBookedSlots(bookedSlots);
 
-                { method: "popup", minutes: 10 },
-                { method: "popup", minutes: 60 },
-              ],
-            },
-          };
-          var request = REACT_APP_GAPI.client.calendar.events.insert({
-            calendarId: "primary",
-            resource: event,
-            conferenceDataVersion: 1,
-          });
-          request.execute((event) => {
-            alert("Your session has been booked. Press OK to continue.");
-            history.push("/bookingsSummary");
-          });
+					
 
-          if (bookedSlots[date]) {
-            bookedSlots[date] = [...bookedSlots[date], selectedSlot];
-          } else bookedSlots[date] = [selectedSlot];
-          setBookedSlots(bookedSlots);
+					// firebase.firestore().collection("bookings").doc().set({
+					// 	mentorName: mentorData.name,
+					// 	studentName: currentUser.displayName,
+					// 	mentorEmail: mentorData.email,
+					// 	studentEmail: currentUser.email,
+					// 	bookedOn: todaysDate,
+					// 	bookedDate: date,
+					// 	bookedSlot: selectedSlot,
+					// 	mentorPhotoURL: mentorData.photoURL,
+					// 	mentorCollege: mentorData.college,
+					// 	mentorBranch: mentorData.branch,
+					// });
+				
 
-          firebase
-            .firestore()
-            .collection("mentors")
-            .doc(mentorData.email)
-            .update({
-              bookedSlots: bookedSlots,
-              noOfBookings: mentorData.noOfBookings + 1,
-            })
-            .then(() => console.log("updated"));
+	return (
+		<BookSessionStyled className="BookSessionStyled">
+			{mentorData ? (
+				<>
+					<div className="toppart">
+						<div className="mainbox">
+							<div className="topgreen1">
+								<div className="mentify">mentify.in</div>
+							</div>
+							<div className="innermainbox">
+								<div className="dp">
+									<img src={mentorData.photoURL} />
+								</div>
+								<div className="desc">
+									<div className="name">{mentorData.name}</div>
+									<div className="college">{mentorData.college} </div>
+									<div className="branch">{mentorData.branch}</div>
+									<div className="price">
+										<span className="yellow"> ₹ 150 </span> for a 30 min session
+									</div>
+								</div>
+							</div>
+						</div>
+						<div className="secondarybox">
+							<div className="testscores">
+								<div className="ts">Test Scores</div>
+								<div className="scores1">
+									<div className="scores">
+										<span className="test">JEE Mains</span>
+										<span className="yellow1">
+											{mentorData.jeeMainsPercentile}
+										</span>
+									</div>
+									<div className="scores">
+										<span className="test">JEE Advanced</span>
+										<span className="yellow1">
+											{mentorData.jeeAdvancedRank}
+										</span>
+									</div>
+									<div className="scores">
+										<span className="test">BITSAT</span>
+										<span className="yellow1">{mentorData.bitsatMarks}</span>
+									</div>
+								</div>
+							</div>
+							<div className="collegeadmits">
+								<div className="collegeadmitsheading">College Admits</div>
+								<div className="colleges">{mentorData.collegeAdmits}</div>
+							</div>
+						</div>
+					</div>
 
-          firebase.firestore().collection("bookings").doc().set({
-            mentorName: mentorData.name,
-            studentName: currentUser.displayName,
-            mentorEmail: mentorData.email,
-            studentEmail: currentUser.email,
-            bookedOn: todaysDate,
-            bookedDate: date,
-            bookedSlot: selectedSlot,
-            mentorPhotoURL: mentorData.photoURL,
-            mentorCollege: mentorData.college,
-            mentorBranch: mentorData.branch,
-          });
-        });
-    });
-  };
+					<div className="bottompart">
+						<div className="calendar">
+							<Calendar
+								onChange={onchange}
+								value={date}
+								tileDisabled={tileDisabled}
+								maxDate={Date1}
+								minDate={Date2}
+							/>
+						</div>
+						<div className="timeslot">
+							<div>
+								{date ? (
+									<div className="slotheading">Select a time slot </div>
+								) : (
+									<div className="slotheading">
+										Select a day from the calendar
+									</div>
+								)}
+							</div>
+							<div className="slotbuttons">
+								{slotsToBeDisplayed.map((slot) =>
+									slot - Math.floor(slot) == 0 ? (
+										<button
+											className="slotbtn"
+											onClick={() => selectSlot(slot)}
+											disabled={paymentLoading}
+										>
+											{slot}:00 to {slot}:30
+										</button>
+									) : (
+										<button
+											className="slotbtn"
+											onClick={() => selectSlot(slot)}
+											disabled={paymentLoading}
+										>
+											{Math.floor(slot)}:30 to {Math.floor(slot) + 1}:00
+										</button>
+									)
+								)}
+							</div>
+							<div className="bookbtn">
+								{date ? (
+									/*<img
+										src={google}
+										onClick={displayRazorpay}
+										className="google"
+									/>*/
+									<button onClick={validateBooking}>
+										<p>Book Session</p>
+									</button>
+								) : (
+									<img className="calendarselect" src={CalendarSelect} />
+								)}
+							</div>
+						</div>
+					</div>
+				</>
+			) : (
+				<LoaderHolder>
+					<LoadingIcon />
+				</LoaderHolder>
+			)}
 
-  return (
-    <BookSessionStyled className="BookSessionStyled">
-      {mentorData ? (
-        <>
-          <div className="toppart">
-            <div className="mainbox">
-              <div className="topgreen1">
-                <div className="mentify">mentify.in</div>
-              </div>
-              <div className="innermainbox">
-                <div className="dp">
-                  <img src={mentorData.photoURL} />
-                </div>
-                <div className="desc">
-                  <div className="name">{mentorData.name}</div>
-                  <div className="college">{mentorData.college} </div>
-                  <div className="branch">{mentorData.branch}</div>
-                  <div className="price">
-                    <span className="yellow"> ₹ 150 </span> for a 30 min session
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="secondarybox">
-              <div className="testscores">
-                <div className="ts">Test Scores</div>
-                <div className="scores1">
-                  <div className="scores">
-                    <span className="test">JEE Mains</span>
-                    <span className="yellow1">
-                      {mentorData.jeeMainsPercentile}
-                    </span>
-                  </div>
-                  <div className="scores">
-                    <span className="test">JEE Advanced</span>
-                    <span className="yellow1">
-                      {mentorData.jeeAdvancedRank}
-                    </span>
-                  </div>
-                  <div className="scores">
-                    <span className="test">BITSAT</span>
-                    <span className="yellow1">{mentorData.bitsatMarks}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="collegeadmits">
-                <div className="collegeadmitsheading">College Admits</div>
-                <div className="colleges">{mentorData.collegeAdmits}</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bottompart">
-            <div className="calendar">
-              <Calendar
-                onChange={onchange}
-                value={date}
-                tileDisabled={tileDisabled}
-                maxDate={Date1}
-                minDate={Date2}
-              />
-            </div>
-            <div className="timeslot">
-              <div>
-                {date ? (
-                  <div className="slotheading">Select a time slot </div>
-                ) : (
-                  <div className="slotheading">
-                    Select a day from the calendar
-                  </div>
-                )}
-              </div>
-              <div className="slotbuttons">
-                {slotsToBeDisplayed.map((slot) =>
-                  slot - Math.floor(slot) == 0 ? (
-                    <button
-                      className="slotbtn"
-                      onClick={() => selectSlot(slot)}
-                      disabled={paymentLoading}
-                    >
-                      {slot}:00 to {slot}:30
-                    </button>
-                  ) : (
-                    <button
-                      className="slotbtn"
-                      onClick={() => selectSlot(slot)}
-                      disabled={paymentLoading}
-                    >
-                      {Math.floor(slot)}:30 to {Math.floor(slot) + 1}:00
-                    </button>
-                  )
-                )}
-              </div>
-              <div className="bookbtn">
-                {date ? (
-                  /*<img
-                    src={google}
-                    onClick={displayRazorpay}
-                    className="google"
-                  />*/
-                  <button onClick={validateBooking}>
-                    <p>Book Session</p>
-                  </button>
-                ) : (
-                  <img className="calendarselect" src={CalendarSelect} />
-                )}
-              </div>
-            </div>
-          </div>
-        </>
-      ) : (
-        <LoaderHolder>
-          <LoadingIcon />
-        </LoaderHolder>
-      )}
-
-      <Footer />
-    </BookSessionStyled>
-  );
+			<Footer />
+		</BookSessionStyled>
+	);
 };
 
 const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+	currentUser: state.user.currentUser,
 });
 
 export default withRouter(connect(mapStateToProps)(BookSession));
