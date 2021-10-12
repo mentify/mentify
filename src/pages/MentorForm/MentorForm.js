@@ -8,6 +8,7 @@ import "firebase/storage";
 import { AES } from "crypto-js";
 import { connect } from "react-redux";
 import { Footer } from "../../components/Footer/Footer";
+import { withRouter } from "react-router";
 
 const MentorFormStyled = styled.div`
   & {
@@ -243,7 +244,7 @@ const MentorFormStyled = styled.div`
 
 const storage = firebase.storage();
 
-const MentorForm = ({ currentUser }) => {
+const MentorForm = ({ currentUser, history }) => {
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
   const [dp, setDP] = useState(null);
@@ -276,6 +277,7 @@ const MentorForm = ({ currentUser }) => {
   const handleSubmit = (e) => {
     if (!currentUser) {
       alert("Please sign in to apply.");
+      history.push("/signin");
       return;
     }
     e.preventDefault();
@@ -539,4 +541,4 @@ const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
 });
 
-export default connect(mapStateToProps)(MentorForm);
+export default withRouter(connect(mapStateToProps)(MentorForm));
