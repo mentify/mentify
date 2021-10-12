@@ -7,6 +7,7 @@ import firebase from "../../firebase.config";
 import "firebase/storage";
 import { AES } from "crypto-js";
 import { connect } from "react-redux";
+import { Footer } from "../../components/Footer/Footer";
 
 const MentorFormStyled = styled.div`
   & {
@@ -529,6 +530,7 @@ const MentorForm = ({ currentUser }) => {
           />
         </div>
       </form>
+      <Footer />
     </MentorFormStyled>
   );
 };

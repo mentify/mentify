@@ -102,31 +102,35 @@ const MentorApplyStyled = styled.div`
 
 export const MentorApply = () => {
   return (
-    <MentorApplyStyled className="MentorApplyStyled">
-      <div className="toppart">
-        <div className="line1">
-          Mentor <span className="yellow">students</span> and earn upto ₹20,000
-          per month
+    <>
+      <MentorApplyStyled className="MentorApplyStyled">
+        <div className="toppart">
+          <div className="line1">
+            Mentor <span className="yellow">students</span> and earn upto
+            ₹20,000 per month
+          </div>
+          <div className="line2">
+            Every student has some experience to share
+          </div>
+          <div className="btn">
+            <Link to="/mentorform">
+              <button>Apply Now</button>
+            </Link>
+          </div>
         </div>
-        <div className="line2">Every student has some experience to share</div>
-        <div className="btn">
-          <Link to="/mentorform">
-            <button>Apply Now</button>
-          </Link>
+        <div className="image">
+          <img src={MentorApplyImg} alt="mentor-img" className="img" />
         </div>
-      </div>
-      <div className="image">
-        <img src={MentorApplyImg} alt="mentor-img" className="img" />
-      </div>
-      <div className="bottompart">
-        <div className="line3">Ready to join us as mentors ?</div>
-        <div className="btn2">
-          <Link to="/mentorform">
-            <button>Apply as a mentor</button>
-          </Link>
+        <div className="bottompart">
+          <div className="line3">Ready to join us as mentors ?</div>
+          <div className="btn2">
+            <Link to="/mentorform">
+              <button>Apply as a mentor</button>
+            </Link>
+          </div>
         </div>
-      </div>
+      </MentorApplyStyled>
       <Footer />
-    </MentorApplyStyled>
+    </>
   );
 };
