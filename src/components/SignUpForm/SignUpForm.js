@@ -420,6 +420,10 @@ export const SignInForm = ({ heading }) => {
         alert("Please fill all the required details");
         return;
       }
+      if (email.split("@")[1] != "gmail.com") {
+        alert("Please enter your gmail.");
+        return;
+      }
       setIsLoading(true);
       firebase
         .firestore()
