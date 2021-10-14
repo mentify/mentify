@@ -558,7 +558,7 @@ const BookSession = ({ currentUser, history }) => {
   const [date, setDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
   const [bookedSlots, setBookedSlots] = useState([]);
-  const [slotsToBeDisplayed, setSlotsToBeDisplayed] = useState([]);
+  const [slotsToBeDisplayed, setSlotsToBeDisplayed] = useState(null);
   const [mentorData, setMentorData] = useState(null);
   const [paymentLoading, setPaymentLoading] = useState(false);
 
@@ -903,25 +903,31 @@ const BookSession = ({ currentUser, history }) => {
                 )}
               </div>
               <div className="slotbuttons">
-                {slotsToBeDisplayed.map((slot) =>
-                  slot - Math.floor(slot) == 0 ? (
-                    <button
-                      className="slotbtn"
-                      onClick={() => selectSlot(slot)}
-                      disabled={paymentLoading}
-                    >
-                      {slot}:00 to {slot}:30
-                    </button>
+                {slotsToBeDisplayed ? (
+                  slotsToBeDisplayed.length > 0 ? (
+                    slotsToBeDisplayed.map((slot) =>
+                      slot - Math.floor(slot) == 0 ? (
+                        <button
+                          className="slotbtn"
+                          onClick={() => selectSlot(slot)}
+                          disabled={paymentLoading}
+                        >
+                          {slot}:00 to {slot}:30
+                        </button>
+                      ) : (
+                        <button
+                          className="slotbtn"
+                          onClick={() => selectSlot(slot)}
+                          disabled={paymentLoading}
+                        >
+                          {Math.floor(slot)}:30 to {Math.floor(slot) + 1}:00
+                        </button>
+                      )
+                    )
                   ) : (
-                    <button
-                      className="slotbtn"
-                      onClick={() => selectSlot(slot)}
-                      disabled={paymentLoading}
-                    >
-                      {Math.floor(slot)}:30 to {Math.floor(slot) + 1}:00
-                    </button>
+                    <h3>Fully booked</h3>
                   )
-                )}
+                ) : null}
               </div>
               <div className="bookbtn">
                 {date ? (

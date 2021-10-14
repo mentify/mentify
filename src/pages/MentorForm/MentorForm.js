@@ -302,7 +302,7 @@ const MentorForm = ({ currentUser, history }) => {
           .then((url) =>
             firebase
               .firestore()
-              .collection("mentors")
+              .collection("appliedMentors")
               .doc(`${mentorEmail}`)
               .set({
                 id: id,
