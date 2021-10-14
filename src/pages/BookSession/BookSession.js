@@ -549,7 +549,7 @@ const BookSessionStyled = styled.div`
 const mentorEmailId = "adhvaithkul@gmail.com";
 
 const Date1 = new Date(2021, 11, 1);
-const Date2 = new Date();
+const Date2 = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 
 const REACT_APP_GAPI = window.gapi;
 
